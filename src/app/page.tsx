@@ -1,114 +1,206 @@
-import Image from "next/image";
+import { type ProductItemType } from "@/ui/types";
+import { formatPrice } from "@/utils";
+import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
+
+const PRODUCTS: ProductItemType[] = [
+	{
+		id: "1",
+		category: "Wheels",
+		name: "Volk Racing TE37 Ultra M-Spec",
+		price: 1249,
+		coverImage: {
+			src: "/images/wheels/te37-ultra-mspec.png",
+			alt: "Volk Te37 ultra m-spec",
+		},
+		bulletPoints: [
+			{ id: "size", label: "Size", value: "18x10" },
+			{ id: "offset", label: "Offset", value: "+22" },
+			{ id: "bolt-pattern", label: "Bolt Pattern", value: "5x114.3" },
+		],
+	},
+	{
+		id: "2",
+		category: "Wheels",
+		name: "Work Meister S1",
+		price: 699,
+		coverImage: {
+			src: "/images/wheels/work-meister-s1.png",
+			alt: "Work Meister S1",
+		},
+		bulletPoints: [
+			{ id: "size", label: "Size", value: "18x9.5" },
+			{ id: "offset", label: "Offset", value: "+15" },
+			{ id: "bolt-pattern", label: "Bolt Pattern", value: "5x100 / 5x114.3" },
+		],
+	},
+	{
+		id: "3",
+		category: "Wheels",
+		name: "Enkei Raijin",
+		price: 499,
+		coverImage: {
+			src: "/images/wheels/enkei-raijin.png",
+			alt: "Enkei Raijin",
+		},
+		bulletPoints: [
+			{ id: "size", label: "Size", value: "17x8" },
+			{ id: "offset", label: "Offset", value: "+22" },
+			{ id: "bolt-pattern", label: "Bolt Pattern", value: "5x114.3" },
+		],
+	},
+	{
+		id: "4",
+		category: "Wheels",
+		name: "Weds Maverick 1410s",
+		price: 3399,
+		coverImage: {
+			src: "/images/wheels/weds-maverick-1410s.png",
+			alt: "Weds Maverick 1410s",
+		},
+		bulletPoints: [
+			{ id: "size", label: "Size", value: "19x10" },
+			{ id: "offset", label: "Offset", value: "+22" },
+			{ id: "bolt-pattern", label: "Bolt Pattern", value: "5x114.3" },
+		],
+	},
+	{
+		id: "5",
+		category: "Suspensions",
+		name: "BC Racing BR Series Coilovers",
+		price: 1299,
+		coverImage: {
+			src: "/images/suspensions/bc-racing-br-series-coilovers.png",
+			alt: "BC Racing BR Series Coilovers",
+		},
+		bulletPoints: [
+			{ id: "spring-rate", label: "Spring Rate", value: "8k/6k" },
+			{ id: "top-hats", label: "Top Hats", value: "Standard" },
+			{ id: "dampening", label: "Dampening", value: "30-way adjustable" },
+		],
+		suitableFor: ["BMW E46"],
+	},
+	{
+		id: "6",
+		category: "Suspensions",
+		name: "BC Racing BR Series Coilovers",
+		price: 1299,
+		coverImage: {
+			src: "/images/suspensions/bc-racing-br-series-coilovers.png",
+			alt: "BC Racing BR Series Coilovers",
+		},
+		bulletPoints: [
+			{ id: "spring-rate", label: "Spring Rate", value: "8k/6k" },
+			{ id: "top-hats", label: "Top Hats", value: "Standard" },
+			{ id: "dampening", label: "Dampening", value: "30-way adjustable" },
+		],
+		suitableFor: ["BMW E30"],
+	},
+	{
+		id: "7",
+		category: "Exhaust systems",
+		name: "Invidia Q300 Catback Exhaust",
+		price: 899,
+		coverImage: {
+			src: "/images/exhausts/invidia-q300-lexus-rc350.png",
+			alt: "Invidia Q300 Catback Exhaust",
+		},
+		bulletPoints: [
+			{ id: "piping-diameter", label: "Piping Diameter", value: "70mm" },
+			{ id: "tip-diameter", label: "Tip Diameter", value: "110mm" },
+			{ id: "material", label: "Material", value: "Stainless Steel" },
+		],
+		suitableFor: ["Lexus RC350", "Lexus RC200t"],
+	},
+	{
+		id: "8",
+		category: "Exhaust systems",
+		name: "Malian Exhausts Catback Performance Exhaust",
+		price: 399,
+		coverImage: {
+			src: "/images/exhausts/catback-performance-e46.png",
+			alt: "Malian Exhausts Catback Performance Exhaust",
+		},
+		bulletPoints: [
+			{ id: "piping-diameter", label: "Piping Diameter", value: "60mm" },
+			{ id: "tip-diameter", label: "Tip Diameter", value: "100mm" },
+			{ id: "material", label: "Material", value: "Stainless Steel" },
+		],
+		suitableFor: ["BMW E46"],
+	},
+	{
+		id: "9",
+		category: "Interior",
+		name: "Bride Zeta III",
+		price: 799,
+		coverImage: {
+			src: "/images/interior/bride-zeta-iii.png",
+			alt: "Bride Zeta III",
+		},
+		bulletPoints: [
+			{ id: "material", label: "Material", value: "Aramid Black" },
+			{ id: "weight", label: "Weight", value: "6.5kg" },
+			{ id: "rails", label: "Rails", value: "Not included" },
+		],
+	},
+	{
+		id: "10",
+		category: "Interior",
+		name: "Depo Gauge 85mm Speedometer",
+		price: 119,
+		coverImage: {
+			src: "/images/interior/depo-gauge-speedometer.png",
+			alt: "Depo Gauge 85mm Speedometer",
+		},
+		bulletPoints: [
+			{ id: "diameter", label: "Diameter", value: "85mm" },
+			{ id: "display", label: "Display", value: "Digital" },
+			{ id: "material", label: "Material", value: "Plastic" },
+		],
+	},
+];
 
 export default function Home() {
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			<div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-				<p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-					Get started by editing&nbsp;
-					<code className="font-mono font-bold">src/app/page.tsx</code>
-				</p>
-				<div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-					<a
-						className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-						href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
+		<section className="mt-4 flex flex-col gap-4">
+			<h1 className="text-4xl font-bold">Products</h1>
+			<ul
+				className="grid grid-cols-1 justify-center justify-items-center gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+				data-testid="products-list"
+			>
+				{PRODUCTS.map((product) => (
+					<li
+						key={product.id}
+						className="text-font-dark group flex w-full max-w-[400px] flex-col justify-start gap-4 overflow-hidden rounded-md bg-slate-200  drop-shadow-md"
 					>
-						By{" "}
-						<Image
-							src="/vercel.svg"
-							alt="Vercel Logo"
-							className="dark:invert"
-							width={100}
-							height={24}
-							priority
-						/>
-					</a>
-				</div>
-			</div>
-
-			<div className="relative z-[-1] flex place-items-center gap-4 before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-				<Image
-					className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-					src="/next.svg"
-					alt="Next.js Logo"
-					width={180}
-					height={37}
-					priority
-				/>
-				<p className="text-5xl">Masters</p>
-			</div>
-
-			<div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-				<a
-					href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-					className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<h2 className={`mb-3 text-2xl font-semibold`}>
-						Docs{" "}
-						<span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-							-&gt;
-						</span>
-					</h2>
-					<p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-						Find in-depth information about Next.js features and API.
-					</p>
-				</a>
-
-				<a
-					href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<h2 className={`mb-3 text-2xl font-semibold`}>
-						Learn{" "}
-						<span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-							-&gt;
-						</span>
-					</h2>
-					<p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-						Learn about Next.js in an interactive course with&nbsp;quizzes!
-					</p>
-				</a>
-
-				<a
-					href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-					className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<h2 className={`mb-3 text-2xl font-semibold`}>
-						Templates{" "}
-						<span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-							-&gt;
-						</span>
-					</h2>
-					<p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-						Explore starter templates for Next.js.
-					</p>
-				</a>
-
-				<a
-					href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-					className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<h2 className={`mb-3 text-2xl font-semibold`}>
-						Deploy{" "}
-						<span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-							-&gt;
-						</span>
-					</h2>
-					<p className={`text-balance m-0 max-w-[30ch] text-sm opacity-50`}>
-						Instantly deploy your Next.js site to a shareable URL with Vercel.
-					</p>
-				</a>
-			</div>
-		</main>
+						<header className="flex grow flex-col border-b border-slate-300 pb-2">
+							<ProductCoverImage src={product.coverImage.src} alt={product.coverImage.alt} />
+							<div className="flex w-full items-start justify-between gap-4 px-4">
+								<h2 className="text-xl font-bold">{product.name}</h2>
+							</div>
+						</header>
+						<article className="flex flex-wrap gap-4 px-4 pb-4">
+							<ul className="w-full text-sm">
+								{product.bulletPoints?.map((bulletPoint) => (
+									<li key={bulletPoint.id}>
+										<p>
+											{bulletPoint.label}: {bulletPoint.value}
+										</p>
+									</li>
+								))}
+								{product.suitableFor && (
+									<li>
+										<p>Suitable for: {product.suitableFor?.join(", ")}</p>
+									</li>
+								)}
+								<li>
+									<p>Category: {product.category}</p>
+								</li>
+							</ul>
+							<p className="text-xl font-semibold">{formatPrice(product.price)}</p>
+						</article>
+					</li>
+				))}
+			</ul>
+		</section>
 	);
 }
