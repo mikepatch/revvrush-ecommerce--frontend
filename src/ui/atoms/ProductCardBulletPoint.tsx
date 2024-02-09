@@ -8,10 +8,9 @@ type ProductCardBulletPointProps = {
 
 export const ProductCardBulletPoint = ({ bulletPoint }: ProductCardBulletPointProps) => {
 	return (
-		<li>
-			<p>
-				{bulletPoint.label}: {bulletPoint.value}
-			</p>
-		</li>
+		<div>
+			<dt className="inline">{bulletPoint.label}: </dt>
+			<dd className="inline">{bulletPoint.value}</dd>
+		</div>
 	);
 };

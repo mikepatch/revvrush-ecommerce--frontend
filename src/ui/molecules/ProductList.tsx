@@ -12,10 +12,7 @@ export const ProductList = ({ products }: ProductListProps) => {
 			data-testid="products-list"
 		>
 			{products.map((product) => (
-				<li
-					key={product.id}
-					className="group flex h-full w-full max-w-[400px] flex-col gap-4 overflow-hidden rounded-md bg-slate-200 text-font-dark drop-shadow-md"
-				>
+				<li key={product.id} className="group  max-w-[400px]">
 					<ProductCard product={product} />
 				</li>
 			))}

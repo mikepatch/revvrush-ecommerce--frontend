@@ -14,7 +14,7 @@ type ProductCardBulletPointListProps = {
 
 export const ProductCardBulletPointList = ({ product }: ProductCardBulletPointListProps) => {
 	return (
-		<ul className="w-full text-sm">
+		<dl className="w-full text-sm">
 			{product.bulletPoints?.map((bulletPoint) => (
 				<ProductCardBulletPoint bulletPoint={bulletPoint} key={bulletPoint.id} />
 			))}
@@ -30,6 +30,6 @@ export const ProductCardBulletPointList = ({ product }: ProductCardBulletPointLi
 			<ProductCardBulletPoint
 				bulletPoint={{ id: "category", label: "Category", value: product.category }}
 			/>
-		</ul>
+		</dl>
 	);
 };
