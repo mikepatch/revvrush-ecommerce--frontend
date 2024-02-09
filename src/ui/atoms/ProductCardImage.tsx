@@ -20,7 +20,7 @@ export const ProductCardImage = ({
 				height={height}
 				src={src}
 				alt={alt}
-				className="w-full object-contain transition-all group-hover:scale-105"
+				className="w-full object-contain transition-all lg:group-hover:scale-105"
 				loading="lazy"
 			/>
 		</div>
