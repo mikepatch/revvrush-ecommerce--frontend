@@ -1,5 +1,5 @@
 import { PageTitle } from "@/ui/atoms/PageTitle";
-import { ProductList } from "@/ui/molecules/ProductList";
+import { ProductList } from "@/ui/organisms/ProductList";
 import { type ProductItemType } from "@/ui/types";
 
 const PRODUCTS: ProductItemType[] = [
