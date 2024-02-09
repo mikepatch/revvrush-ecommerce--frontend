@@ -1,6 +1,6 @@
+import { PageTitle } from "@/ui/atoms/PageTitle";
+import { ProductList } from "@/ui/molecules/ProductList";
 import { type ProductItemType } from "@/ui/types";
-import { formatPrice } from "@/utils";
-import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
 
 const PRODUCTS: ProductItemType[] = [
 	{
@@ -162,45 +162,8 @@ const PRODUCTS: ProductItemType[] = [
 export default function Home() {
 	return (
 		<section className="mt-4 flex flex-col gap-4">
-			<h1 className="text-4xl font-bold">Products</h1>
-			<ul
-				className="grid grid-cols-1 justify-center justify-items-center gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-				data-testid="products-list"
-			>
-				{PRODUCTS.map((product) => (
-					<li
-						key={product.id}
-						className="text-font-dark group flex w-full max-w-[400px] flex-col justify-start gap-4 overflow-hidden rounded-md bg-slate-200  drop-shadow-md"
-					>
-						<header className="flex grow flex-col border-b border-slate-300 pb-2">
-							<ProductCoverImage src={product.coverImage.src} alt={product.coverImage.alt} />
-							<div className="flex w-full items-start justify-between gap-4 px-4">
-								<h2 className="text-xl font-bold">{product.name}</h2>
-							</div>
-						</header>
-						<article className="flex flex-wrap gap-4 px-4 pb-4">
-							<ul className="w-full text-sm">
-								{product.bulletPoints?.map((bulletPoint) => (
-									<li key={bulletPoint.id}>
-										<p>
-											{bulletPoint.label}: {bulletPoint.value}
-										</p>
-									</li>
-								))}
-								{product.suitableFor && (
-									<li>
-										<p>Suitable for: {product.suitableFor?.join(", ")}</p>
-									</li>
-								)}
-								<li>
-									<p>Category: {product.category}</p>
-								</li>
-							</ul>
-							<p className="text-xl font-semibold">{formatPrice(product.price)}</p>
-						</article>
-					</li>
-				))}
-			</ul>
+			<PageTitle title="Products" />
+			<ProductList products={PRODUCTS} />
 		</section>
 	);
 }
