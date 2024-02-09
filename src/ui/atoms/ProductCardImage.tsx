@@ -1,18 +1,18 @@
 import Image from "next/image";
 
-type ProductCoverImageProps = {
+type ProductCardImageProps = {
 	src: string;
 	alt: string;
 	width?: number;
 	height?: number;
 };
 
-export const ProductCoverImage = ({
+export const ProductCardImage = ({
 	src,
 	alt,
 	width = 300,
 	height = 300,
-}: ProductCoverImageProps) => {
+}: ProductCardImageProps) => {
 	return (
 		<div className="aspect-square w-full grow-0 overflow-hidden p-8">
 			<Image
@@ -20,7 +20,7 @@ export const ProductCoverImage = ({
 				height={height}
 				src={src}
 				alt={alt}
-				className="h-full w-full object-contain transition-all group-hover:scale-105"
+				className="w-full object-contain transition-all group-hover:scale-105"
 				loading="lazy"
 			/>
 		</div>
