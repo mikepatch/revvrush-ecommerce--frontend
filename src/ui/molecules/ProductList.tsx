@@ -12,7 +12,7 @@ export const ProductList = ({ products }: ProductListProps) => {
 			data-testid="products-list"
 		>
 			{products.map((product) => (
-				<li key={product.id} className="group  max-w-[400px]">
+				<li key={product.id} className="group w-full max-w-[400px]">
 					<ProductCard product={product} />
 				</li>
 			))}
