@@ -95,5 +95,5 @@
 			}
 		}
 	],
-	"ignorePatterns": ["*.js", "*.jsx"]
+	"ignorePatterns": ["*.js", "*.jsx", "*.config.js", "*.config.ts"]
 }
