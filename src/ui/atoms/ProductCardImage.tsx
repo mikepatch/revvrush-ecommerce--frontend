@@ -14,13 +14,13 @@ export const ProductCardImage = ({
 	height = 300,
 }: ProductCardImageProps) => {
 	return (
-		<div className="aspect-square w-full grow-0 overflow-hidden p-8">
+		<div className="w-full grow-0 overflow-hidden p-4">
 			<Image
 				width={width}
 				height={height}
 				src={src}
 				alt={alt}
-				className="w-full object-contain transition-all lg:group-hover:scale-105"
+				className="aspect-square h-full w-full object-contain transition-all lg:group-hover:scale-105"
 				loading="lazy"
 			/>
 		</div>
