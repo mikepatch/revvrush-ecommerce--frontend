@@ -5,6 +5,15 @@ import { usePathname } from "next/navigation";
 import { type Route } from "next";
 import clsx from "clsx";
 
+type ActiveLinkProps = {
+	children: React.ReactNode;
+	href: Route;
+	className?: string;
+	activeClassName?: string;
+	target?: "_self" | "_blank";
+	ariaLabel?: string;
+};
+
 export const ActiveLink = ({
 	children,
 	href,
@@ -12,20 +21,13 @@ export const ActiveLink = ({
 	activeClassName = "",
 	target = "_self",
 	ariaLabel = "",
-}: {
-	children: React.ReactNode;
-	href: Route;
-	className?: string;
-	activeClassName?: string;
-	target?: "_self" | "_blank";
-	ariaLabel?: string;
-}) => {
+}: ActiveLinkProps) => {
 	const pathname = usePathname();
 	const isActive =
 		pathname === href ||
 		(pathname.startsWith("/products") && href === "/products") ||
 		(pathname.startsWith("/product") && href === "/products");
-
+	console.log(`Pathname: ${pathname}, href: ${href}, isActive: ${isActive}`);
 	return (
 		<Link
 			aria-current={isActive ? "page" : undefined}
