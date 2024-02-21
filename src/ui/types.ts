@@ -1,3 +1,5 @@
+import { type Route } from "next";
+
 export type ProductItemType = {
 	id: string;
 	category: string;
@@ -13,4 +15,10 @@ export type ProductItemType = {
 		id: string;
 	}[];
 	suitableFor?: string[];
+};
+
+export type NavItemType = {
+	id: string;
+	href: Route;
+	label: string;
 };
