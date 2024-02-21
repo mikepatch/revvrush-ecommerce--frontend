@@ -27,7 +27,7 @@ export const ActiveLink = ({
 		pathname === href ||
 		(pathname.startsWith("/products") && href === "/products") ||
 		(pathname.startsWith("/product") && href === "/products");
-	console.log(`Pathname: ${pathname}, href: ${href}, isActive: ${isActive}`);
+
 	return (
 		<Link
 			aria-current={isActive ? "page" : undefined}
