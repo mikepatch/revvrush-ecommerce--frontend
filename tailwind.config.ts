@@ -12,6 +12,10 @@ const config: Config = {
 			colors: {
 				"font-dark": "#1a1a1a",
 				"font-light": "#f5f5f5",
+				"brand-background": "#ebebeb",
+				"brand-background-lighter": "#fff",
+				"brand-background-dark": "#1a1a1a",
+				"brand-primary": "#EB635B",
 			},
 		},
 	},
