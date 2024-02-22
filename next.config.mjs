@@ -7,10 +7,14 @@ const nextConfig = {
 		typedRoutes: true,
 		mdxRs: true,
 	},
+	transpilePackages: ["lucide-react"],
 	images: {
 		remotePatterns: [
 			{
 				hostname: "naszsklep-api.vercel.app",
+			},
+			{
+				hostname: "static-ourstore.hyperfunctor.com",
 			},
 		],
 	},
