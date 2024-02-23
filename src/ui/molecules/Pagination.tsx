@@ -1,6 +1,5 @@
-import { LuArrowLeft, LuArrowLeftToLine, LuArrowRight, LuArrowRightToLine } from "react-icons/lu";
-
 import { PaginationItem } from "@/ui/molecules/PaginationItem";
+import { Icon } from "@/ui/atoms/Icon";
 
 type PaginationProps = {
 	pageNumber: number;
@@ -24,13 +23,13 @@ export const Pagination = ({ pageNumber = 1, totalItems, limit }: PaginationProp
 						{pageNumber > 3 && (
 							<PaginationItem
 								pageNumber={1}
-								label={<LuArrowLeftToLine />}
+								label={<Icon name="arrow-left-to-line" size={16} />}
 								ariaLabel="Navigate to first page"
 							/>
 						)}
 						<PaginationItem
 							pageNumber={previousPage}
-							label={<LuArrowLeft />}
+							label={<Icon name="arrow-left" size={16} />}
 							ariaLabel="Navigate to previous page"
 						/>
 						{pageNumber > 2 && (
@@ -68,13 +67,13 @@ export const Pagination = ({ pageNumber = 1, totalItems, limit }: PaginationProp
 						)}
 						<PaginationItem
 							pageNumber={nextPage}
-							label={<LuArrowRight />}
+							label={<Icon name="arrow-right" size={16} />}
 							ariaLabel="Navigate to next page"
 						/>
 						{pageNumber < totalPages - 2 && (
 							<PaginationItem
 								pageNumber={totalPages}
-								label={<LuArrowRightToLine />}
+								label={<Icon name="arrow-right-to-line" size={16} />}
 								ariaLabel="Navigate to last page"
 							/>
 						)}
