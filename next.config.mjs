@@ -7,6 +7,15 @@ const nextConfig = {
 		typedRoutes: true,
 		mdxRs: true,
 	},
+	redirects: async () => {
+		return [
+			{
+				source: "/products/:slug",
+				destination: "/products/:slug/1",
+				permanent: true,
+			},
+		];
+	},
 	transpilePackages: ["lucide-react"],
 	images: {
 		remotePatterns: [
