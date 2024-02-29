@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { type Route } from "next";
 import clsx from "clsx";
 
@@ -23,10 +23,11 @@ export const ActiveLink = ({
 	ariaLabel = "",
 }: ActiveLinkProps) => {
 	const pathname = usePathname();
+	const { categorySlug, pageNumber } = useParams();
 	const isActive =
 		pathname === href ||
-		(pathname.startsWith("/products") && href === "/products") ||
-		(pathname.startsWith("/product") && href === "/products");
+		pathname === `${href}/${categorySlug as string}/${pageNumber as string}` ||
+		(pathname.includes(href) && href !== "/");
 
 	return (
 		<Link
