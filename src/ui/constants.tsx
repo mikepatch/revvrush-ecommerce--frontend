@@ -1,4 +1,5 @@
 import { type Route } from "next";
+import { ShoppingBasket, User } from "lucide-react";
 import { type NavItemType } from "@/ui/types";
 
 export const FOOTER_LEGAL_NAV_ITEMS: NavItemType[] = [
@@ -11,6 +12,6 @@ export const FOOTER_LEGAL_NAV_ITEMS: NavItemType[] = [
 ];
 
 export const MAIN_NAV_ITEMS: NavItemType[] = [
-	{ id: "home", href: "/", label: "Home" },
-	{ id: "products", href: "/products", label: "All" },
+	{ id: "account", href: "/account", label: "Your account", icon: <User /> },
+	{ id: "cart", href: "/cart", label: "Cart", icon: <ShoppingBasket /> },
 ];
