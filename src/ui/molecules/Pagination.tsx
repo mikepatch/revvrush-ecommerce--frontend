@@ -27,14 +27,13 @@ export const Pagination = ({
 			<ul className="flex px-4">
 				{pageNumber > 1 && (
 					<>
-						{pageNumber > 3 && (
-							<PaginationItem
-								pageNumber={1}
-								label={<ArrowLeftToLine size={16} />}
-								ariaLabel="Navigate to first page"
-								categorySlug={categorySlug}
-							/>
-						)}
+						<PaginationItem
+							pageNumber={1}
+							label={<ArrowLeftToLine size={16} />}
+							ariaLabel="Navigate to first page"
+							categorySlug={categorySlug}
+						/>
+
 						<PaginationItem
 							pageNumber={previousPage}
 							label={<ArrowLeft size={16} />}
@@ -85,14 +84,13 @@ export const Pagination = ({
 							ariaLabel="Navigate to next page"
 							categorySlug={categorySlug}
 						/>
-						{pageNumber < totalPages - 2 && (
-							<PaginationItem
-								pageNumber={totalPages}
-								label={<ArrowRightToLine size={16} />}
-								ariaLabel="Navigate to last page"
-								categorySlug={categorySlug}
-							/>
-						)}
+
+						<PaginationItem
+							pageNumber={totalPages}
+							label={<ArrowRightToLine size={16} />}
+							ariaLabel="Navigate to last page"
+							categorySlug={categorySlug}
+						/>
 					</>
 				)}
 			</ul>
