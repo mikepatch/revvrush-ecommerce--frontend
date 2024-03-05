@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Exo } from "next/font/google";
-import { Icon } from "@/ui/atoms/Icon";
+import { LucideGauge } from "lucide-react";
 
 const exo = Exo({ subsets: ["latin"] });
 
@@ -10,11 +10,11 @@ type BrandLogoProps = {
 
 export const BrandLogo = ({ size = "2xl" }: BrandLogoProps) => {
 	return (
-		<figure className={`${exo.className} w-fit`}>
+		<figure className={`${exo.className} w-fit text-font-light`}>
 			<Link href="/" className={`text-${size}`}>
-				<span className="">Revv</span>
+				<span>Revv</span>
 				<span className="text-brand-primary">Rush</span>
-				<Icon name="gauge" className="inline-block" />
+				<LucideGauge className="inline-block" />
 			</Link>
 		</figure>
 	);
