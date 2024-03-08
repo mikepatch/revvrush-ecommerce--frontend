@@ -1,14 +1,23 @@
-import { NavList } from "@/ui/molecules/NavList";
-import { type NavItemType } from "@/ui/types";
+import { ActiveLink } from "@/ui/atoms/ActiveLink";
+import { MAIN_NAV_ITEMS } from "@/ui/constants";
 
-type NavigationProps = {
-	navItems: NavItemType[];
-};
-
-export const MainNavigation = ({ navItems }: NavigationProps) => {
+export const MainNavigation = () => {
 	return (
-		<nav>
-			<NavList navItems={navItems} className="flex gap-4 text-lg" />
+		<nav className="h-full">
+			<ul className="flex h-full items-center">
+				{MAIN_NAV_ITEMS.map(({ id, href, label, icon }) => (
+					<li key={id} className="h-full">
+						<ActiveLink
+							href={href}
+							className="flex h-full flex-col items-center justify-center border-brand-primary px-2 py-1 transition-all hover:border-b-4"
+							activeClassName="border-b-4"
+						>
+							<div>{icon && icon}</div>
+							<span className="text-xs">{label}</span>
+						</ActiveLink>
+					</li>
+				))}
+			</ul>
 		</nav>
 	);
 };
