@@ -1,9 +1,9 @@
-import { type ProductType } from "@/app/(with-navigation)/product/[productId]/page";
+import { type ProductWithDescriptionFragment } from "@/gql/graphql";
 import { ProductDetailsDescription } from "@/ui/molecules/ProductDetailsDescription";
 import { ProductsDetailsHeader } from "@/ui/molecules/ProductDetailsHeader";
 
 type ProductDetailsProps = {
-	product: ProductType;
+	product: ProductWithDescriptionFragment;
 };
 
 export const ProductDetails = ({ product }: ProductDetailsProps) => {
