@@ -1,15 +1,9 @@
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { ProductCardTitle } from "@/ui/atoms/ProductCardTitle";
+import { type ProductListItemFragment } from "@/gql/graphql";
 
 type ProductCardHeaderProps = {
-	product: {
-		stock: number;
-		coverImage: {
-			src: string;
-			alt: string;
-		};
-		name: string;
-	};
+	product: ProductListItemFragment;
 };
 
 export const ProductCardHeader = ({ product }: ProductCardHeaderProps) => {
@@ -21,7 +15,9 @@ export const ProductCardHeader = ({ product }: ProductCardHeaderProps) => {
 						<p className="text-xl font-bold">Out of stock</p>
 					</div>
 				)}
-				<ProductImage src={product.coverImage.src} alt={product.coverImage.alt} resizeOnHover />
+				{product.images && product.images[0] && (
+					<ProductImage src={product.images[0]} alt={product.name} resizeOnHover />
+				)}
 			</div>
 			<ProductCardTitle title={product.name} />
 		</header>
