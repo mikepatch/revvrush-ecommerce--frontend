@@ -1,17 +1,9 @@
+import { type ProductListItemFragment } from "@/gql/graphql";
 import { ProductCardPrice } from "@/ui/atoms/ProductCardPrice";
 // import { ProductCardBulletPointList } from "@/ui/molecules/ProductCardBulletPointList";
 
 type ProductCardBodyProps = {
-	product: {
-		bulletPoints?: {
-			id: string;
-			label: string;
-			value: string;
-		}[];
-		suitableFor?: string[];
-		category: string;
-		price: number;
-	};
+	product: ProductListItemFragment;
 };
 
 export const ProductCardBody = ({ product }: ProductCardBodyProps) => {
