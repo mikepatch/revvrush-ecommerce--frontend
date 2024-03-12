@@ -1,0 +1,5 @@
+query ProductsGetListByCategorySlug($slug: String!, $skip: Int, $take: Int) {
+	productsByCategorySlug(slug: $slug, skip: $skip, take: $take) {
+		...ProductList
+	}
+}
