@@ -1,0 +1,9 @@
+query ProductCategoriesGetList {
+	productCategories {
+		data {
+			id
+			name
+			slug
+		}
+	}
+}
