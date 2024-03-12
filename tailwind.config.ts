@@ -17,6 +17,9 @@ const config: Config = {
 				"brand-background-dark": "#1a1a1a",
 				"brand-primary": "#EB635B",
 			},
+			spacing: {
+				"header-height": "100px",
+			},
 		},
 	},
 	plugins: [require("@tailwindcss/typography")],
