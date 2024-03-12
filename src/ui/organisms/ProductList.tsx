@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 import { ProductCard } from "@/ui/molecules/ProductCard";
-import { type ProductItemType } from "@/ui/types";
+import { type ProductListItemFragment } from "@/gql/graphql";
 
 type ProductListProps = {
-	products: ProductItemType[];
+	products: ProductListItemFragment[];
 };
 
 export const ProductList = ({ products }: ProductListProps) => {
