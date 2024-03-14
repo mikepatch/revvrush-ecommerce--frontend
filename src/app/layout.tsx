@@ -18,7 +18,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: RootLayoutProps) {
 	return (
 		<html lang="en">
-			<body className={`${rubik.className} overflow-x-hidden bg-brand-background antialiased`}>
+			<body
+				className={`${rubik.className} min-h-screen overflow-x-hidden bg-brand-background text-font-dark antialiased`}
+			>
 				{children}
 				<Footer />
 			</body>
