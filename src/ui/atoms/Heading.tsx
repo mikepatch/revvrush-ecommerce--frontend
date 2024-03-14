@@ -2,11 +2,11 @@ import clsx from "clsx";
 
 type HeadingProps = {
 	level: 1 | 2 | 3 | 4 | 5 | 6;
-	text: string;
+	children: React.ReactNode;
 	className?: string;
 };
 
-export const Heading = ({ level, text, className }: HeadingProps) => {
+export const Heading = ({ level,  children, className = "" }: HeadingProps) => {
 	const Tag = `h${level}` as const;
 
 	return (
@@ -20,7 +20,7 @@ export const Heading = ({ level, text, className }: HeadingProps) => {
 				"text-base": level === 6,
 			})}
 		>
-			{text}
+			{children}
 		</Tag>
 	);
 };
