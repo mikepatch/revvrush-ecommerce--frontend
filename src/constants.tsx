@@ -1,6 +1,9 @@
 import { type Route } from "next";
 import { ShoppingBasket, User } from "lucide-react";
-import { type NavItemType } from "@/ui/types";
+
+import { type NavItemType } from "@/types";
+
+export const PRODUCTS_ON_PAGE = 4;
 
 export const FOOTER_LEGAL_NAV_ITEMS: NavItemType[] = [
 	{ id: "privacy-policy", href: "/static/privacy-policy" as Route, label: "Privacy Policy" },
