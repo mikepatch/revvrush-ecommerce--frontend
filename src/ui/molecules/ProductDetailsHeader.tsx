@@ -1,4 +1,4 @@
-import { CheckCheck, ShoppingCart, X } from "lucide-react";
+import {  ShoppingCart } from "lucide-react";
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { formatPrice } from "@/utils";
 import { type ProductListItemFragment } from "@/gql/graphql";
@@ -26,7 +26,7 @@ export const ProductsDetailsHeader = ({ product }: ProductsDetailsHeaderProps) =
 					<h1 className="mb-4 text-3xl font-bold">{product.name}</h1>
 					<small className="text-xs text-gray-500">ID: {product.id}</small>
 				</div>
-				{product.stock > 0 ? (
+				{/* {product.stock > 0 ? (
 					<div className="flex gap-2">
 						<CheckCheck color="green" />
 						In stock
@@ -36,7 +36,7 @@ export const ProductsDetailsHeader = ({ product }: ProductsDetailsHeaderProps) =
 						<X color="red" />
 						Out of stock
 					</div>
-				)}
+				)} */}
 				<div className="flex flex-wrap items-center justify-between rounded-sm p-4">
 					<p className=" text-2xl font-semibold">{formatPrice(product.price)}</p>
 					<button
