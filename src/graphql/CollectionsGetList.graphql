@@ -3,5 +3,6 @@ query CollectionsGetList {
 		id
 		name
 		slug
+		coverImage
 	}
 }

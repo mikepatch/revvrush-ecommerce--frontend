@@ -4,7 +4,6 @@ fragment ProductListItem on Product {
 	price
 	categoryId
 	images
-	stock
 	category {
 		name
 		slug
