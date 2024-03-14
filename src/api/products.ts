@@ -8,7 +8,7 @@ import {
 } from "./../gql/graphql";
 import { executeGraphQL } from "@/api/graphqlApi";
 
-export const getAllProducts = async (variables: ProductsGetListQueryVariables) => {
+export const getAllProducts = async (variables?: ProductsGetListQueryVariables) => {
 	return executeGraphQL(ProductsGetListDocument, { ...variables });
 };
 
