@@ -1,16 +1,18 @@
-// import { ProductsList } from "@/app/(with-navigation)/products/productsList";
+import { getAllCategories } from "@/api/products";
 
-// import { getAllCategories } from "@/api/products";
+export const generateStaticParams = async () => {
+	const { productCategories } = await getAllCategories();
 
-// export const generateStaticParams = async () => {
-// 	const { productCategories } = await getAllCategories();
+	return productCategories.data.map((category) => ({
+		categorySlug: category.slug,
+	}));
+};
 
-// 	return productCategories.data.map((category) => ({
-// 		categorySlug: category.slug,
-// 	}));
-// };
+type ProductsLayoutProps = {
+	children: React.ReactNode;
+};
 
-export default async function ProductsLayout({ children }: { children: React.ReactNode }) {
+export default async function CategoriesLayout({ children }: ProductsLayoutProps) {
 	return (
 		<div className="mx-auto w-full max-w-7xl grid-cols-12 gap-x-8 text-font-dark lg:grid">
 			<aside className="col-span-3 h-fit rounded-sm bg-brand-background-lighter px-8 py-6 shadow-sm">
