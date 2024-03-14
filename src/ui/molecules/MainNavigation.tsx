@@ -1,5 +1,5 @@
+import { MAIN_NAV_ITEMS } from "@/constants";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
-import { MAIN_NAV_ITEMS } from "@/ui/constants";
 
 export const MainNavigation = () => {
 	return (
