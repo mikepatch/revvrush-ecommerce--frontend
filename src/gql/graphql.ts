@@ -19,6 +19,8 @@ export type Scalars = {
 };
 
 export type Collection = {
+  /** Product collection cover image URL */
+  coverImage: Scalars['String']['output'];
   createdAt: Scalars['String']['output'];
   /** Product collection description */
   description?: Maybe<Scalars['String']['output']>;
@@ -36,6 +38,8 @@ export type Collection = {
 };
 
 export type CreateCollectionInput = {
+  /** Product collection cover image URL */
+  coverImage: Scalars['String']['input'];
   /** Product collection description */
   description?: InputMaybe<Scalars['String']['input']>;
   /** Product collection name */
@@ -58,7 +62,26 @@ export type CreateProductInput = {
   images?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   name: Scalars['String']['input'];
   price: Scalars['Float']['input'];
-  stock: Scalars['Float']['input'];
+};
+
+export type CreateProductVariantInput = {
+  /** Product variant name */
+  name: Scalars['String']['input'];
+  /** Product variant options */
+  options: Array<CreateProductVariantOptionInput>;
+  /** Product variant price */
+  price?: InputMaybe<Scalars['Int']['input']>;
+  /** Product variant productId */
+  productId: Scalars['String']['input'];
+  /** Product variant stock */
+  stock?: Scalars['Int']['input'];
+};
+
+export type CreateProductVariantOptionInput = {
+  /** Product variant option name */
+  name: Scalars['String']['input'];
+  /** Product variant option values */
+  values: Array<Scalars['String']['input']>;
 };
 
 export type ListMeta = {
@@ -70,12 +93,15 @@ export type Mutation = {
   createCollection?: Maybe<Collection>;
   createProduct: Product;
   createProductCategory: ProductCategory;
+  createProductVariant: ProductVariant;
   removeCollection: Collection;
   removeProduct: Product;
   removeProductCategory: ProductCategory;
+  removeProductVariant: ProductVariant;
   updateCollection: Collection;
   updateProduct: Product;
   updateProductCategory: ProductCategory;
+  updateProductVariant: ProductVariant;
 };
 
 
@@ -94,6 +120,11 @@ export type MutationCreateProductCategoryArgs = {
 };
 
 
+export type MutationCreateProductVariantArgs = {
+  createProductVariantInput: CreateProductVariantInput;
+};
+
+
 export type MutationRemoveCollectionArgs = {
   id: Scalars['Int']['input'];
 };
@@ -106,6 +137,11 @@ export type MutationRemoveProductArgs = {
 
 export type MutationRemoveProductCategoryArgs = {
   id: Scalars['ID']['input'];
+};
+
+
+export type MutationRemoveProductVariantArgs = {
+  id: Scalars['Int']['input'];
 };
 
 
@@ -123,6 +159,11 @@ export type MutationUpdateProductArgs = {
 export type MutationUpdateProductCategoryArgs = {
   id: Scalars['ID']['input'];
   updateProductCategoryInput: UpdateProductCategoryInput;
+};
+
+
+export type MutationUpdateProductVariantArgs = {
+  updateProductVariantInput: UpdateProductVariantInput;
 };
 
 export type Product = {
@@ -148,10 +189,10 @@ export type Product = {
   price: Scalars['Int']['output'];
   /** Product slug */
   slug: Scalars['String']['output'];
-  /** Product stock */
-  stock: Scalars['Int']['output'];
   /** Product updatedAt */
   updatedAt: Scalars['DateTime']['output'];
+  /** Product variants */
+  variants?: Maybe<Array<Maybe<ProductVariant>>>;
 };
 
 export type ProductCategoriesList = {
@@ -183,6 +224,38 @@ export type ProductList = {
   meta: ListMeta;
 };
 
+export type ProductVariant = {
+  /** Product variant createdAt */
+  createdAt: Scalars['DateTime']['output'];
+  /** Product variant ID */
+  id: Scalars['ID']['output'];
+  /** Product variant name */
+  name: Scalars['String']['output'];
+  /** Product variant options */
+  options: Array<ProductVariantOption>;
+  /** Product variant price */
+  price?: Maybe<Scalars['Int']['output']>;
+  /** Product variant product */
+  product: Product;
+  /** Product variant productId */
+  productId: Scalars['String']['output'];
+  /** Product variant stock */
+  stock: Scalars['Int']['output'];
+  /** Product variant updatedAt */
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+export type ProductVariantOption = {
+  /** Product variant option ID */
+  id: Scalars['ID']['output'];
+  /** Product variant option name */
+  name: Scalars['String']['output'];
+  /** Product variant option variantId */
+  productVariantId: Scalars['String']['output'];
+  /** Product variant option values */
+  values: Array<Scalars['String']['output']>;
+};
+
 export type Query = {
   collection: Collection;
   collections: Array<Collection>;
@@ -191,6 +264,8 @@ export type Query = {
   productCategories: ProductCategoriesList;
   productCategory: ProductCategory;
   productCategoryById: ProductCategory;
+  productVariant: ProductVariant;
+  productVariants: Array<ProductVariant>;
   products: ProductList;
   productsByCategorySlug: ProductList;
 };
@@ -239,6 +314,11 @@ export type QueryProductCategoryByIdArgs = {
 };
 
 
+export type QueryProductVariantArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
 export type QueryProductsArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
@@ -252,6 +332,8 @@ export type QueryProductsByCategorySlugArgs = {
 };
 
 export type UpdateCollectionInput = {
+  /** Product collection cover image URL */
+  coverImage?: InputMaybe<Scalars['String']['input']>;
   /** Product collection description */
   description?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['Int']['input'];
@@ -274,7 +356,20 @@ export type UpdateProductInput = {
   images?: InputMaybe<Array<Scalars['String']['input']>>;
   name?: InputMaybe<Scalars['String']['input']>;
   price?: InputMaybe<Scalars['Float']['input']>;
-  stock?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type UpdateProductVariantInput = {
+  id: Scalars['Int']['input'];
+  /** Product variant name */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Product variant options */
+  options?: InputMaybe<Array<CreateProductVariantOptionInput>>;
+  /** Product variant price */
+  price?: InputMaybe<Scalars['Int']['input']>;
+  /** Product variant productId */
+  productId?: InputMaybe<Scalars['String']['input']>;
+  /** Product variant stock */
+  stock?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type CollectionGetItemQueryVariables = Exact<{
@@ -284,12 +379,12 @@ export type CollectionGetItemQueryVariables = Exact<{
 }>;
 
 
-export type CollectionGetItemQuery = { collection: { name: string, description?: string | null, products: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, stock: number, category?: { name: string, slug?: string | null } | null }> } };
+export type CollectionGetItemQuery = { collection: { name: string, description?: string | null, products: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, category?: { name: string, slug?: string | null } | null }> } };
 
 export type CollectionsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CollectionsGetListQuery = { collections: Array<{ id: string, name: string, slug?: string | null }> };
+export type CollectionsGetListQuery = { collections: Array<{ id: string, name: string, slug?: string | null, coverImage: string }> };
 
 export type ProductCategoriesGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -301,11 +396,13 @@ export type ProductGetByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetByIdQuery = { product: { description: string, id: string, name: string, price: number, categoryId: string, images: Array<string | null>, stock: number, category?: { name: string, slug?: string | null } | null } };
+export type ProductGetByIdQuery = { product: { description: string, id: string, name: string, price: number, categoryId: string, images: Array<string | null>, category?: { name: string, slug?: string | null } | null } };
 
-export type ProductListItemFragment = { id: string, name: string, price: number, categoryId: string, images: Array<string | null>, stock: number, category?: { name: string, slug?: string | null } | null };
+export type ProductListFragment = { data: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, category?: { name: string, slug?: string | null } | null }>, meta: { total: number } };
 
-export type ProductWithDescriptionFragment = { description: string, id: string, name: string, price: number, categoryId: string, images: Array<string | null>, stock: number, category?: { name: string, slug?: string | null } | null };
+export type ProductListItemFragment = { id: string, name: string, price: number, categoryId: string, images: Array<string | null>, category?: { name: string, slug?: string | null } | null };
+
+export type ProductWithDescriptionFragment = { description: string, id: string, name: string, price: number, categoryId: string, images: Array<string | null>, category?: { name: string, slug?: string | null } | null };
 
 export type ProductsGetListQueryVariables = Exact<{
   skip?: InputMaybe<Scalars['Int']['input']>;
@@ -313,7 +410,7 @@ export type ProductsGetListQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetListQuery = { products: { data: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, stock: number, category?: { name: string, slug?: string | null } | null }>, meta: { total: number } } };
+export type ProductsGetListQuery = { products: { data: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, category?: { name: string, slug?: string | null } | null }>, meta: { total: number } } };
 
 export type ProductsGetListByCategorySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -322,7 +419,7 @@ export type ProductsGetListByCategorySlugQueryVariables = Exact<{
 }>;
 
 
-export type ProductsGetListByCategorySlugQuery = { productsByCategorySlug: { data: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, stock: number, category?: { name: string, slug?: string | null } | null }>, meta: { total: number } } };
+export type ProductsGetListByCategorySlugQuery = { productsByCategorySlug: { data: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, category?: { name: string, slug?: string | null } | null }>, meta: { total: number } } };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -345,13 +442,32 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   price
   categoryId
   images
-  stock
   category {
     name
     slug
   }
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
+export const ProductListFragmentDoc = new TypedDocumentString(`
+    fragment ProductList on ProductList {
+  data {
+    ...ProductListItem
+  }
+  meta {
+    total
+  }
+}
+    fragment ProductListItem on Product {
+  id
+  name
+  price
+  categoryId
+  images
+  category {
+    name
+    slug
+  }
+}`, {"fragmentName":"ProductList"}) as unknown as TypedDocumentString<ProductListFragment, unknown>;
 export const ProductWithDescriptionFragmentDoc = new TypedDocumentString(`
     fragment ProductWithDescription on Product {
   ...ProductListItem
@@ -363,7 +479,6 @@ export const ProductWithDescriptionFragmentDoc = new TypedDocumentString(`
   price
   categoryId
   images
-  stock
   category {
     name
     slug
@@ -385,7 +500,6 @@ export const CollectionGetItemDocument = new TypedDocumentString(`
   price
   categoryId
   images
-  stock
   category {
     name
     slug
@@ -397,6 +511,7 @@ export const CollectionsGetListDocument = new TypedDocumentString(`
     id
     name
     slug
+    coverImage
   }
 }
     `) as unknown as TypedDocumentString<CollectionsGetListQuery, CollectionsGetListQueryVariables>;
@@ -423,7 +538,6 @@ export const ProductGetByIdDocument = new TypedDocumentString(`
   price
   categoryId
   images
-  stock
   category {
     name
     slug
@@ -436,21 +550,23 @@ fragment ProductWithDescription on Product {
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList($skip: Int, $take: Int) {
   products(take: $take, skip: $skip) {
-    data {
-      ...ProductListItem
-    }
-    meta {
-      total
-    }
+    ...ProductList
   }
 }
-    fragment ProductListItem on Product {
+    fragment ProductList on ProductList {
+  data {
+    ...ProductListItem
+  }
+  meta {
+    total
+  }
+}
+fragment ProductListItem on Product {
   id
   name
   price
   categoryId
   images
-  stock
   category {
     name
     slug
@@ -459,21 +575,23 @@ export const ProductsGetListDocument = new TypedDocumentString(`
 export const ProductsGetListByCategorySlugDocument = new TypedDocumentString(`
     query ProductsGetListByCategorySlug($slug: String!, $skip: Int, $take: Int) {
   productsByCategorySlug(slug: $slug, skip: $skip, take: $take) {
-    data {
-      ...ProductListItem
-    }
-    meta {
-      total
-    }
+    ...ProductList
   }
 }
-    fragment ProductListItem on Product {
+    fragment ProductList on ProductList {
+  data {
+    ...ProductListItem
+  }
+  meta {
+    total
+  }
+}
+fragment ProductListItem on Product {
   id
   name
   price
   categoryId
   images
-  stock
   category {
     name
     slug
