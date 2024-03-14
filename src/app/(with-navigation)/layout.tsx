@@ -1,6 +1,6 @@
 import { getAllCategories } from "@/api/products";
 import { Header } from "@/ui/organisms/Header";
-import { type NavItemType } from "@/ui/types";
+import { type NavItemType } from "@/types";
 
 type LayoutWithNavigationProps = {
 	children: React.ReactNode;
