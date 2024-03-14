@@ -1,35 +1,18 @@
+import { getAllProducts } from "@/api/products";
 import { PageTitle } from "@/ui/atoms/PageTitle";
-import { ProductList } from "@/ui/organisms/ProductList";
+import { ProductList } from "@/ui/molecules/ProductList";
+import { CollectionsBanner } from "@/ui/organisms/CollectionsBannerCarousel";
+import { getAllCollections } from "@/api/collections";
 
-export default async function Home() {
-	const res = await fetch("https://naszsklep-api.vercel.app/api/products?take=4");
-	const products = (await res.json()) as {
-		id: string;
-		title: string;
-		description: string;
-		image: string;
-		price: number;
-	}[];
-	const productsMapped = products.map((product) => ({
-		id: product.id,
-		name: product.title,
-		price: product.price,
-		category: "test",
-		coverImage: {
-			src: product.image,
-			alt: product.title,
-		},
-		bulletPoints: [
-			{ id: "size", label: "Size", value: "18x10" },
-			{ id: "offset", label: "Offset", value: "+22" },
-			{ id: "bolt-pattern", label: "Bolt Pattern", value: "5x114.3" },
-		],
-	}));
+export default async function HomePage() {
+	const { products } = await getAllProducts({ take: 4 });
+	const { collections } = await getAllCollections();
 
 	return (
 		<section className="mt-4 flex flex-col gap-4">
+			<CollectionsBanner collections={collections} />
 			<PageTitle title="RevvRush" />
-			<ProductList products={productsMapped} />
+			<ProductList products={products.data} />
 		</section>
 	);
 }
