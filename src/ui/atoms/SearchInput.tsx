@@ -4,6 +4,8 @@ import clsx from "clsx";
 import { LucideSearch } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { useDebounce } from "@/hooks/useDebounce";
+
 type SearchInputProps = {
 	className?: string;
 };
@@ -12,7 +14,7 @@ export const SearchInput = ({ className, ...props }: SearchInputProps) => {
 	const searchParams = useSearchParams();
 	const router = useRouter();
 
-	const handleSearch = (term: string) => {
+	const handleSearch = useDebounce((term: string) => {
 		const params = new URLSearchParams(searchParams);
 
 		if (term) {
@@ -22,7 +24,7 @@ export const SearchInput = ({ className, ...props }: SearchInputProps) => {
 		}
 
 		router.replace(`/search?${params.toString()}`);
-	};
+	}, 500);
 
 	return (
 		<div className="flex h-full w-full items-center rounded-sm bg-brand-background-lighter text-font-dark">
