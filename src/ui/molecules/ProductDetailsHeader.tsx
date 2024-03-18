@@ -1,4 +1,5 @@
-import {  ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
+
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { formatPrice } from "@/utils";
 import { type ProductListItemFragment } from "@/gql/graphql";
@@ -7,7 +8,7 @@ type ProductsDetailsHeaderProps = {
 	product: ProductListItemFragment;
 };
 
-export const ProductsDetailsHeader = ({ product }: ProductsDetailsHeaderProps) => {
+export const ProductDetailsHeader = ({ product }: ProductsDetailsHeaderProps) => {
 	return (
 		<header className="flex flex-col justify-between gap-6 md:flex-row">
 			<div className="min-w-1/2 group bg-white">
