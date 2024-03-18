@@ -9,7 +9,7 @@ export default async function HomePage() {
 	const { collections } = await getAllCollections();
 
 	return (
-		<section className="mt-4 flex flex-col gap-4">
+		<section className="flex flex-col gap-4">
 			<CollectionsBanner collections={collections} />
 			<PageTitle title="RevvRush" />
 			<ProductList products={products.data} />
