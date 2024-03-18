@@ -37,6 +37,26 @@ export type Collection = {
   updatedAt: Scalars['String']['output'];
 };
 
+export type CollectionListRelationFilter = {
+  every?: InputMaybe<CollectionWhereInput>;
+  none?: InputMaybe<CollectionWhereInput>;
+  some?: InputMaybe<CollectionWhereInput>;
+};
+
+export type CollectionWhereInput = {
+  AND?: InputMaybe<Array<CollectionWhereInput>>;
+  NOT?: InputMaybe<Array<CollectionWhereInput>>;
+  OR?: InputMaybe<Array<CollectionWhereInput>>;
+  coverImage?: InputMaybe<StringFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  products?: InputMaybe<ProductListRelationFilter>;
+  slug?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+};
+
 export type CreateCollectionInput = {
   /** Product collection cover image URL */
   coverImage: Scalars['String']['input'];
@@ -82,6 +102,39 @@ export type CreateProductVariantOptionInput = {
   name: Scalars['String']['input'];
   /** Product variant option values */
   values: Array<Scalars['String']['input']>;
+};
+
+export type DateTimeFilter = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
+  not?: InputMaybe<NestedDateTimeFilter>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+};
+
+export type IntFilter = {
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
+  not?: InputMaybe<NestedIntFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
+};
+
+export type IntNullableFilter = {
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
+  not?: InputMaybe<NestedIntNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type ListMeta = {
@@ -166,6 +219,90 @@ export type MutationUpdateProductVariantArgs = {
   updateProductVariantInput: UpdateProductVariantInput;
 };
 
+export type NestedDateTimeFilter = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
+  not?: InputMaybe<NestedDateTimeFilter>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+};
+
+export type NestedIntFilter = {
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
+  not?: InputMaybe<NestedIntFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
+};
+
+export type NestedIntNullableFilter = {
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
+  not?: InputMaybe<NestedIntNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
+};
+
+export type NestedStringFilter = {
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  not?: InputMaybe<NestedStringFilter>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type NestedStringNullableFilter = {
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  not?: InputMaybe<NestedStringNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type OrderListRelationFilter = {
+  every?: InputMaybe<OrderWhereInput>;
+  none?: InputMaybe<OrderWhereInput>;
+  some?: InputMaybe<OrderWhereInput>;
+};
+
+export type OrderNullableRelationFilter = {
+  is?: InputMaybe<OrderWhereInput>;
+  isNot?: InputMaybe<OrderWhereInput>;
+};
+
+export type OrderWhereInput = {
+  AND?: InputMaybe<Array<OrderWhereInput>>;
+  NOT?: InputMaybe<Array<OrderWhereInput>>;
+  OR?: InputMaybe<Array<OrderWhereInput>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  products?: InputMaybe<ProductListRelationFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+  user?: InputMaybe<UserRelationFilter>;
+  userId?: InputMaybe<StringFilter>;
+};
+
 export type Product = {
   /** Product category */
   category?: Maybe<ProductCategory>;
@@ -217,11 +354,53 @@ export type ProductCategory = {
   updatedAt: Scalars['DateTime']['output'];
 };
 
+export type ProductCategoryListRelationFilter = {
+  every?: InputMaybe<ProductCategoryWhereInput>;
+  none?: InputMaybe<ProductCategoryWhereInput>;
+  some?: InputMaybe<ProductCategoryWhereInput>;
+};
+
+export type ProductCategoryNullableRelationFilter = {
+  is?: InputMaybe<ProductCategoryWhereInput>;
+  isNot?: InputMaybe<ProductCategoryWhereInput>;
+};
+
+export type ProductCategoryRelationFilter = {
+  is?: InputMaybe<ProductCategoryWhereInput>;
+  isNot?: InputMaybe<ProductCategoryWhereInput>;
+};
+
+export type ProductCategoryWhereInput = {
+  AND?: InputMaybe<Array<ProductCategoryWhereInput>>;
+  NOT?: InputMaybe<Array<ProductCategoryWhereInput>>;
+  OR?: InputMaybe<Array<ProductCategoryWhereInput>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  parentCategory?: InputMaybe<ProductCategoryNullableRelationFilter>;
+  parentCategoryId?: InputMaybe<StringNullableFilter>;
+  products?: InputMaybe<ProductListRelationFilter>;
+  slug?: InputMaybe<StringFilter>;
+  subCategories?: InputMaybe<ProductCategoryListRelationFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+};
+
 export type ProductList = {
   /** List of products */
   data: Array<Product>;
   /** List metadata */
   meta: ListMeta;
+};
+
+export type ProductListRelationFilter = {
+  every?: InputMaybe<ProductWhereInput>;
+  none?: InputMaybe<ProductWhereInput>;
+  some?: InputMaybe<ProductWhereInput>;
+};
+
+export type ProductRelationFilter = {
+  is?: InputMaybe<ProductWhereInput>;
+  isNot?: InputMaybe<ProductWhereInput>;
 };
 
 export type ProductVariant = {
@@ -245,6 +424,12 @@ export type ProductVariant = {
   updatedAt: Scalars['DateTime']['output'];
 };
 
+export type ProductVariantListRelationFilter = {
+  every?: InputMaybe<ProductVariantWhereInput>;
+  none?: InputMaybe<ProductVariantWhereInput>;
+  some?: InputMaybe<ProductVariantWhereInput>;
+};
+
 export type ProductVariantOption = {
   /** Product variant option ID */
   id: Scalars['ID']['output'];
@@ -254,6 +439,65 @@ export type ProductVariantOption = {
   productVariantId: Scalars['String']['output'];
   /** Product variant option values */
   values: Array<Scalars['String']['output']>;
+};
+
+export type ProductVariantOptionListRelationFilter = {
+  every?: InputMaybe<ProductVariantOptionWhereInput>;
+  none?: InputMaybe<ProductVariantOptionWhereInput>;
+  some?: InputMaybe<ProductVariantOptionWhereInput>;
+};
+
+export type ProductVariantOptionWhereInput = {
+  AND?: InputMaybe<Array<ProductVariantOptionWhereInput>>;
+  NOT?: InputMaybe<Array<ProductVariantOptionWhereInput>>;
+  OR?: InputMaybe<Array<ProductVariantOptionWhereInput>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  productVariant?: InputMaybe<ProductVariantRelationFilter>;
+  productVariantId?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+  values?: InputMaybe<StringNullableListFilter>;
+};
+
+export type ProductVariantRelationFilter = {
+  is?: InputMaybe<ProductVariantWhereInput>;
+  isNot?: InputMaybe<ProductVariantWhereInput>;
+};
+
+export type ProductVariantWhereInput = {
+  AND?: InputMaybe<Array<ProductVariantWhereInput>>;
+  NOT?: InputMaybe<Array<ProductVariantWhereInput>>;
+  OR?: InputMaybe<Array<ProductVariantWhereInput>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  options?: InputMaybe<ProductVariantOptionListRelationFilter>;
+  price?: InputMaybe<IntNullableFilter>;
+  product?: InputMaybe<ProductRelationFilter>;
+  productId?: InputMaybe<StringFilter>;
+  stock?: InputMaybe<IntFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+};
+
+export type ProductWhereInput = {
+  AND?: InputMaybe<Array<ProductWhereInput>>;
+  NOT?: InputMaybe<Array<ProductWhereInput>>;
+  OR?: InputMaybe<Array<ProductWhereInput>>;
+  Order?: InputMaybe<OrderNullableRelationFilter>;
+  category?: InputMaybe<ProductCategoryRelationFilter>;
+  categoryId?: InputMaybe<StringFilter>;
+  collections?: InputMaybe<CollectionListRelationFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  description?: InputMaybe<StringNullableFilter>;
+  id?: InputMaybe<StringFilter>;
+  images?: InputMaybe<StringNullableListFilter>;
+  name?: InputMaybe<StringFilter>;
+  orderId?: InputMaybe<StringNullableFilter>;
+  price?: InputMaybe<IntFilter>;
+  slug?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+  variants?: InputMaybe<ProductVariantListRelationFilter>;
 };
 
 export type Query = {
@@ -323,6 +567,7 @@ export type QueryProductVariantArgs = {
 export type QueryProductsArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ProductWhereInput>;
 };
 
 
@@ -337,6 +582,48 @@ export type QueryProductsByQueryArgs = {
   query: Scalars['String']['input'];
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type QueryMode =
+  | 'default'
+  | 'insensitive';
+
+export type StringFilter = {
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  mode?: InputMaybe<QueryMode>;
+  not?: InputMaybe<NestedStringFilter>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type StringNullableFilter = {
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  mode?: InputMaybe<QueryMode>;
+  not?: InputMaybe<NestedStringNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type StringNullableListFilter = {
+  equals?: InputMaybe<Array<Scalars['String']['input']>>;
+  has?: InputMaybe<Scalars['String']['input']>;
+  hasEvery?: InputMaybe<Array<Scalars['String']['input']>>;
+  hasSome?: InputMaybe<Array<Scalars['String']['input']>>;
+  isEmpty?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type UpdateCollectionInput = {
@@ -378,6 +665,25 @@ export type UpdateProductVariantInput = {
   productId?: InputMaybe<Scalars['String']['input']>;
   /** Product variant stock */
   stock?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type UserRelationFilter = {
+  is?: InputMaybe<UserWhereInput>;
+  isNot?: InputMaybe<UserWhereInput>;
+};
+
+export type UserWhereInput = {
+  AND?: InputMaybe<Array<UserWhereInput>>;
+  NOT?: InputMaybe<Array<UserWhereInput>>;
+  OR?: InputMaybe<Array<UserWhereInput>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  email?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  orders?: InputMaybe<OrderListRelationFilter>;
+  password?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
 export type CollectionGetItemQueryVariables = Exact<{
@@ -422,6 +728,7 @@ export type ProductsGetByQueryQuery = { productsByQuery: { data: Array<{ id: str
 export type ProductsGetListQueryVariables = Exact<{
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ProductWhereInput>;
 }>;
 
 
@@ -588,8 +895,8 @@ fragment ProductListItem on Product {
   }
 }`) as unknown as TypedDocumentString<ProductsGetByQueryQuery, ProductsGetByQueryQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList($skip: Int, $take: Int) {
-  products(take: $take, skip: $skip) {
+    query ProductsGetList($skip: Int, $take: Int, $where: ProductWhereInput) {
+  products(take: $take, skip: $skip, where: $where) {
     ...ProductList
   }
 }
