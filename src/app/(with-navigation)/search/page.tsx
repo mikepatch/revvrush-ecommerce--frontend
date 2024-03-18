@@ -12,11 +12,12 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 	} = await getProductsByQuery(query);
 
 	return (
-		<div>
-			<h1>
-				Found {meta.total} {meta.total !== 1 ? "items" : "item"} for phrase: &quot;{query}&quot;.
-			</h1>
+		<section className="flex flex-col gap-4">
+			<h2>
+				Found {meta.total} {meta.total !== 1 ? "items" : "item"} for phrase:{" "}
+				<strong>&quot;{query}&quot;</strong>.
+			</h2>
 			<ProductList products={data} />
-		</div>
+		</section>
 	);
 }
