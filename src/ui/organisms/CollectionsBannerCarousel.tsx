@@ -50,6 +50,7 @@ export const CollectionsBanner = ({ collections, interval = 5000 }: CollectionsB
 								{name}
 							</Heading>
 							<NextImage
+								loading="eager"
 								src={`${coverImage}`}
 								alt={`Banner ${name}`}
 								width={1024}
@@ -61,6 +62,7 @@ export const CollectionsBanner = ({ collections, interval = 5000 }: CollectionsB
 				))}
 
 				<button
+					aria-label="Previous collection banner"
 					className="absolute left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-white bg-opacity-50 p-2 focus:outline-none"
 					onClick={goToPreviousBanner}
 				>
@@ -81,6 +83,7 @@ export const CollectionsBanner = ({ collections, interval = 5000 }: CollectionsB
 				</button>
 
 				<button
+					aria-label="Next collection banner"
 					className="absolute right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-white bg-opacity-50 p-2 focus:outline-none"
 					onClick={goToNextBanner}
 				>
