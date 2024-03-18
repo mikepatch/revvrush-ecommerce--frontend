@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { type Metadata } from "next";
 
-import { getProductById, getProductsByCategorySlug } from "@/api/products";
+import { getAllProducts, getProductById } from "@/api/products";
 import { ProductDetails } from "@/ui/organisms/ProductDetails";
 import { RelatedProductList } from "@/ui/organisms/RelatedProductList";
 
@@ -28,15 +28,19 @@ type SingleProductPageProps = {
 
 export default async function SingleProductPage({ params }: SingleProductPageProps) {
 	const { product } = await getProductById(params.productId);
+
 	if (!product) {
 		throw notFound();
 	}
+
 	const {
-		productsByCategorySlug: { data: relatedProducts },
-	} = await getProductsByCategorySlug({
-		slug: product.category?.slug as string,
+		products: { data: relatedProducts },
+	} = await getAllProducts({
 		take: 4,
-		skip: 0,
+		where: {
+			category: { is: { slug: { equals: product.category?.slug } } },
+			id: { not: { equals: product.id } },
+		},
 	});
 
 	return (
