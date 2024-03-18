@@ -37,7 +37,7 @@ export const Header = ({ categories }: HeaderProps) => {
 				</button>
 				<div className="h-full w-full">
 					<Suspense>
-						<SearchInput />
+						<SearchInput variant="mobile" />
 					</Suspense>
 				</div>
 			</div>

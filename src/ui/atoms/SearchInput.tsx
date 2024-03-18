@@ -7,12 +7,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useDebounce } from "@/hooks/useDebounce";
 
 type SearchInputProps = {
+	variant?: "desktop" | "mobile";
 	className?: string;
 };
 
-export const SearchInput = ({ className, ...props }: SearchInputProps) => {
+export const SearchInput = ({ variant = "desktop", className, ...props }: SearchInputProps) => {
 	const searchParams = useSearchParams();
 	const router = useRouter();
+	const inputId = variant === "mobile" ? "search-mobile" : "search";
 
 	const handleSearch = useDebounce((term: string) => {
 		const params = new URLSearchParams(searchParams);
@@ -28,12 +30,12 @@ export const SearchInput = ({ className, ...props }: SearchInputProps) => {
 
 	return (
 		<div className="flex h-full w-full items-center rounded-sm bg-brand-background-lighter text-font-dark">
-			<label htmlFor="search" className="p-2">
+			<label htmlFor={inputId} className="p-2">
 				<LucideSearch />
 			</label>
 			<input
 				type="search"
-				id="search"
+				id={inputId}
 				name="search"
 				placeholder="Search"
 				onChange={(e) => handleSearch(e.target.value)}
