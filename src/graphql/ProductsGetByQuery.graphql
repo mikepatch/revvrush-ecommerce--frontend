@@ -1,4 +1,4 @@
-query ProductGetByQuery($query: String!) {
+query ProductsGetByQuery($query: String!) {
 	productsByQuery(query: $query) {
 		...ProductList
 	}

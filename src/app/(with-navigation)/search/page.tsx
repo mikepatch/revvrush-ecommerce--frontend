@@ -1,5 +1,5 @@
 import { ProductList } from "@/ui/molecules/ProductList";
-import { getProductByQuery } from "@/api/products";
+import { getProductsByQuery } from "@/api/products";
 
 type SearchPageProps = {
 	searchParams?: { query?: string };
@@ -9,7 +9,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 	const query = searchParams?.query || "";
 	const {
 		productsByQuery: { data, meta },
-	} = await getProductByQuery(query);
+	} = await getProductsByQuery(query);
 
 	return (
 		<div>
