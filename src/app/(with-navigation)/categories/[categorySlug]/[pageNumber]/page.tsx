@@ -13,7 +13,7 @@ type PageNumberPageProps = {
 	};
 };
 
-export async function generateStaticParams() {
+export const generateStaticParams = async () => {
 	const {
 		products: {
 			meta: { total: totalProducts },
@@ -23,7 +23,15 @@ export async function generateStaticParams() {
 	const totalPages = Math.ceil(totalProducts / PRODUCTS_ON_PAGE);
 
 	return Array.from({ length: totalPages }, (_, i) => ({ pageNumber: (i + 1).toString() }));
-}
+};
+
+export const generateMetadata = async ({ params }: PageNumberPageProps) => {
+	const { categorySlug } = params;
+
+	return {
+		title: convertSlugToTitle(categorySlug),
+	};
+};
 
 export default async function CategoryPageNumberPage({ params }: PageNumberPageProps) {
 	const { categorySlug } = params;
@@ -56,7 +64,7 @@ export default async function CategoryPageNumberPage({ params }: PageNumberPageP
 					pageNumber={pageNumber}
 					totalItems={totalProducts}
 					limit={PRODUCTS_ON_PAGE}
-					categorySlug={categorySlug}
+					categorySlug={`categories/${categorySlug}`}
 				/>
 			</footer>
 		</>
