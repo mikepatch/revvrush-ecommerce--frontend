@@ -1,0 +1,5 @@
+query ProductGetByQuery($query: String!) {
+	productsByQuery(query: $query) {
+		...ProductList
+	}
+}
