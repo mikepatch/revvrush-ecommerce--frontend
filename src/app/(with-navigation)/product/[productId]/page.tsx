@@ -3,19 +3,23 @@ import { type Metadata } from "next";
 
 import { getProductById, getProductsByCategorySlug } from "@/api/products";
 import { ProductDetails } from "@/ui/organisms/ProductDetails";
-import { CollectionProductList } from "@/ui/organisms/CollectionProductList";
+import { RelatedProductList } from "@/ui/organisms/RelatedProductList";
 
 export const generateMetadata = async ({
 	params,
 }: {
 	params: { productId: string };
 }): Promise<Metadata> => {
-	const { product } = await getProductById(params.productId);
+	try {
+		const { product } = await getProductById(params.productId);
 
-	return {
-		title: product.name,
-		description: product.description,
-	};
+		return {
+			title: product.name,
+			description: product.description,
+		};
+	} catch (error) {
+		throw notFound();
+	}
 };
 
 type SingleProductPageProps = {
@@ -24,6 +28,9 @@ type SingleProductPageProps = {
 
 export default async function SingleProductPage({ params }: SingleProductPageProps) {
 	const { product } = await getProductById(params.productId);
+	if (!product) {
+		throw notFound();
+	}
 	const {
 		productsByCategorySlug: { data: relatedProducts },
 	} = await getProductsByCategorySlug({
@@ -32,14 +39,10 @@ export default async function SingleProductPage({ params }: SingleProductPagePro
 		skip: 0,
 	});
 
-	if (!product) {
-		throw notFound();
-	}
-
 	return (
 		<>
 			<ProductDetails product={product} />
-			<CollectionProductList products={relatedProducts} title="Related products" />
+			<RelatedProductList products={relatedProducts} title="Related products" />
 		</>
 	);
 }
