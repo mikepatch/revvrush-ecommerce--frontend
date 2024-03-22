@@ -1,16 +1,25 @@
-import { ShoppingCart } from "lucide-react";
-
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { formatPrice } from "@/utils";
 import { type ProductListItemFragment } from "@/gql/graphql";
+import { addProductToCart, getOrCreateCart } from "@/api/cart";
+import { AddToCartButton } from "@/ui/atoms/AddToCartButton";
 
 type ProductsDetailsHeaderProps = {
 	product: ProductListItemFragment;
 };
 
 export const ProductDetailsHeader = ({ product }: ProductsDetailsHeaderProps) => {
+	const addProductToCartAction = async () => {
+		"use server";
+
+		const cart = await getOrCreateCart();
+
+		await addProductToCart(cart.id, product.id, 1);
+		console.log(product.id);
+	};
+
 	return (
-		<header className="flex flex-col justify-between gap-6 md:flex-row">
+		<header className="flex flex-col justify-between gap-6 sm:flex-row">
 			<div className="min-w-1/2 group bg-white">
 				{product.images && product.images[0] && (
 					<ProductImage
@@ -40,15 +49,9 @@ export const ProductDetailsHeader = ({ product }: ProductsDetailsHeaderProps) =>
 				)} */}
 				<div className="flex flex-wrap items-center justify-between rounded-sm p-4">
 					<p className=" text-2xl font-semibold">{formatPrice(product.price)}</p>
-					<button
-						aria-label="Add to cart"
-						className="group rounded-sm bg-brand-primary px-4 py-3 text-font-light shadow-sm transition-all hover:brightness-105"
-					>
-						<div className="flex items-center gap-2">
-							<ShoppingCart size={24} />
-							Add to cart
-						</div>
-					</button>
+					<form action={addProductToCartAction}>
+						<AddToCartButton />
+					</form>
 				</div>
 			</section>
 		</header>
