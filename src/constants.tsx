@@ -1,5 +1,4 @@
 import { type Route } from "next";
-import { ShoppingBasket, User } from "lucide-react";
 
 import { type NavItemType } from "@/types";
 
@@ -12,9 +11,4 @@ export const FOOTER_LEGAL_NAV_ITEMS: NavItemType[] = [
 		href: "/static/terms-of-service" as Route,
 		label: "Terms of Service",
 	},
-];
-
-export const MAIN_NAV_ITEMS: NavItemType[] = [
-	{ id: "account", href: "/account", label: "Your account", icon: <User /> },
-	{ id: "cart", href: "/cart", label: "Cart", icon: <ShoppingBasket /> },
 ];
