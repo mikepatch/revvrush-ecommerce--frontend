@@ -1,0 +1,5 @@
+mutation CartCreate($userId: ID!) {
+	createCart(createCartInput: { userId: $userId }) {
+		id
+	}
+}

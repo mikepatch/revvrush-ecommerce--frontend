@@ -1,0 +1,18 @@
+fragment CartWithMetadata on CartWithMeta {
+	data {
+		id
+		items {
+			id
+			quantity
+			product {
+				id
+				name
+				price
+				images
+			}
+		}
+	}
+	meta {
+		totalPrice
+	}
+}
