@@ -3,6 +3,7 @@
 import { Suspense, useState } from "react";
 import clsx from "clsx";
 import { LucideMenu } from "lucide-react";
+
 import { BrandLogo } from "@/ui/atoms/BrandLogo";
 import { MainNavigation } from "@/ui/molecules/MainNavigation";
 import { CategoriesNavigation } from "@/ui/molecules/CategoriesNavigation";
@@ -29,7 +30,7 @@ export const Header = ({ categories }: HeaderProps) => {
 						<SearchInput />
 					</Suspense>
 				</div>
-				<MainNavigation />
+					<MainNavigation />
 			</div>
 			<div className="flex w-full bg-brand-background-lighter sm:hidden">
 				<button onClick={handleOpenCategoriesNav} className="p-1 text-font-dark">
