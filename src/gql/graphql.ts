@@ -18,6 +18,84 @@ export type Scalars = {
   DateTime: { input: unknown; output: unknown; }
 };
 
+export type Cart = {
+  /** Product createdAt */
+  createdAt: Scalars['DateTime']['output'];
+  /** Cart ID */
+  id: Scalars['ID']['output'];
+  /** Items in the cart */
+  items: Array<Maybe<CartItem>>;
+  /** Product updatedAt */
+  updatedAt: Scalars['DateTime']['output'];
+  /** User ID */
+  userId: Scalars['ID']['output'];
+};
+
+export type CartItem = {
+  /** Cart ID */
+  cartId: Scalars['ID']['output'];
+  /** Product createdAt */
+  createdAt: Scalars['DateTime']['output'];
+  /** CartProduct ID */
+  id: Scalars['ID']['output'];
+  /** Product */
+  product: Product;
+  /** Product ID */
+  productId: Scalars['ID']['output'];
+  /** Product quantity */
+  quantity: Scalars['Int']['output'];
+  /** Product updatedAt */
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+export type CartItemListRelationFilter = {
+  every?: InputMaybe<CartItemWhereInput>;
+  none?: InputMaybe<CartItemWhereInput>;
+  some?: InputMaybe<CartItemWhereInput>;
+};
+
+export type CartItemWhereInput = {
+  AND?: InputMaybe<Array<CartItemWhereInput>>;
+  NOT?: InputMaybe<Array<CartItemWhereInput>>;
+  OR?: InputMaybe<Array<CartItemWhereInput>>;
+  cart?: InputMaybe<CartRelationFilter>;
+  cartId?: InputMaybe<StringFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  product?: InputMaybe<ProductRelationFilter>;
+  productId?: InputMaybe<StringFilter>;
+  quantity?: InputMaybe<IntFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+};
+
+export type CartMeta = {
+  /** Total price of the cart */
+  totalPrice: Scalars['Float']['output'];
+};
+
+export type CartRelationFilter = {
+  is?: InputMaybe<CartWhereInput>;
+  isNot?: InputMaybe<CartWhereInput>;
+};
+
+export type CartWhereInput = {
+  AND?: InputMaybe<Array<CartWhereInput>>;
+  NOT?: InputMaybe<Array<CartWhereInput>>;
+  OR?: InputMaybe<Array<CartWhereInput>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  items?: InputMaybe<CartItemListRelationFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+  userId?: InputMaybe<StringFilter>;
+};
+
+export type CartWithMeta = {
+  /** Cart */
+  data: Cart;
+  /** Cart meta */
+  meta: CartMeta;
+};
+
 export type Collection = {
   /** Product collection cover image URL */
   coverImage: Scalars['String']['output'];
@@ -57,6 +135,20 @@ export type CollectionWhereInput = {
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
+export type CreateCartInput = {
+  /** User ID */
+  userId: Scalars['ID']['input'];
+};
+
+export type CreateCartItemInput = {
+  /** Cart ID */
+  cartId: Scalars['ID']['input'];
+  /** Product ID */
+  productId: Scalars['ID']['input'];
+  /** Product quantity */
+  quantity: Scalars['Int']['input'];
+};
+
 export type CreateCollectionInput = {
   /** Product collection cover image URL */
   coverImage: Scalars['String']['input'];
@@ -66,6 +158,11 @@ export type CreateCollectionInput = {
   name: Scalars['String']['input'];
   /** Product IDs in the collection */
   productIds: Array<Scalars['ID']['input']>;
+};
+
+export type CreateOrderInput = {
+  /** Example field (placeholder) */
+  exampleField: Scalars['Int']['input'];
 };
 
 /** New product category input */
@@ -115,6 +212,24 @@ export type DateTimeFilter = {
   notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
+export type EnumOrderStatusFilter = {
+  equals?: InputMaybe<OrderStatus>;
+  in?: InputMaybe<Array<OrderStatus>>;
+  not?: InputMaybe<NestedEnumOrderStatusFilter>;
+  notIn?: InputMaybe<Array<OrderStatus>>;
+};
+
+export type FloatFilter = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  in?: InputMaybe<Array<Scalars['Float']['input']>>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  not?: InputMaybe<NestedFloatFilter>;
+  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
+};
+
 export type IntFilter = {
   equals?: InputMaybe<Scalars['Int']['input']>;
   gt?: InputMaybe<Scalars['Int']['input']>;
@@ -143,23 +258,49 @@ export type ListMeta = {
 };
 
 export type Mutation = {
+  /** Add item to cart */
+  addItemToCart?: Maybe<CartItem>;
+  createCart: Cart;
   createCollection?: Maybe<Collection>;
+  createOrder: Order;
   createProduct: Product;
   createProductCategory: ProductCategory;
   createProductVariant: ProductVariant;
+  removeCart: Cart;
   removeCollection: Collection;
+  /** Remove item from cart */
+  removeItemFromCart?: Maybe<CartItem>;
+  removeOrder: Order;
   removeProduct: Product;
   removeProductCategory: ProductCategory;
   removeProductVariant: ProductVariant;
+  updateCart: Cart;
+  updateCartItem: CartItem;
   updateCollection: Collection;
+  updateOrder: Order;
   updateProduct: Product;
   updateProductCategory: ProductCategory;
   updateProductVariant: ProductVariant;
 };
 
 
+export type MutationAddItemToCartArgs = {
+  createCartItemInput: CreateCartItemInput;
+};
+
+
+export type MutationCreateCartArgs = {
+  createCartInput: CreateCartInput;
+};
+
+
 export type MutationCreateCollectionArgs = {
   createCollectionInput: CreateCollectionInput;
+};
+
+
+export type MutationCreateOrderArgs = {
+  createOrderInput: CreateOrderInput;
 };
 
 
@@ -178,7 +319,22 @@ export type MutationCreateProductVariantArgs = {
 };
 
 
+export type MutationRemoveCartArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type MutationRemoveCollectionArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationRemoveItemFromCartArgs = {
+  cartItemId: Scalars['ID']['input'];
+};
+
+
+export type MutationRemoveOrderArgs = {
   id: Scalars['Int']['input'];
 };
 
@@ -198,8 +354,25 @@ export type MutationRemoveProductVariantArgs = {
 };
 
 
+export type MutationUpdateCartArgs = {
+  id: Scalars['ID']['input'];
+  updateCartInput: UpdateCartInput;
+};
+
+
+export type MutationUpdateCartItemArgs = {
+  cartItemId: Scalars['ID']['input'];
+  data: UpdateCartItemInput;
+};
+
+
 export type MutationUpdateCollectionArgs = {
   updateCollectionInput: UpdateCollectionInput;
+};
+
+
+export type MutationUpdateOrderArgs = {
+  updateOrderInput: UpdateOrderInput;
 };
 
 
@@ -228,6 +401,24 @@ export type NestedDateTimeFilter = {
   lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeFilter>;
   notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+};
+
+export type NestedEnumOrderStatusFilter = {
+  equals?: InputMaybe<OrderStatus>;
+  in?: InputMaybe<Array<OrderStatus>>;
+  not?: InputMaybe<NestedEnumOrderStatusFilter>;
+  notIn?: InputMaybe<Array<OrderStatus>>;
+};
+
+export type NestedFloatFilter = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  in?: InputMaybe<Array<Scalars['Float']['input']>>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  not?: InputMaybe<NestedFloatFilter>;
+  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
 };
 
 export type NestedIntFilter = {
@@ -280,16 +471,47 @@ export type NestedStringNullableFilter = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type Order = {
+  /** Example field (placeholder) */
+  exampleField: Scalars['Int']['output'];
+};
+
+export type OrderItemListRelationFilter = {
+  every?: InputMaybe<OrderItemWhereInput>;
+  none?: InputMaybe<OrderItemWhereInput>;
+  some?: InputMaybe<OrderItemWhereInput>;
+};
+
+export type OrderItemWhereInput = {
+  AND?: InputMaybe<Array<OrderItemWhereInput>>;
+  NOT?: InputMaybe<Array<OrderItemWhereInput>>;
+  OR?: InputMaybe<Array<OrderItemWhereInput>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  order?: InputMaybe<OrderRelationFilter>;
+  orderId?: InputMaybe<StringFilter>;
+  product?: InputMaybe<ProductRelationFilter>;
+  productId?: InputMaybe<StringFilter>;
+  quantity?: InputMaybe<IntFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+};
+
 export type OrderListRelationFilter = {
   every?: InputMaybe<OrderWhereInput>;
   none?: InputMaybe<OrderWhereInput>;
   some?: InputMaybe<OrderWhereInput>;
 };
 
-export type OrderNullableRelationFilter = {
+export type OrderRelationFilter = {
   is?: InputMaybe<OrderWhereInput>;
   isNot?: InputMaybe<OrderWhereInput>;
 };
+
+export type OrderStatus =
+  | 'CANCELLED'
+  | 'COMPLETED'
+  | 'CREATED'
+  | 'PAID';
 
 export type OrderWhereInput = {
   AND?: InputMaybe<Array<OrderWhereInput>>;
@@ -297,7 +519,9 @@ export type OrderWhereInput = {
   OR?: InputMaybe<Array<OrderWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
-  products?: InputMaybe<ProductListRelationFilter>;
+  items?: InputMaybe<OrderItemListRelationFilter>;
+  status?: InputMaybe<EnumOrderStatusFilter>;
+  totalPrice?: InputMaybe<FloatFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   user?: InputMaybe<UserRelationFilter>;
   userId?: InputMaybe<StringFilter>;
@@ -484,7 +708,7 @@ export type ProductWhereInput = {
   AND?: InputMaybe<Array<ProductWhereInput>>;
   NOT?: InputMaybe<Array<ProductWhereInput>>;
   OR?: InputMaybe<Array<ProductWhereInput>>;
-  Order?: InputMaybe<OrderNullableRelationFilter>;
+  cartItem?: InputMaybe<CartItemListRelationFilter>;
   category?: InputMaybe<ProductCategoryRelationFilter>;
   categoryId?: InputMaybe<StringFilter>;
   collections?: InputMaybe<CollectionListRelationFilter>;
@@ -494,6 +718,7 @@ export type ProductWhereInput = {
   images?: InputMaybe<StringNullableListFilter>;
   name?: InputMaybe<StringFilter>;
   orderId?: InputMaybe<StringNullableFilter>;
+  orderItem?: InputMaybe<OrderItemListRelationFilter>;
   price?: InputMaybe<IntFilter>;
   slug?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -501,8 +726,12 @@ export type ProductWhereInput = {
 };
 
 export type Query = {
+  cartById: CartWithMeta;
+  carts: Array<Cart>;
   collection: Collection;
   collections: Array<Collection>;
+  order: Order;
+  orders: Array<Order>;
   product: Product;
   productById: Product;
   productCategories: ProductCategoriesList;
@@ -516,6 +745,17 @@ export type Query = {
 };
 
 
+export type QueryCartByIdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryCartsArgs = {
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
 export type QueryCollectionArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
@@ -526,6 +766,11 @@ export type QueryCollectionArgs = {
 export type QueryCollectionsArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type QueryOrderArgs = {
+  id: Scalars['Int']['input'];
 };
 
 
@@ -626,6 +871,20 @@ export type StringNullableListFilter = {
   isEmpty?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type UpdateCartInput = {
+  /** User ID */
+  userId?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type UpdateCartItemInput = {
+  /** Cart ID */
+  cartId?: InputMaybe<Scalars['ID']['input']>;
+  /** Product ID */
+  productId?: InputMaybe<Scalars['ID']['input']>;
+  /** Product quantity */
+  quantity?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type UpdateCollectionInput = {
   /** Product collection cover image URL */
   coverImage?: InputMaybe<Scalars['String']['input']>;
@@ -636,6 +895,12 @@ export type UpdateCollectionInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   /** Product IDs in the collection */
   productIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+};
+
+export type UpdateOrderInput = {
+  /** Example field (placeholder) */
+  exampleField?: InputMaybe<Scalars['Int']['input']>;
+  id: Scalars['Int']['input'];
 };
 
 export type UpdateProductCategoryInput = {
@@ -685,6 +950,39 @@ export type UserWhereInput = {
   role?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
+
+export type CartAddItemMutationVariables = Exact<{
+  cartId: Scalars['ID']['input'];
+  productId: Scalars['ID']['input'];
+  quantity: Scalars['Int']['input'];
+}>;
+
+
+export type CartAddItemMutation = { addItemToCart?: { id: string } | null };
+
+export type CartCreateMutationVariables = Exact<{
+  userId: Scalars['ID']['input'];
+}>;
+
+
+export type CartCreateMutation = { createCart: { id: string } };
+
+export type CartGetByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type CartGetByIdQuery = { cartById: { data: { id: string, items: Array<{ id: string, quantity: number, product: { id: string, name: string, price: number, images: Array<string | null> } } | null> }, meta: { totalPrice: number } } };
+
+export type CartUpdateItemMutationVariables = Exact<{
+  cartItemId: Scalars['ID']['input'];
+  data: UpdateCartItemInput;
+}>;
+
+
+export type CartUpdateItemMutation = { updateCartItem: { id: string } };
+
+export type CartWithMetadataFragment = { data: { id: string, items: Array<{ id: string, quantity: number, product: { id: string, name: string, price: number, images: Array<string | null> } } | null> }, meta: { totalPrice: number } };
 
 export type CollectionGetItemQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']['input']>;
@@ -757,6 +1055,26 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const CartWithMetadataFragmentDoc = new TypedDocumentString(`
+    fragment CartWithMetadata on CartWithMeta {
+  data {
+    id
+    items {
+      id
+      quantity
+      product {
+        id
+        name
+        price
+        images
+      }
+    }
+  }
+  meta {
+    totalPrice
+  }
+}
+    `, {"fragmentName":"CartWithMetadata"}) as unknown as TypedDocumentString<CartWithMetadataFragment, unknown>;
 export const ProductListItemFragmentDoc = new TypedDocumentString(`
     fragment ProductListItem on Product {
   id
@@ -806,6 +1124,53 @@ export const ProductWithDescriptionFragmentDoc = new TypedDocumentString(`
     slug
   }
 }`, {"fragmentName":"ProductWithDescription"}) as unknown as TypedDocumentString<ProductWithDescriptionFragment, unknown>;
+export const CartAddItemDocument = new TypedDocumentString(`
+    mutation CartAddItem($cartId: ID!, $productId: ID!, $quantity: Int!) {
+  addItemToCart(
+    createCartItemInput: {cartId: $cartId, productId: $productId, quantity: $quantity}
+  ) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartAddItemMutation, CartAddItemMutationVariables>;
+export const CartCreateDocument = new TypedDocumentString(`
+    mutation CartCreate($userId: ID!) {
+  createCart(createCartInput: {userId: $userId}) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartCreateMutation, CartCreateMutationVariables>;
+export const CartGetByIdDocument = new TypedDocumentString(`
+    query CartGetById($id: ID!) {
+  cartById(id: $id) {
+    ...CartWithMetadata
+  }
+}
+    fragment CartWithMetadata on CartWithMeta {
+  data {
+    id
+    items {
+      id
+      quantity
+      product {
+        id
+        name
+        price
+        images
+      }
+    }
+  }
+  meta {
+    totalPrice
+  }
+}`) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
+export const CartUpdateItemDocument = new TypedDocumentString(`
+    mutation CartUpdateItem($cartItemId: ID!, $data: UpdateCartItemInput!) {
+  updateCartItem(cartItemId: $cartItemId, data: $data) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartUpdateItemMutation, CartUpdateItemMutationVariables>;
 export const CollectionGetItemDocument = new TypedDocumentString(`
     query CollectionGetItem($id: ID, $name: String, $slug: String) {
   collection(id: $id, name: $name, slug: $slug) {
