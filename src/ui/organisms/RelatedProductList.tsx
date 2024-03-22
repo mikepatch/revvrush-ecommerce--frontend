@@ -14,7 +14,7 @@ export const RelatedProductList = ({ products, title }: RelatedProductListProps)
 		<section data-testid="related-products">
 			{title && <Heading level={2}>{title}</Heading>}
 			<section className="p-4">
-				<ul className="flex gap-4">
+				<ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
 					{products.map((product) => (
 						<li key={product.id} className="group w-full max-w-[350px]">
 							<Link href={`/product/${product.id}`}>
