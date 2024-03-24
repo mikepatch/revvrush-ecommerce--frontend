@@ -10,29 +10,53 @@ import {
 } from "@/gql/graphql";
 
 export const getCartById = async (cartId: string) => {
-	const { cartById } = await executeGraphQL(CartGetByIdDocument, { id: cartId });
+	const { cartById } = await executeGraphQL({
+		query: CartGetByIdDocument,
+		variables: { id: cartId },
+		next: {
+			tags: ["cart"],
+		},
+	});
 
 	return { cart: cartById };
 };
 
 export const createCart = async () => {
-	const { createCart } = await executeGraphQL(CartCreateDocument, { userId: "1" });
+	const { createCart } = await executeGraphQL({
+		query: CartCreateDocument,
+		variables: { userId: "1" },
+		next: {
+			tags: ["cart"],
+		},
+	});
 
 	return { newCart: createCart };
 };
 
 export const addItemToCart = async (cartId: string, productId: string, quantity: number) => {
-	const { addItemToCart } = await executeGraphQL(CartAddItemDocument, {
-		cartId,
-		productId,
-		quantity,
+	const { addItemToCart } = await executeGraphQL({
+		query: CartAddItemDocument,
+		variables: {
+			cartId,
+			productId,
+			quantity,
+		},
+		next: {
+			tags: ["cart"],
+		},
 	});
 
 	return { addedItem: addItemToCart };
 };
 
 export const updateItemQuantity = async (cartItemId: string, quantity: number) => {
-	await executeGraphQL(CartUpdateItemDocument, { cartItemId, data: { quantity } });
+	await executeGraphQL({
+		query: CartUpdateItemDocument,
+		variables: { cartItemId, data: { quantity } },
+		next: {
+			tags: ["cart"],
+		},
+	});
 };
 
 export const getCartFromCookies = async (): Promise<CartWithMetadataFragment | undefined> => {

@@ -10,23 +10,26 @@ import {
 import { executeGraphQL } from "@/api/graphqlApi";
 
 export const getAllProducts = async (variables?: ProductsGetListQueryVariables) => {
-	return executeGraphQL(ProductsGetListDocument, { ...variables });
+	return executeGraphQL({ query: ProductsGetListDocument, variables: { ...variables } });
 };
 
 export const getProductById = async (id: string) => {
-	return executeGraphQL(ProductGetByIdDocument, { id });
+	return executeGraphQL({ query: ProductGetByIdDocument, variables: { id } });
 };
 
 export const getProductsByQuery = async (query: string) => {
-	return executeGraphQL(ProductsGetByQueryDocument, { query });
+	return executeGraphQL({ query: ProductsGetByQueryDocument, variables: { query } });
 };
 
 export const getProductsByCategorySlug = async (
 	variables: ProductsGetListByCategorySlugQueryVariables,
 ) => {
-	return executeGraphQL(ProductsGetListByCategorySlugDocument, { ...variables });
+	return executeGraphQL({
+		query: ProductsGetListByCategorySlugDocument,
+		variables: { ...variables },
+	});
 };
 
 export const getAllCategories = async () => {
-	return executeGraphQL(ProductCategoriesGetListDocument);
+	return executeGraphQL({ query: ProductCategoriesGetListDocument });
 };
