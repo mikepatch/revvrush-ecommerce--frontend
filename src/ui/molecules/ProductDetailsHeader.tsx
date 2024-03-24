@@ -1,3 +1,5 @@
+import { revalidateTag } from "next/cache";
+
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { formatPrice } from "@/utils";
 import { type ProductListItemFragment } from "@/gql/graphql";
@@ -16,6 +18,7 @@ export const ProductDetailsHeader = ({ product }: ProductsDetailsHeaderProps) =>
 
 		await addProductToCart(cart.id, product.id, 1);
 		console.log(product.id);
+		revalidateTag("cart");
 	};
 
 	return (
