@@ -974,6 +974,13 @@ export type CartGetByIdQueryVariables = Exact<{
 
 export type CartGetByIdQuery = { cartById: { data: { id: string, items: Array<{ id: string, quantity: number, product: { id: string, name: string, price: number, images: Array<string | null> } } | null> }, meta: { totalPrice: number } } };
 
+export type CartItemRemoveFromCartMutationVariables = Exact<{
+  cartItemId: Scalars['ID']['input'];
+}>;
+
+
+export type CartItemRemoveFromCartMutation = { removeItemFromCart?: { id: string } | null };
+
 export type CartUpdateItemMutationVariables = Exact<{
   cartItemId: Scalars['ID']['input'];
   data: UpdateCartItemInput;
@@ -1164,6 +1171,13 @@ export const CartGetByIdDocument = new TypedDocumentString(`
     totalPrice
   }
 }`) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
+export const CartItemRemoveFromCartDocument = new TypedDocumentString(`
+    mutation CartItemRemoveFromCart($cartItemId: ID!) {
+  removeItemFromCart(cartItemId: $cartItemId) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartItemRemoveFromCartMutation, CartItemRemoveFromCartMutationVariables>;
 export const CartUpdateItemDocument = new TypedDocumentString(`
     mutation CartUpdateItem($cartItemId: ID!, $data: UpdateCartItemInput!) {
   updateCartItem(cartItemId: $cartItemId, data: $data) {
