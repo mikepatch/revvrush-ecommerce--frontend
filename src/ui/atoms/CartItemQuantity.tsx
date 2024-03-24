@@ -24,7 +24,8 @@ export const CartItemQuantity = ({ itemId, quantity }: CartItemQuantityProps) =>
 					setOptimisticQuantity(newValue);
 					await changeItemQuantity(itemId, newValue);
 				}}
-				className="rounded-sm bg-gray-200 p-2 text-gray-800"
+				disabled={optimisticQuantity === 1}
+				className="rounded-sm bg-gray-200 p-2 text-gray-800 disabled:opacity-50"
 			>
 				-
 			</button>
