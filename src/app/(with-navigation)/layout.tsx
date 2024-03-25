@@ -17,7 +17,7 @@ export default async function LayoutWithNavigation({ children }: LayoutWithNavig
 	return (
 		<>
 			<Header categories={categoriesItems} />
-			<main className="mx-auto max-w-[1440px] p-6">{children}</main>
+			<main className="mx-auto max-w-[1440px] px-8 py-6">{children}</main>
 		</>
 	);
 }
