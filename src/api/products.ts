@@ -31,5 +31,5 @@ export const getProductsByCategorySlug = async (
 };
 
 export const getAllCategories = async () => {
-	return executeGraphQL({ query: ProductCategoriesGetListDocument });
+	return executeGraphQL({ query: ProductCategoriesGetListDocument, next: { revalidate: 3600 } });
 };
