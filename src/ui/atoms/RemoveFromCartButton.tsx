@@ -16,7 +16,8 @@ export const RemoveFromCartButton = ({ productId }: RemoveFromCartButtonProps) =
 	return (
 		<button
 			disabled={isPending}
-			className="rounded-sm bg-brand-primary p-2 text-white transition-colors hover:bg-red-600 disabled:opacity-50"
+			className="rounded-md border border-red-500 bg-white p-2 text-red-500 shadow-sm transition-colors duration-150 hover:bg-red-500 hover:text-white disabled:opacity-50"
+			aria-label="Remove from cart"
 			onClick={() =>
 				startTransition(async () => {
 					await removeItemFromCart(productId);
