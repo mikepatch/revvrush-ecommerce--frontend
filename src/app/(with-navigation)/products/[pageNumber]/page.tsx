@@ -20,7 +20,7 @@ export default async function ProductsPageNumber({ params }: ProductsPageNumberP
 	} = await getAllProducts({ take: PRODUCTS_ON_PAGE, skip: (pageNumber - 1) * PRODUCTS_ON_PAGE });
 
 	return (
-		<section className="flex flex-grow flex-col gap-4 px-8 py-4">
+		<>
 			<header>
 				<PageTitle title="Products" />
 			</header>
@@ -35,6 +35,6 @@ export default async function ProductsPageNumber({ params }: ProductsPageNumberP
 					categorySlug={"products"}
 				/>
 			</footer>
-		</section>
+		</>
 	);
 }
