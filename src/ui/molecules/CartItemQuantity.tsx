@@ -15,7 +15,7 @@ export const CartItemQuantity = ({ itemId, quantity }: CartItemQuantityProps) =>
 	);
 
 	return (
-		<form>
+		<form className="flex">
 			<button
 				type="submit"
 				formAction={async () => {
@@ -25,11 +25,11 @@ export const CartItemQuantity = ({ itemId, quantity }: CartItemQuantityProps) =>
 					await changeItemQuantity(itemId, newValue);
 				}}
 				disabled={optimisticQuantity === 1}
-				className="rounded-sm bg-gray-200 p-2 text-gray-800 disabled:opacity-50"
+				className="rounded-full border border-gray-200 px-2 text-font-dark transition-colors hover:bg-gray-200 disabled:opacity-50 disabled:hover:bg-transparent"
 			>
 				-
 			</button>
-			<span className="w-8 text-center">{optimisticQuantity}</span>
+			<span className="w-6 text-center">{optimisticQuantity}</span>
 			<button
 				type="submit"
 				formAction={async () => {
@@ -38,7 +38,7 @@ export const CartItemQuantity = ({ itemId, quantity }: CartItemQuantityProps) =>
 					setOptimisticQuantity(newValue);
 					await changeItemQuantity(itemId, newValue);
 				}}
-				className="rounded-sm bg-gray-200 p-2 text-gray-800"
+				className="rounded-full border border-gray-200 px-2 text-font-dark transition-colors hover:bg-gray-200"
 			>
 				+
 			</button>
