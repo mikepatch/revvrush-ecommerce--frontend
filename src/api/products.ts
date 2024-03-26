@@ -10,7 +10,11 @@ import {
 import { executeGraphQL } from "@/api/graphqlApi";
 
 export const getAllProducts = async (variables?: ProductsGetListQueryVariables) => {
-	return executeGraphQL({ query: ProductsGetListDocument, variables: { ...variables } });
+	return executeGraphQL({
+		query: ProductsGetListDocument,
+		variables: { ...variables },
+		next: { revalidate: 60 * 60 * 24 },
+	});
 };
 
 export const getProductById = async (id: string) => {
@@ -27,9 +31,13 @@ export const getProductsByCategorySlug = async (
 	return executeGraphQL({
 		query: ProductsGetListByCategorySlugDocument,
 		variables: { ...variables },
+		next: { revalidate: 60 * 60 * 24 },
 	});
 };
 
 export const getAllCategories = async () => {
-	return executeGraphQL({ query: ProductCategoriesGetListDocument, next: { revalidate: 3600 } });
+	return executeGraphQL({
+		query: ProductCategoriesGetListDocument,
+		next: { revalidate: 60 * 60 * 24 },
+	});
 };
