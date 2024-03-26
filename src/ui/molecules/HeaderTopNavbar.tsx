@@ -13,7 +13,9 @@ export const HeaderTopNavbar = () => {
 					<SearchInput variant="desktop" />
 				</Suspense>
 			</div>
-			<MainNavigation />
+			<Suspense>
+				<MainNavigation />
+			</Suspense>
 		</div>
 	);
 };
