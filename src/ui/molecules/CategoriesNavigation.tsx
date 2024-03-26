@@ -16,7 +16,7 @@ export const CategoriesNavigation = ({ categories, isVisible }: CategoriesNaviga
 				isVisible ? "translate-x-0" : "-translate-x-full sm:translate-x-0",
 			)}
 		>
-			<ul className="flex h-full w-full flex-col justify-center bg-font-light px-4 py-4 text-font-dark sm:flex-row sm:py-0">
+			<ul className="flex h-full w-full flex-col justify-center bg-brand-background-lighter px-4 py-4 text-font-dark sm:flex-row sm:py-0">
 				<li>
 					<ActiveLink
 						href="/"
