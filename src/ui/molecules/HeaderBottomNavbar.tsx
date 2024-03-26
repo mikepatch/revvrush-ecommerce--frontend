@@ -11,7 +11,7 @@ type HeaderBottomNavbarProps = {
 	categories: NavItemType[];
 };
 
-export const HeaderBottomNavbar = async ({ categories }: HeaderBottomNavbarProps) => {
+export const HeaderBottomNavbar = ({ categories }: HeaderBottomNavbarProps) => {
 	const [isCategoriesNavVisible, setIsCategoriesNavVisible] = useState(false);
 
 	const handleOpenCategoriesNav = () => {
