@@ -5,9 +5,31 @@ import {
 	CartAddItemDocument,
 	CartCreateDocument,
 	CartGetByIdDocument,
-	CartUpdateItemDocument,
 	type CartWithMetadataFragment,
 } from "@/gql/graphql";
+
+export const getCart = async () => {
+	const cartId = cookies().get("cartId")?.value;
+
+	if (!cartId) {
+		return;
+	}
+
+	const { cartById } = await executeGraphQL({
+		query: CartGetByIdDocument,
+		variables: { id: cartId },
+		next: {
+			tags: ["cart"],
+		},
+		cache: "no-store",
+	});
+
+	if (!cartById) {
+		return;
+	}
+
+	return cartById;
+};
 
 export const getCartById = async (cartId: string) => {
 	const { cartById } = await executeGraphQL({
@@ -16,6 +38,7 @@ export const getCartById = async (cartId: string) => {
 		next: {
 			tags: ["cart"],
 		},
+		cache: "no-store",
 	});
 
 	return { cart: cartById };
@@ -49,16 +72,6 @@ export const addItemToCart = async (cartId: string, productId: string, quantity:
 	return { addedItem: addItemToCart };
 };
 
-export const updateItemQuantity = async (cartItemId: string, quantity: number) => {
-	await executeGraphQL({
-		query: CartUpdateItemDocument,
-		variables: { cartItemId, data: { quantity } },
-		next: {
-			tags: ["cart"],
-		},
-	});
-};
-
 export const getCartFromCookies = async (): Promise<CartWithMetadataFragment | undefined> => {
 	const cartId = cookies().get("cartId")?.value;
 
@@ -70,10 +83,10 @@ export const getCartFromCookies = async (): Promise<CartWithMetadataFragment | u
 	}
 };
 
-export const getOrCreateCart = async (): Promise<Pick<CartWithMetadataFragment["data"], "id">> => {
+export const getOrCreateCart = async (): Promise<CartWithMetadataFragment> => {
 	const existingCart = await getCartFromCookies();
 	if (existingCart) {
-		return existingCart.data;
+		return existingCart;
 	}
 
 	const { newCart } = await createCart();
@@ -85,7 +98,10 @@ export const getOrCreateCart = async (): Promise<Pick<CartWithMetadataFragment["
 		httpOnly: true,
 		sameSite: "lax",
 	});
-	return newCart;
+
+	const { cart } = await getCartById(newCart.id);
+
+	return cart;
 };
 
 export const addProductToCart = async (cartId: string, productId: string, quantity: number) => {
