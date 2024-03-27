@@ -2,22 +2,23 @@ import { redirect } from "next/navigation";
 import NextImage from "next/image";
 import Link from "next/link";
 
-import { getCartFromCookies } from "@/api/cart";
 import { formatPrice } from "@/utils";
 import { CartItemQuantity } from "@/ui/molecules/CartItemQuantity";
 import { RemoveFromCartButton } from "@/ui/atoms/RemoveFromCartButton";
 import { PageTitle } from "@/ui/atoms/PageTitle";
+import { getCart } from "@/api/cart";
 
 export default async function CartPage() {
-	const cart = await getCartFromCookies();
-	if (!cart) {
+	const cart = await getCart();
+
+	if (!cart || cart.data.items.length === 0) {
 		redirect("/");
 	}
 
 	return (
 		<section className="flex flex-col gap-4 p-4">
 			<PageTitle title="Cart" />
-			<table className="w-fit table-auto rounded-md border bg-brand-background-lighter p-4 shadow-sm">
+			<table className="table-auto rounded-md border bg-brand-background-lighter p-4 shadow-sm">
 				<thead className="shadow-sm">
 					<tr>
 						<th className="px-4 py-4 text-left">Product</th>
@@ -74,6 +75,12 @@ export default async function CartPage() {
 					</tr>
 				</tfoot>
 			</table>
+			<Link
+				href={"/payment"}
+				className="hover:bg-brand-primary-dark w-fit rounded-md bg-brand-primary px-4 py-2 text-white shadow-sm"
+			>
+				Checkout
+			</Link>
 		</section>
 	);
 }
