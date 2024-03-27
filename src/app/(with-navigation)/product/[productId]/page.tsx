@@ -1,26 +1,9 @@
 import { notFound } from "next/navigation";
-import { type Metadata } from "next";
 
 import { getAllProducts, getProductById } from "@/api/products";
 import { ProductDetails } from "@/ui/organisms/ProductDetails";
 import { RelatedProductList } from "@/ui/organisms/RelatedProductList";
-
-export const generateMetadata = async ({
-	params,
-}: {
-	params: { productId: string };
-}): Promise<Metadata> => {
-	try {
-		const { product } = await getProductById(params.productId);
-
-		return {
-			title: product.name,
-			description: product.description,
-		};
-	} catch (error) {
-		throw notFound();
-	}
-};
+import { StarRating } from "@/ui/molecules/StarRating";
 
 type SingleProductPageProps = {
 	params: { productId: string };
@@ -46,7 +29,17 @@ export default async function SingleProductPage({ params }: SingleProductPagePro
 	return (
 		<>
 			<ProductDetails product={product} />
+			<hr className="border-brand-primary" />
 			<RelatedProductList products={relatedProducts} title="Related products" />
+			<hr className="border-brand-primary" />
+			<section>
+				<header>
+					<h2>Reviews</h2>
+				</header>
+				<section>
+					<StarRating rating={4} />
+				</section>
+			</section>
 		</>
 	);
 }
