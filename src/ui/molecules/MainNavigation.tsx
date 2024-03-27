@@ -1,12 +1,10 @@
 import { ShoppingCart, User } from "lucide-react";
 
-import { getCartFromCookies } from "@/api/cart";
 import { MainNavItem } from "@/ui/atoms/MainNavItem";
 import { sumItemsQuantityInCart } from "@/utils";
 
 export const MainNavigation = async () => {
-	const cart = await getCartFromCookies();
-	const quantity = sumItemsQuantityInCart(cart?.data?.items ?? []);
+	const quantity = (await sumItemsQuantityInCart()) ?? 0;
 
 	return (
 		<div className="h-full">
