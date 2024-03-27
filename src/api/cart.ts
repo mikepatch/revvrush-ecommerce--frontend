@@ -8,7 +8,7 @@ import {
 	type CartWithMetadataFragment,
 } from "@/gql/graphql";
 
-export const getCart = async () => {
+export const getCart = async (): Promise<CartWithMetadataFragment | undefined> => {
 	const cartId = cookies().get("cartId")?.value;
 
 	if (!cartId) {
