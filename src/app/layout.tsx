@@ -8,6 +8,7 @@ const rubik = Rubik({ subsets: ["latin"] });
 
 type RootLayoutProps = {
 	children: React.ReactNode;
+	modal: React.ReactNode;
 };
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 	description: "RevvRush - the best car parts in the world!",
 };
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children, modal }: RootLayoutProps) {
 	return (
 		<html lang="en">
 			<body
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 			>
 				{children}
 				<Footer />
+				{modal}
 			</body>
 		</html>
 	);
