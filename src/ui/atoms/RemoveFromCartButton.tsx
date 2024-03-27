@@ -1,7 +1,6 @@
 "use client";
 
 import { Trash2 } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { removeItemFromCart } from "@/app/(with-navigation)/cart/actions";
 
@@ -10,7 +9,6 @@ type RemoveFromCartButtonProps = {
 };
 
 export const RemoveFromCartButton = ({ productId }: RemoveFromCartButtonProps) => {
-	const router = useRouter();
 	const [isPending, startTransition] = useTransition();
 
 	return (
@@ -21,7 +19,6 @@ export const RemoveFromCartButton = ({ productId }: RemoveFromCartButtonProps) =
 			onClick={() =>
 				startTransition(async () => {
 					await removeItemFromCart(productId);
-					router.refresh();
 				})
 			}
 		>
