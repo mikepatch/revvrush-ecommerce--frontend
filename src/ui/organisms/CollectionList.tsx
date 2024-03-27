@@ -8,10 +8,10 @@ type CollectionListProps = {
 };
 
 export const CollectionList = ({ collections }: CollectionListProps) => (
-	<ul className="flex justify-center gap-4">
+	<ul className="flex h-[105px] justify-center gap-4 overflow-hidden">
 		{collections.map((collection) => (
-			<li key={collection.id} className="rounded-sm bg-brand-background-dark">
-				<Link href={`/collections/${collection.slug}`}>
+			<li key={collection.id} className="h-full rounded-sm bg-brand-background-dark">
+				<Link href={`/collections/${collection.slug}`} className="h-full">
 					<article>
 						<h2 className="px-2 py-1 text-font-light">{collection.name}</h2>
 						<NextImage
@@ -19,7 +19,7 @@ export const CollectionList = ({ collections }: CollectionListProps) => (
 							width={300}
 							height={200}
 							alt=""
-							className="rounded-sm"
+							className="h-full rounded-sm"
 						/>
 					</article>
 				</Link>
