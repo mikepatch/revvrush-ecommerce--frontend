@@ -1,4 +1,4 @@
-import { type CartWithMetadataFragment } from "@/gql/graphql";
+import { getCart } from "@/api/cart";
 
 export const formatPrice = (amount: number): string => {
 	return new Intl.NumberFormat("en-US", {
@@ -15,11 +15,14 @@ export const convertSlugToTitle = (slug: string): string => {
 		.join(" ");
 };
 
-export const sumItemsQuantityInCart = (
-	items: CartWithMetadataFragment["data"]["items"],
-): number => {
+export const sumItemsQuantityInCart = async (): Promise<number | undefined> => {
+	const cart = await getCart();
+	if (!cart) {
+		return 0;
+	}
+
 	return (
-		items.reduce((acc, item) => {
+		cart?.data.items.reduce((acc, item) => {
 			if (item) {
 				return acc + item.quantity;
 			}
