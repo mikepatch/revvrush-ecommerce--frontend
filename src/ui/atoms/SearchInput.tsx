@@ -29,7 +29,7 @@ export const SearchInput = ({ variant = "desktop", className, ...props }: Search
 	}, 500);
 
 	return (
-		<div className="flex h-full w-full items-center rounded-sm bg-brand-background-lighter text-font-dark">
+		<div className="flex h-full w-full items-center rounded-md bg-brand-background-lighter text-font-dark">
 			<label htmlFor={inputId} className="p-2">
 				<LucideSearch />
 			</label>
