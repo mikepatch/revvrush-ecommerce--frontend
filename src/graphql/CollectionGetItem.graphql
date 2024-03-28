@@ -1,9 +1,5 @@
 query CollectionGetItem($id: ID, $name: String, $slug: String) {
 	collection(id: $id, name: $name, slug: $slug) {
-		name
-		description
-		products {
-			...ProductListItem
-		}
+		...CollectionWithProducts
 	}
 }

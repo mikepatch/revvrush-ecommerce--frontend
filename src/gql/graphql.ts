@@ -24,7 +24,7 @@ export type Cart = {
   /** Cart ID */
   id: Scalars['ID']['output'];
   /** Items in the cart */
-  items: Array<Maybe<CartItem>>;
+  items: Array<CartItem>;
   /** Product updatedAt */
   updatedAt: Scalars['DateTime']['output'];
   /** User ID */
@@ -52,6 +52,10 @@ export type CartItemListRelationFilter = {
   every?: InputMaybe<CartItemWhereInput>;
   none?: InputMaybe<CartItemWhereInput>;
   some?: InputMaybe<CartItemWhereInput>;
+};
+
+export type CartItemOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
 };
 
 export type CartItemWhereInput = {
@@ -111,7 +115,7 @@ export type Collection = {
   /** Products in the collection */
   products: Array<Product>;
   /** Product collection slug */
-  slug?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
   updatedAt: Scalars['String']['output'];
 };
 
@@ -119,6 +123,10 @@ export type CollectionListRelationFilter = {
   every?: InputMaybe<CollectionWhereInput>;
   none?: InputMaybe<CollectionWhereInput>;
   some?: InputMaybe<CollectionWhereInput>;
+};
+
+export type CollectionOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
 };
 
 export type CollectionWhereInput = {
@@ -471,6 +479,10 @@ export type NestedStringNullableFilter = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type NullsOrder =
+  | 'first'
+  | 'last';
+
 export type Order = {
   /** Example field (placeholder) */
   exampleField: Scalars['Int']['output'];
@@ -480,6 +492,10 @@ export type OrderItemListRelationFilter = {
   every?: InputMaybe<OrderItemWhereInput>;
   none?: InputMaybe<OrderItemWhereInput>;
   some?: InputMaybe<OrderItemWhereInput>;
+};
+
+export type OrderItemOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
 };
 
 export type OrderItemWhereInput = {
@@ -589,6 +605,22 @@ export type ProductCategoryNullableRelationFilter = {
   isNot?: InputMaybe<ProductCategoryWhereInput>;
 };
 
+export type ProductCategoryOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type ProductCategoryOrderByWithRelationInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  parentCategory?: InputMaybe<ProductCategoryOrderByWithRelationInput>;
+  parentCategoryId?: InputMaybe<SortOrderInput>;
+  products?: InputMaybe<ProductOrderByRelationAggregateInput>;
+  slug?: InputMaybe<SortOrder>;
+  subCategories?: InputMaybe<ProductCategoryOrderByRelationAggregateInput>;
+  updatedAt?: InputMaybe<SortOrder>;
+};
+
 export type ProductCategoryRelationFilter = {
   is?: InputMaybe<ProductCategoryWhereInput>;
   isNot?: InputMaybe<ProductCategoryWhereInput>;
@@ -620,6 +652,28 @@ export type ProductListRelationFilter = {
   every?: InputMaybe<ProductWhereInput>;
   none?: InputMaybe<ProductWhereInput>;
   some?: InputMaybe<ProductWhereInput>;
+};
+
+export type ProductOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type ProductOrderByWithRelationInput = {
+  cartItem?: InputMaybe<CartItemOrderByRelationAggregateInput>;
+  category?: InputMaybe<ProductCategoryOrderByWithRelationInput>;
+  categoryId?: InputMaybe<SortOrder>;
+  collections?: InputMaybe<CollectionOrderByRelationAggregateInput>;
+  createdAt?: InputMaybe<SortOrder>;
+  description?: InputMaybe<SortOrderInput>;
+  id?: InputMaybe<SortOrder>;
+  images?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  orderId?: InputMaybe<SortOrderInput>;
+  orderItem?: InputMaybe<OrderItemOrderByRelationAggregateInput>;
+  price?: InputMaybe<SortOrder>;
+  slug?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+  variants?: InputMaybe<ProductVariantOrderByRelationAggregateInput>;
 };
 
 export type ProductRelationFilter = {
@@ -682,6 +736,10 @@ export type ProductVariantOptionWhereInput = {
   productVariantId?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   values?: InputMaybe<StringNullableListFilter>;
+};
+
+export type ProductVariantOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
 };
 
 export type ProductVariantRelationFilter = {
@@ -810,6 +868,7 @@ export type QueryProductVariantArgs = {
 
 
 export type QueryProductsArgs = {
+  orderBy?: InputMaybe<ProductOrderByWithRelationInput>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProductWhereInput>;
@@ -832,6 +891,15 @@ export type QueryProductsByQueryArgs = {
 export type QueryMode =
   | 'default'
   | 'insensitive';
+
+export type SortOrder =
+  | 'asc'
+  | 'desc';
+
+export type SortOrderInput = {
+  nulls?: InputMaybe<NullsOrder>;
+  sort: SortOrder;
+};
 
 export type StringFilter = {
   contains?: InputMaybe<Scalars['String']['input']>;
@@ -972,7 +1040,7 @@ export type CartGetByIdQueryVariables = Exact<{
 }>;
 
 
-export type CartGetByIdQuery = { cartById: { data: { id: string, items: Array<{ id: string, quantity: number, product: { id: string, name: string, price: number, images: Array<string | null> } } | null> }, meta: { totalPrice: number } } };
+export type CartGetByIdQuery = { cartById: { data: { id: string, items: Array<{ id: string, quantity: number, product: { id: string, name: string, price: number, images: Array<string | null> } }> }, meta: { totalPrice: number } } };
 
 export type CartItemRemoveFromCartMutationVariables = Exact<{
   cartItemId: Scalars['ID']['input'];
@@ -989,7 +1057,7 @@ export type CartUpdateItemMutationVariables = Exact<{
 
 export type CartUpdateItemMutation = { updateCartItem: { id: string } };
 
-export type CartWithMetadataFragment = { data: { id: string, items: Array<{ id: string, quantity: number, product: { id: string, name: string, price: number, images: Array<string | null> } } | null> }, meta: { totalPrice: number } };
+export type CartWithMetadataFragment = { data: { id: string, items: Array<{ id: string, quantity: number, product: { id: string, name: string, price: number, images: Array<string | null> } }> }, meta: { totalPrice: number } };
 
 export type CollectionGetItemQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']['input']>;
@@ -1000,15 +1068,23 @@ export type CollectionGetItemQueryVariables = Exact<{
 
 export type CollectionGetItemQuery = { collection: { name: string, description?: string | null, products: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, category?: { name: string, slug?: string | null } | null }> } };
 
+export type CollectionListFragment = { id: string, name: string, slug: string, coverImage: string };
+
+export type CollectionWithProductsFragment = { name: string, description?: string | null, products: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, category?: { name: string, slug?: string | null } | null }> };
+
 export type CollectionsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CollectionsGetListQuery = { collections: Array<{ id: string, name: string, slug?: string | null, coverImage: string }> };
+export type CollectionsGetListQuery = { collections: Array<{ id: string, name: string, slug: string, coverImage: string }> };
 
 export type ProductCategoriesGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ProductCategoriesGetListQuery = { productCategories: { data: Array<{ id: string, name: string, slug?: string | null }> } };
+
+export type ProductCategoriesListFragment = { data: Array<{ id: string, name: string, slug?: string | null }> };
+
+export type ProductCategoriesListItemFragment = { id: string, name: string, slug?: string | null };
 
 export type ProductGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -1034,6 +1110,7 @@ export type ProductsGetListQueryVariables = Exact<{
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProductWhereInput>;
+  orderBy?: InputMaybe<ProductOrderByWithRelationInput>;
 }>;
 
 
@@ -1082,6 +1159,14 @@ export const CartWithMetadataFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"CartWithMetadata"}) as unknown as TypedDocumentString<CartWithMetadataFragment, unknown>;
+export const CollectionListFragmentDoc = new TypedDocumentString(`
+    fragment CollectionList on Collection {
+  id
+  name
+  slug
+  coverImage
+}
+    `, {"fragmentName":"CollectionList"}) as unknown as TypedDocumentString<CollectionListFragment, unknown>;
 export const ProductListItemFragmentDoc = new TypedDocumentString(`
     fragment ProductListItem on Product {
   id
@@ -1095,6 +1180,41 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
+export const CollectionWithProductsFragmentDoc = new TypedDocumentString(`
+    fragment CollectionWithProducts on Collection {
+  name
+  description
+  products {
+    ...ProductListItem
+  }
+}
+    fragment ProductListItem on Product {
+  id
+  name
+  price
+  categoryId
+  images
+  category {
+    name
+    slug
+  }
+}`, {"fragmentName":"CollectionWithProducts"}) as unknown as TypedDocumentString<CollectionWithProductsFragment, unknown>;
+export const ProductCategoriesListFragmentDoc = new TypedDocumentString(`
+    fragment ProductCategoriesList on ProductCategoriesList {
+  data {
+    id
+    name
+    slug
+  }
+}
+    `, {"fragmentName":"ProductCategoriesList"}) as unknown as TypedDocumentString<ProductCategoriesListFragment, unknown>;
+export const ProductCategoriesListItemFragmentDoc = new TypedDocumentString(`
+    fragment ProductCategoriesListItem on ProductCategory {
+  id
+  name
+  slug
+}
+    `, {"fragmentName":"ProductCategoriesListItem"}) as unknown as TypedDocumentString<ProductCategoriesListItemFragment, unknown>;
 export const ProductListFragmentDoc = new TypedDocumentString(`
     fragment ProductList on ProductList {
   data {
@@ -1188,14 +1308,17 @@ export const CartUpdateItemDocument = new TypedDocumentString(`
 export const CollectionGetItemDocument = new TypedDocumentString(`
     query CollectionGetItem($id: ID, $name: String, $slug: String) {
   collection(id: $id, name: $name, slug: $slug) {
-    name
-    description
-    products {
-      ...ProductListItem
-    }
+    ...CollectionWithProducts
   }
 }
-    fragment ProductListItem on Product {
+    fragment CollectionWithProducts on Collection {
+  name
+  description
+  products {
+    ...ProductListItem
+  }
+}
+fragment ProductListItem on Product {
   id
   name
   price
@@ -1209,24 +1332,28 @@ export const CollectionGetItemDocument = new TypedDocumentString(`
 export const CollectionsGetListDocument = new TypedDocumentString(`
     query CollectionsGetList {
   collections {
-    id
-    name
-    slug
-    coverImage
+    ...CollectionList
   }
 }
-    `) as unknown as TypedDocumentString<CollectionsGetListQuery, CollectionsGetListQueryVariables>;
+    fragment CollectionList on Collection {
+  id
+  name
+  slug
+  coverImage
+}`) as unknown as TypedDocumentString<CollectionsGetListQuery, CollectionsGetListQueryVariables>;
 export const ProductCategoriesGetListDocument = new TypedDocumentString(`
     query ProductCategoriesGetList {
   productCategories {
-    data {
-      id
-      name
-      slug
-    }
+    ...ProductCategoriesList
   }
 }
-    `) as unknown as TypedDocumentString<ProductCategoriesGetListQuery, ProductCategoriesGetListQueryVariables>;
+    fragment ProductCategoriesList on ProductCategoriesList {
+  data {
+    id
+    name
+    slug
+  }
+}`) as unknown as TypedDocumentString<ProductCategoriesGetListQuery, ProductCategoriesGetListQueryVariables>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: ID!) {
   product(id: $id) {
@@ -1274,8 +1401,8 @@ fragment ProductListItem on Product {
   }
 }`) as unknown as TypedDocumentString<ProductsGetByQueryQuery, ProductsGetByQueryQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList($skip: Int, $take: Int, $where: ProductWhereInput) {
-  products(take: $take, skip: $skip, where: $where) {
+    query ProductsGetList($skip: Int, $take: Int, $where: ProductWhereInput, $orderBy: ProductOrderByWithRelationInput) {
+  products(take: $take, skip: $skip, where: $where, orderBy: $orderBy) {
     ...ProductList
   }
 }

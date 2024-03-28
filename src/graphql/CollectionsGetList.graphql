@@ -1,8 +1,5 @@
 query CollectionsGetList {
 	collections {
-		id
-		name
-		slug
-		coverImage
+		...CollectionList
 	}
 }

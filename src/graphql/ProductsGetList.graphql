@@ -1,5 +1,10 @@
-query ProductsGetList($skip: Int, $take: Int, $where: ProductWhereInput) {
-	products(take: $take, skip: $skip, where: $where) {
+query ProductsGetList(
+	$skip: Int
+	$take: Int
+	$where: ProductWhereInput
+	$orderBy: ProductOrderByWithRelationInput
+) {
+	products(take: $take, skip: $skip, where: $where, orderBy: $orderBy) {
 		...ProductList
 	}
 }

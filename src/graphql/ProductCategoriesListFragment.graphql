@@ -1,0 +1,7 @@
+fragment ProductCategoriesList on ProductCategoriesList {
+	data {
+		id
+		name
+		slug
+	}
+}

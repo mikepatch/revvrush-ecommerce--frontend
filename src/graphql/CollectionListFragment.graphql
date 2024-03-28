@@ -1,0 +1,6 @@
+fragment CollectionList on Collection {
+	id
+	name
+	slug
+	coverImage
+}

@@ -1,0 +1,5 @@
+fragment ProductCategoriesListItem on ProductCategory {
+	id
+	name
+	slug
+}
