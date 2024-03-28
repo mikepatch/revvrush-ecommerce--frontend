@@ -1,5 +1,3 @@
-import { getCart } from "@/api/cart";
-
 export const formatPrice = (amount: number): string => {
 	return new Intl.NumberFormat("en-US", {
 		style: "currency",
@@ -15,18 +13,6 @@ export const convertSlugToTitle = (slug: string): string => {
 		.join(" ");
 };
 
-export const sumItemsQuantityInCart = async (): Promise<number | undefined> => {
-	const cart = await getCart();
-	if (!cart) {
-		return 0;
-	}
-
-	return (
-		cart?.data.items.reduce((acc, item) => {
-			if (item) {
-				return acc + item.quantity;
-			}
-			return acc;
-		}, 0) ?? 0
-	);
+export const calculateAverageRating = (reviews: { rating: number }[]): number => {
+	return Math.round(reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length);
 };
