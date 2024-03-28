@@ -95,5 +95,15 @@
 			}
 		}
 	],
-	"ignorePatterns": ["*.js", "*.jsx", "*.config.js", "*.config.ts"]
+	"ignorePatterns": [
+		"*.js",
+		"*.jsx",
+		"*.config.js",
+		"*.config.ts",
+		"node_modules/",
+		"**/node_modules/",
+		"/**/node_modules/*",
+		"dist/",
+		"build/"
+	]
 }
