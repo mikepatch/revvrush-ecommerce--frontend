@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+
 import { executeGraphQL } from "@/api/graphqlApi";
 import { getProductById } from "@/api/products";
 import {
@@ -31,7 +32,7 @@ export const getCart = async (): Promise<CartWithMetadataFragment | undefined> =
 	return cartById;
 };
 
-export const getCartById = async (cartId: string) => {
+export const getCartById = async (cartId: string): Promise<CartWithMetadataFragment> => {
 	const { cartById } = await executeGraphQL({
 		query: CartGetByIdDocument,
 		variables: { id: cartId },
@@ -41,10 +42,10 @@ export const getCartById = async (cartId: string) => {
 		cache: "no-store",
 	});
 
-	return { cart: cartById };
+	return cartById;
 };
 
-export const createCart = async () => {
+export const createCart = async (): Promise<{ id: string }> => {
 	const { createCart } = await executeGraphQL({
 		query: CartCreateDocument,
 		variables: { userId: "1" },
@@ -53,7 +54,7 @@ export const createCart = async () => {
 		},
 	});
 
-	return { newCart: createCart };
+	return createCart;
 };
 
 export const addItemToCart = async (cartId: string, productId: string, quantity: number) => {
@@ -76,7 +77,7 @@ export const getCartFromCookies = async (): Promise<CartWithMetadataFragment | u
 	const cartId = cookies().get("cartId")?.value;
 
 	if (cartId) {
-		const { cart } = await getCartById(cartId);
+		const cart = await getCartById(cartId);
 		if (cart) {
 			return cart;
 		}
@@ -89,7 +90,7 @@ export const getOrCreateCart = async (): Promise<CartWithMetadataFragment> => {
 		return existingCart;
 	}
 
-	const { newCart } = await createCart();
+	const newCart = await createCart();
 	if (!newCart) {
 		throw new Error("Failed to create cart");
 	}
@@ -99,13 +100,17 @@ export const getOrCreateCart = async (): Promise<CartWithMetadataFragment> => {
 		sameSite: "lax",
 	});
 
-	const { cart } = await getCartById(newCart.id);
+	const cart = await getCartById(newCart.id);
 
 	return cart;
 };
 
-export const addProductToCart = async (cartId: string, productId: string, quantity: number) => {
-	const { product } = await getProductById(productId);
+export const addProductToCart = async (
+	cartId: string,
+	productId: string,
+	quantity: number,
+): Promise<void> => {
+	const product = await getProductById(productId);
 	if (!product) {
 		throw new Error(`Product with id ${productId} not found`);
 	}
