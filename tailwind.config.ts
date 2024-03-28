@@ -16,6 +16,7 @@ const config: Config = {
 				"brand-background-lighter": "#fff",
 				"brand-background-dark": "#1a1a1a",
 				"brand-primary": "#EB635B",
+				"star-rating": "#ffc107"
 			},
 			spacing: {
 				"header-height": "100px",
