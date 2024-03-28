@@ -1,5 +1,5 @@
 import { BrandLogo } from "@/ui/atoms/BrandLogo";
-import { FooterNavigation } from "@/ui/molecules/FooterNavigation";
+import { FooterNavigation } from "@/ui/molecules/Navigation/FooterNavigation";
 
 export const Footer = () => {
 	return (

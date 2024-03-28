@@ -1,4 +1,4 @@
-import { ProductList } from "@/ui/molecules/ProductList";
+import { ProductList } from "@/ui/molecules/List/ProductList";
 import { getProductsByQuery } from "@/api/products";
 
 type SearchPageProps = {
@@ -7,9 +7,7 @@ type SearchPageProps = {
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
 	const query = searchParams?.query || "";
-	const {
-		productsByQuery: { data, meta },
-	} = await getProductsByQuery(query);
+	const { data, meta } = await getProductsByQuery(query);
 
 	return (
 		<section className="flex flex-col gap-4">

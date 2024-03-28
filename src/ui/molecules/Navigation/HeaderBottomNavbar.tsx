@@ -3,7 +3,7 @@
 import { Suspense, useState } from "react";
 
 import { SearchInput } from "@/ui/atoms/SearchInput";
-import { CategoriesNavigation } from "@/ui/molecules/CategoriesNavigation";
+import { CategoriesNavigation } from "@/ui/molecules/Navigation/CategoriesNavigation";
 import { type NavItemType } from "@/types";
 import { CategoriesNavToggleButton } from "@/ui/atoms/CategoriesNavToggleButton";
 

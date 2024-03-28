@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { ProductList } from "@/ui/molecules/ProductList";
-import { Pagination } from "@/ui/molecules/Pagination";
+import { ProductList } from "@/ui/molecules/List/ProductList";
+import { Pagination } from "@/ui/molecules/Pagination/Pagination";
 import { PageTitle } from "@/ui/atoms/PageTitle";
 import { getAllProducts, getProductsByCategorySlug } from "@/api/products";
 import { convertSlugToTitle } from "@/utils";
@@ -15,9 +15,7 @@ type PageNumberPageProps = {
 
 export const generateStaticParams = async () => {
 	const {
-		products: {
-			meta: { total: totalProducts },
-		},
+		meta: { total: totalProducts },
 	} = await getAllProducts();
 
 	const totalPages = Math.ceil(totalProducts / PRODUCTS_ON_PAGE);
@@ -37,15 +35,14 @@ export default async function CategoryPageNumberPage({ params }: PageNumberPageP
 	const { categorySlug } = params;
 	const pageNumber = Number(params.pageNumber);
 
-	const { productsByCategorySlug } = await getProductsByCategorySlug({
+	const {
+		data: products,
+		meta: { total: totalProducts },
+	} = await getProductsByCategorySlug({
 		slug: categorySlug,
 		take: PRODUCTS_ON_PAGE,
 		skip: (pageNumber - 1) * PRODUCTS_ON_PAGE,
 	});
-	const {
-		data: products,
-		meta: { total: totalProducts },
-	} = productsByCategorySlug;
 
 	if (products.length === 0) {
 		throw notFound();

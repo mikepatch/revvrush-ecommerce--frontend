@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 import { BrandLogo } from "@/ui/atoms/BrandLogo";
 import { SearchInput } from "@/ui/atoms/SearchInput";
-import { MainNavigation } from "@/ui/molecules/MainNavigation";
+import { MainNavigation } from "@/ui/molecules/Navigation/MainNavigation";
 
 export const HeaderTopNavbar = () => {
 	return (

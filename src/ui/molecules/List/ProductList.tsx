@@ -1,6 +1,4 @@
-import Link from "next/link";
-
-import { ProductCard } from "@/ui/molecules/ProductCard";
+import { ProductCard } from "@/ui/molecules/ProductCard/ProductCard";
 import { type ProductListItemFragment } from "@/gql/graphql";
 
 type ProductListProps = {
@@ -14,10 +12,8 @@ export const ProductList = ({ products }: ProductListProps) => {
 			data-testid="products-list"
 		>
 			{products.map((product) => (
-				<li key={product.id} className="group w-full max-w-[350px]">
-					<Link href={`/product/${product.id}`}>
-						<ProductCard product={product} />
-					</Link>
+				<li key={product.id} className="w-full max-w-[350px]">
+					<ProductCard product={product} />
 				</li>
 			))}
 		</ul>

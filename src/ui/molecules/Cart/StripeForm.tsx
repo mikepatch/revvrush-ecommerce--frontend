@@ -3,7 +3,7 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-import { CheckoutForm } from "@/ui/molecules/CheckoutForm";
+import { CheckoutForm } from "@/ui/molecules/Cart/CheckoutForm";
 
 if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
 	throw new Error("Missing STRIPE_PUBLISHABLE_KEY env variable");

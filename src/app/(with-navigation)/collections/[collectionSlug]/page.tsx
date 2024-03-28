@@ -2,29 +2,27 @@ import { type Metadata } from "next";
 
 import { getCollectionBySlug } from "@/api/collections";
 import { PageTitle } from "@/ui/atoms/PageTitle";
-import { CollectionProductList } from "@/ui/organisms/CollectionProductList";
+import { CollectionProductList } from "@/ui/molecules/List/CollectionProductList";
 
-type SingleCollectionPageProps = {
-	params: { collectionSlug: string };
+type ParamsType = {
+	collectionSlug: string;
 };
 
-export const generateMetadata = async ({
-	params,
-}: SingleCollectionPageProps): Promise<Metadata> => {
-	const {
-		collection: { name },
-	} = await getCollectionBySlug(params.collectionSlug);
+export const generateMetadata = async ({ params }: { params: ParamsType }): Promise<Metadata> => {
+	const { name } = await getCollectionBySlug(params.collectionSlug);
 
 	return {
 		title: name,
 	};
 };
 
+type SingleCollectionPageProps = {
+	params: ParamsType;
+};
+
 export default async function SingleCollectionPage({ params }: SingleCollectionPageProps) {
 	const { collectionSlug } = params;
-	const {
-		collection: { name, description, products },
-	} = await getCollectionBySlug(collectionSlug);
+	const { name, description, products } = await getCollectionBySlug(collectionSlug);
 
 	return (
 		<>

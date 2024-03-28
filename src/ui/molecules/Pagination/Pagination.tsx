@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowLeftToLine, ArrowRight, ArrowRightToLine } from "lucide-react";
 import clsx from "clsx";
 
-import { PaginationItem } from "@/ui/molecules/PaginationItem";
+import { PaginationItem } from "@/ui/molecules/Pagination/PaginationItem";
 
 type PaginationProps = {
 	pageNumber: number;

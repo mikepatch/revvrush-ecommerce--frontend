@@ -1,8 +1,8 @@
 import { getAllProducts } from "@/api/products";
 import { PRODUCTS_ON_PAGE } from "@/constants";
 import { PageTitle } from "@/ui/atoms/PageTitle";
-import { Pagination } from "@/ui/molecules/Pagination";
-import { ProductList } from "@/ui/molecules/ProductList";
+import { Pagination } from "@/ui/molecules/Pagination/Pagination";
+import { ProductList } from "@/ui/molecules/List/ProductList";
 
 type ProductsPageNumberProps = {
 	params: {
@@ -13,10 +13,8 @@ type ProductsPageNumberProps = {
 export default async function ProductsPageNumber({ params }: ProductsPageNumberProps) {
 	const pageNumber = Number(params.pageNumber);
 	const {
-		products: {
-			data,
-			meta: { total: totalProducts },
-		},
+		data: products,
+		meta: { total: totalProducts },
 	} = await getAllProducts({ take: PRODUCTS_ON_PAGE, skip: (pageNumber - 1) * PRODUCTS_ON_PAGE });
 
 	return (
@@ -25,7 +23,7 @@ export default async function ProductsPageNumber({ params }: ProductsPageNumberP
 				<PageTitle title="Products" />
 			</header>
 			<section>
-				<ProductList products={data} />
+				<ProductList products={products} />
 			</section>
 			<footer>
 				<Pagination

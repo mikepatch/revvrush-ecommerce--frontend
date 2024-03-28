@@ -1,6 +1,6 @@
 import { Heading } from "@/ui/atoms/Heading";
 import { type ProductListItemFragment } from "@/gql/graphql";
-import { ProductList } from "@/ui/molecules/ProductList";
+import { ProductList } from "@/ui/molecules/List/ProductList";
 
 type CollectionProductListProps = {
 	products: ProductListItemFragment[];

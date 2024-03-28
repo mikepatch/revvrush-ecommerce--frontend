@@ -1,4 +1,5 @@
 import { type ProductWithDescriptionFragment } from "@/gql/graphql";
+import { Heading } from "@/ui/atoms/Heading";
 
 type ProductDetailsDescriptionProps = {
 	product: ProductWithDescriptionFragment;
@@ -6,8 +7,8 @@ type ProductDetailsDescriptionProps = {
 
 export const ProductDetailsDescription = ({ product }: ProductDetailsDescriptionProps) => {
 	return (
-		<article className="flex flex-col gap-2 text-justify">
-			<h2 className="text-2xl font-semibold">Description</h2>
+		<article className="flex flex-col gap-2">
+			<Heading level={2}>Description</Heading>
 			<p>{product.description}</p>
 		</article>
 	);

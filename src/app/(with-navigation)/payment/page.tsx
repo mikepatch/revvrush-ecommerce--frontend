@@ -3,7 +3,7 @@ import Stripe from "stripe";
 import NextImage from "next/image";
 
 import { getCart } from "@/api/cart";
-import { StripeForm } from "@/ui/organisms/StripeForm";
+import { StripeForm } from "@/ui/molecules/Cart/StripeForm";
 import { PageTitle } from "@/ui/atoms/PageTitle";
 import { formatPrice } from "@/utils";
 import { Heading } from "@/ui/atoms/Heading";

@@ -1,7 +1,7 @@
 import { getAllCategories } from "@/api/products";
 
 export const generateStaticParams = async () => {
-	const { productCategories } = await getAllCategories();
+	const productCategories = await getAllCategories();
 
 	return productCategories.data.map((category) => ({
 		categorySlug: category.slug,

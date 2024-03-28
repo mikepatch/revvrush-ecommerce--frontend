@@ -1,5 +1,5 @@
 import { type Metadata } from "next";
-import { notFound } from "next/navigation";
+
 import { getProductById } from "@/api/products";
 
 export const generateMetadata = async ({
@@ -7,16 +7,18 @@ export const generateMetadata = async ({
 }: {
 	params: { productId: string };
 }): Promise<Metadata> => {
-	try {
-		const { product } = await getProductById(params.productId);
+	const product = await getProductById(params.productId);
 
+	if (!product) {
 		return {
-			title: product.name,
-			description: product.description,
+			title: "Product not found",
 		};
-	} catch (error) {
-		throw notFound();
 	}
+
+	return {
+		title: product.name,
+		description: product.description,
+	};
 };
 
 type SingleProductLayoutProps = {

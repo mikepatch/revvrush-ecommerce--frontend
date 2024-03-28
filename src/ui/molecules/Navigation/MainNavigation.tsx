@@ -1,10 +1,20 @@
 import { ShoppingCart, User } from "lucide-react";
 
 import { MainNavItem } from "@/ui/atoms/MainNavItem";
-import { sumItemsQuantityInCart } from "@/utils";
+import { getCart } from "@/api/cart";
 
 export const MainNavigation = async () => {
-	const quantity = (await sumItemsQuantityInCart()) ?? 0;
+	const cart = await getCart();
+	if (!cart) {
+		return 0;
+	}
+	const quantity =
+		cart.data.items.reduce((acc, item) => {
+			if (item) {
+				return acc + item.quantity;
+			}
+			return acc;
+		}, 0) ?? 0;
 
 	return (
 		<div className="h-full">

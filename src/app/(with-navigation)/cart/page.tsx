@@ -3,10 +3,10 @@ import NextImage from "next/image";
 import Link from "next/link";
 
 import { formatPrice } from "@/utils";
-import { CartItemQuantity } from "@/ui/molecules/CartItemQuantity";
 import { RemoveFromCartButton } from "@/ui/atoms/RemoveFromCartButton";
 import { PageTitle } from "@/ui/atoms/PageTitle";
 import { getCart } from "@/api/cart";
+import { CartItemQuantityForm } from "@/ui/molecules/Cart/CartItemQuantityForm";
 
 export default async function CartPage() {
 	const cart = await getCart();
@@ -40,7 +40,7 @@ export default async function CartPage() {
 											>
 												<NextImage
 													alt={item.product.name}
-													src={(item.product.images as string[])[0] || ""}
+													src={(item.product.images[0] as string) || ""}
 													width={50}
 													height={50}
 												/>
@@ -50,7 +50,7 @@ export default async function CartPage() {
 											</Link>
 										</td>
 										<td className="px-4 py-6 text-left">
-											<CartItemQuantity itemId={item.id} quantity={item.quantity} />
+											<CartItemQuantityForm itemId={item.id} quantity={item.quantity} />
 										</td>
 										<td className="px-4 py-6 text-left">{formatPrice(item.product.price)}</td>
 										<td className="px-4 py-6 text-left">

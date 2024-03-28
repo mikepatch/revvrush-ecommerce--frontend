@@ -1,6 +1,6 @@
 import { type NavItemType } from "@/types";
-import { HeaderBottomNavbar } from "@/ui/molecules/HeaderBottomNavbar";
-import { HeaderTopNavbar } from "@/ui/molecules/HeaderTopNavbar";
+import { HeaderBottomNavbar } from "@/ui/molecules/Navigation/HeaderBottomNavbar";
+import { HeaderTopNavbar } from "@/ui/molecules/Navigation/HeaderTopNavbar";
 
 type HeaderProps = {
 	categories: NavItemType[];

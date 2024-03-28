@@ -1,30 +1,17 @@
-import { revalidateTag } from "next/cache";
+// import { revalidateTag } from "next/cache";
 
 import { formatPrice } from "@/utils";
 import { type ProductListItemFragment } from "@/gql/graphql";
-import { addProductToCart, getOrCreateCart } from "@/api/cart";
+// import { addProductToCart, getOrCreateCart } from "@/api/cart";
 import { AddToCartButton } from "@/ui/atoms/AddToCartButton";
 import { ProductDetailsImage } from "@/ui/atoms/ProductDetailsImage";
+import { addProductToCartAction } from "@/actions";
 
 type ProductsDetailsHeaderProps = {
 	product: ProductListItemFragment;
 };
 
 export const ProductDetailsHeader = ({ product }: ProductsDetailsHeaderProps) => {
-	const addProductToCartAction = async (formData: FormData) => {
-		"use server";
-
-		try {
-			const cart = await getOrCreateCart();
-			const quantity = Number(formData.get("quantity"));
-
-			await addProductToCart(cart.data.id, product.id, quantity);
-			revalidateTag("cart");
-		} catch (error) {
-			console.error(error);
-		}
-	};
-
 	return (
 		<header className="flex flex-col justify-between gap-6 sm:flex-row">
 			<div className="min-w-1/2 group bg-white">
@@ -56,7 +43,7 @@ export const ProductDetailsHeader = ({ product }: ProductsDetailsHeaderProps) =>
 				)} */}
 				<div className="flex flex-wrap items-center justify-between rounded-sm p-4">
 					<p className=" text-2xl font-semibold">{formatPrice(product.price)}</p>
-					<form action={addProductToCartAction}>
+					<form action={addProductToCartAction} className="flex">
 						{/* <div className="flex items-center">
 							<button type="button" className="rounded-l bg-gray-200 px-2 py-1">
 								-
@@ -72,7 +59,8 @@ export const ProductDetailsHeader = ({ product }: ProductsDetailsHeaderProps) =>
 							</button>
 						</div> */}
 						<input type="number" name="quantity" defaultValue="1" className="w-12 px-2 py-2" />
-						<AddToCartButton />
+						<input type="hidden" name="productId" value={product.id} />
+						<AddToCartButton variant="both" data-testid="add-to-cart-button" />
 					</form>
 				</div>
 			</section>

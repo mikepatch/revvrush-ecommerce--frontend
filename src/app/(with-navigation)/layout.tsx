@@ -7,8 +7,8 @@ type LayoutWithNavigationProps = {
 };
 
 export default async function LayoutWithNavigation({ children }: LayoutWithNavigationProps) {
-	const { productCategories } = await getAllCategories();
-	const categoriesItems = productCategories.data.map((category) => ({
+	const { data: productCategories } = await getAllCategories();
+	const categoriesItems = productCategories.map((category) => ({
 		id: category.id,
 		href: `/categories/${category.slug}`,
 		label: category.name,

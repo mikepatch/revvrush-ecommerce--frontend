@@ -13,7 +13,7 @@ export const size = {
 export const contentType = "image/png";
 
 export default async function og({ params }: { params: { productId: string } }) {
-	const { product } = await getProductById(params.productId);
+	const product = await getProductById(params.productId);
 
 	if (!product) {
 		return;

@@ -18,7 +18,7 @@ export const CollectionList = ({ collections }: CollectionListProps) => (
 							src={collection.coverImage}
 							width={300}
 							height={200}
-							alt=""
+							alt={collection.name}
 							className="h-full rounded-sm"
 						/>
 					</article>

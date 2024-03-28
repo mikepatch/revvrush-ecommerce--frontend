@@ -1,14 +1,15 @@
 "use client";
 
 import { useOptimistic } from "react";
-import { changeItemQuantity } from "@/app/(with-navigation)/cart/actions";
+
+import { changeItemQuantity } from "@/actions";
 
 type CartItemQuantityProps = {
 	itemId: string;
 	quantity: number;
 };
 
-export const CartItemQuantity = ({ itemId, quantity }: CartItemQuantityProps) => {
+export const CartItemQuantityForm = ({ itemId, quantity }: CartItemQuantityProps) => {
 	const [optimisticQuantity, setOptimisticQuantity] = useOptimistic(
 		quantity,
 		(_state, newQuantity: number) => newQuantity,
@@ -17,6 +18,7 @@ export const CartItemQuantity = ({ itemId, quantity }: CartItemQuantityProps) =>
 	return (
 		<form className="flex">
 			<button
+				data-testid="decrement"
 				type="submit"
 				formAction={async () => {
 					const newValue = optimisticQuantity - 1;
@@ -29,8 +31,11 @@ export const CartItemQuantity = ({ itemId, quantity }: CartItemQuantityProps) =>
 			>
 				-
 			</button>
-			<span className="w-6 text-center">{optimisticQuantity}</span>
+			<span className="w-6 text-center" data-testid="quantity">
+				{optimisticQuantity}
+			</span>
 			<button
+				data-testid="increment"
 				type="submit"
 				formAction={async () => {
 					const newValue = optimisticQuantity + 1;
