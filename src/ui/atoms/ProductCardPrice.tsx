@@ -5,5 +5,9 @@ type ProductCardPriceProps = {
 };
 
 export const ProductCardPrice = ({ price }: ProductCardPriceProps) => {
-	return <p className="text-xl font-semibold">{formatPrice(price)}</p>;
+	return (
+		<p className="text-xl font-semibold" data-testid="product-price">
+			{formatPrice(price)}
+		</p>
+	);
 };
