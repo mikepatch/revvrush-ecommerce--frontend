@@ -18,7 +18,11 @@ export const ProductCardHeader = ({ product }: ProductCardHeaderProps) => {
 					</div>
 				)} */}
 					{product.images && product.images[0] && (
-						<ProductImage src={product.images[0]} alt={product.name} resizeOnHover />
+						<ProductImage
+							src={product.images[0]}
+							alt={`Picture of product ${product.name}`}
+							resizeOnHover
+						/>
 					)}
 				</div>
 				<ProductCardTitle title={product.name} />

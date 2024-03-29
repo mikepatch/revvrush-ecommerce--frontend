@@ -83,7 +83,7 @@ export const ProductRating = () => {
 							<li key={review.id} className="flex gap-2 border-b p-2">
 								<header className="flex flex-col">
 									<p>{review.name}</p>
-									<time className="text-sm text-gray-400">{review.date}</time>
+									<time className="text-xs text-gray-500">{review.date}</time>
 									<StarRating rating={review.rating} variant="small" />
 								</header>
 								<article>
@@ -168,7 +168,7 @@ export const ProductRating = () => {
 						</div>
 						<button
 							type="submit"
-							className="rounded-sm bg-brand-primary px-4 py-2 font-semibold text-font-light transition-all hover:brightness-105"
+							className="rounded-sm bg-brand-primary px-4 py-2 font-semibold text-white shadow-sm transition-all hover:shadow-md hover:brightness-105"
 						>
 							Submit
 						</button>

@@ -28,7 +28,9 @@ export const ProductDetailsHeader = ({ product }: ProductsDetailsHeaderProps) =>
 			<section className="flex grow flex-col justify-between">
 				<div className="flex w-full flex-col">
 					<h1 className="mb-4 text-3xl font-bold">{product.name}</h1>
-					<small className="text-xs text-gray-500">ID: {product.id}</small>
+					<small className="text-xs text-gray-500" aria-disabled>
+						ID: {product.id}
+					</small>
 				</div>
 				{/* {product.stock > 0 ? (
 					<div className="flex gap-2">
@@ -58,8 +60,14 @@ export const ProductDetailsHeader = ({ product }: ProductsDetailsHeaderProps) =>
 								+
 							</button>
 						</div> */}
-						<input type="number" name="quantity" defaultValue="1" className="w-12 px-2 py-2" />
-						<input type="hidden" name="productId" value={product.id} />
+						<input
+							type="number"
+							name="quantity"
+							defaultValue="1"
+							className="w-12 px-2 py-2"
+							aria-label="Set quantity"
+						/>
+						<input type="hidden" name="productId" value={product.id} aria-hidden />
 						<AddToCartButton variant="both" data-testid="add-to-cart-button" />
 					</form>
 				</div>
