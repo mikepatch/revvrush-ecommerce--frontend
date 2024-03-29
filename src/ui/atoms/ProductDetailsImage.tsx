@@ -27,7 +27,7 @@ export const ProductDetailsImage = ({
 					`aspect-square h-[${height}px] w-[${width}px] object-cover object-center transition-all`,
 					resizeOnHover && "group-hover:scale-105",
 				)}
-				loading="lazy"
+				loading="eager"
 			/>
 		</figure>
 	);
