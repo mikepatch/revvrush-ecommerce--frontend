@@ -24,13 +24,16 @@ export const MainNavigation = async () => {
 					<span className="text-xs">Account</span>
 				</MainNavItem>
 				<MainNavItem href="/cart" ariaLabel="Cart">
+					<ShoppingCart />
+					<span className="text-xs">Cart</span>
 					{quantity > 0 && (
-						<span className="absolute right-0 top-1 rounded-full bg-brand-primary px-1 text-xs text-font-light">
+						<span
+							className="absolute right-0 top-1 rounded-full bg-brand-primary px-1 text-xs text-font-light"
+							aria-label="Items in cart quantity"
+						>
 							{quantity}
 						</span>
 					)}
-					<ShoppingCart />
-					<span className="text-xs">Cart</span>
 				</MainNavItem>
 			</ul>
 		</div>
