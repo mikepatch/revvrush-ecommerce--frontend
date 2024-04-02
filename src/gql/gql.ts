@@ -33,7 +33,7 @@ const documents = {
     "mutation ProductReviewCreate($productId: ID!, $email: String!, $headline: String!, $name: String!, $rating: Int!, $content: String) {\n  createProductReview(\n    createProductReviewInput: {email: $email, headline: $headline, name: $name, productId: $productId, rating: $rating, content: $content}\n  ) {\n    id\n    productId\n    name\n    email\n    rating\n    headline\n    content\n  }\n}": types.ProductReviewCreateDocument,
     "query ProductReviewGetList($where: ProductReviewWhereInput, $orderBy: ProductReviewOrderByWithRelationInput) {\n  productReviews(where: $where, orderBy: $orderBy) {\n    data {\n      ...ProductReviewItem\n    }\n    meta {\n      total\n      avgRating\n    }\n  }\n}": types.ProductReviewGetListDocument,
     "fragment ProductReviewItem on ProductReview {\n  id\n  productId\n  name\n  email\n  rating\n  headline\n  content\n  createdAt\n}": types.ProductReviewItemFragmentDoc,
-    "fragment ProductWithDescription on ProductWithMeta {\n  data {\n    ...ProductListItem\n    description\n    reviews {\n      ...ProductReviewItem\n    }\n  }\n  meta {\n    totalReviews\n    avgRating\n  }\n}": types.ProductWithDescriptionFragmentDoc,
+    "fragment ProductWithDescription on ProductWithMeta {\n  data {\n    ...ProductListItem\n    description\n    reviews {\n      ...ProductReviewItem\n    }\n  }\n  meta {\n    totalReviews\n  }\n}": types.ProductWithDescriptionFragmentDoc,
     "query ProductsGetByQuery($query: String!) {\n  productsByQuery(query: $query) {\n    ...ProductList\n  }\n}": types.ProductsGetByQueryDocument,
     "query ProductsGetList($skip: Int, $take: Int, $where: ProductWhereInput, $orderBy: ProductOrderByWithRelationInput) {\n  products(take: $take, skip: $skip, where: $where, orderBy: $orderBy) {\n    ...ProductList\n  }\n}": types.ProductsGetListDocument,
     "query ProductsGetListByCategorySlug($slug: String!, $skip: Int, $take: Int) {\n  productsByCategorySlug(slug: $slug, skip: $skip, take: $take) {\n    ...ProductList\n  }\n}": types.ProductsGetListByCategorySlugDocument,
@@ -118,7 +118,7 @@ export function graphql(source: "fragment ProductReviewItem on ProductReview {\n
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment ProductWithDescription on ProductWithMeta {\n  data {\n    ...ProductListItem\n    description\n    reviews {\n      ...ProductReviewItem\n    }\n  }\n  meta {\n    totalReviews\n    avgRating\n  }\n}"): typeof import('./graphql').ProductWithDescriptionFragmentDoc;
+export function graphql(source: "fragment ProductWithDescription on ProductWithMeta {\n  data {\n    ...ProductListItem\n    description\n    reviews {\n      ...ProductReviewItem\n    }\n  }\n  meta {\n    totalReviews\n  }\n}"): typeof import('./graphql').ProductWithDescriptionFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

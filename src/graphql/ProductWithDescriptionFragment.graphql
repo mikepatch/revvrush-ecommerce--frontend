@@ -8,6 +8,5 @@ fragment ProductWithDescription on ProductWithMeta {
 	}
 	meta {
 		totalReviews
-		avgRating
 	}
 }

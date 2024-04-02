@@ -715,8 +715,6 @@ export type ProductListRelationFilter = {
 };
 
 export type ProductMeta = {
-  /** Average rating */
-  avgRating: Scalars['Float']['output'];
   /** Total number of reviews */
   totalReviews: Scalars['Int']['output'];
 };
@@ -1175,7 +1173,7 @@ export type UpdateProductReviewInput = {
   email?: InputMaybe<Scalars['String']['input']>;
   /** Review headline */
   headline?: InputMaybe<Scalars['String']['input']>;
-  id: Scalars['Int']['input'];
+  id: Scalars['ID']['input'];
   /** Review author */
   name?: InputMaybe<Scalars['String']['input']>;
   /** Review product id */
@@ -1289,7 +1287,7 @@ export type ProductGetItemQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetItemQuery = { product: { data: { description: string, id: string, name: string, price: number, categoryId: string, images: Array<string | null>, avgRating?: number | null, reviews?: Array<{ rating: number, id: string, productId: string, name: string, email: string, headline: string, content?: string | null, createdAt: unknown } | null> | null, category?: { name: string, slug?: string | null } | null }, meta: { totalReviews: number, avgRating: number } } };
+export type ProductGetItemQuery = { product: { data: { description: string, id: string, name: string, price: number, categoryId: string, images: Array<string | null>, avgRating?: number | null, reviews?: Array<{ rating: number, id: string, productId: string, name: string, email: string, headline: string, content?: string | null, createdAt: unknown } | null> | null, category?: { name: string, slug?: string | null } | null }, meta: { totalReviews: number } } };
 
 export type ProductListFragment = { data: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, avgRating?: number | null, category?: { name: string, slug?: string | null } | null, reviews?: Array<{ rating: number } | null> | null }>, meta: { total: number } };
 
@@ -1317,7 +1315,7 @@ export type ProductReviewGetListQuery = { productReviews: { data: Array<{ id: st
 
 export type ProductReviewItemFragment = { id: string, productId: string, name: string, email: string, rating: number, headline: string, content?: string | null, createdAt: unknown };
 
-export type ProductWithDescriptionFragment = { data: { description: string, id: string, name: string, price: number, categoryId: string, images: Array<string | null>, avgRating?: number | null, reviews?: Array<{ rating: number, id: string, productId: string, name: string, email: string, headline: string, content?: string | null, createdAt: unknown } | null> | null, category?: { name: string, slug?: string | null } | null }, meta: { totalReviews: number, avgRating: number } };
+export type ProductWithDescriptionFragment = { data: { description: string, id: string, name: string, price: number, categoryId: string, images: Array<string | null>, avgRating?: number | null, reviews?: Array<{ rating: number, id: string, productId: string, name: string, email: string, headline: string, content?: string | null, createdAt: unknown } | null> | null, category?: { name: string, slug?: string | null } | null }, meta: { totalReviews: number } };
 
 export type ProductsGetByQueryQueryVariables = Exact<{
   query: Scalars['String']['input'];
@@ -1490,7 +1488,6 @@ export const ProductWithDescriptionFragmentDoc = new TypedDocumentString(`
   }
   meta {
     totalReviews
-    avgRating
   }
 }
     fragment ProductListItem on Product {
@@ -1666,7 +1663,6 @@ fragment ProductWithDescription on ProductWithMeta {
   }
   meta {
     totalReviews
-    avgRating
   }
 }`) as unknown as TypedDocumentString<ProductGetItemQuery, ProductGetItemQueryVariables>;
 export const ProductReviewCreateDocument = new TypedDocumentString(`
