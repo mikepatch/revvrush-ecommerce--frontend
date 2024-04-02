@@ -8,11 +8,11 @@ type ProductListProps = {
 export const ProductList = ({ products }: ProductListProps) => {
 	return (
 		<ul
-			className="grid grid-cols-1 justify-center justify-items-center gap-4 sm:grid-cols-3 xl:grid-cols-4"
+			className="grid w-full grid-cols-1 justify-center justify-items-center gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
 			data-testid="products-list"
 		>
 			{products.map((product) => (
-				<li key={product.id} className="w-full max-w-[350px]">
+				<li key={product.id} className="w-full">
 					<ProductCard product={product} />
 				</li>
 			))}

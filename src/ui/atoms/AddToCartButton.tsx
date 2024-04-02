@@ -20,7 +20,7 @@ export const AddToCartButton = ({ variant = "both", ...props }: AddToCartButtonP
 			className={clsx(
 				"group flex items-center rounded-sm bg-brand-primary font-semibold shadow-sm disabled:cursor-wait disabled:opacity-50",
 				variant === "both" &&
-					"gap-2 bg-brand-primary px-4 py-2 text-white transition-all hover:shadow-md hover:brightness-105",
+					"gap-2 bg-brand-primary px-4 py-2 text-white transition-shadow hover:shadow-md",
 				variant === "icon" &&
 					"gap-1 border border-brand-primary bg-transparent px-1 !text-brand-primary transition-colors hover:bg-brand-primary hover:!text-white",
 			)}

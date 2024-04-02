@@ -1,4 +1,4 @@
-import { addProductToCartAction } from "@/actions";
+import { addProductToCartAction } from "@/app/actions";
 import { type ProductListItemFragment } from "@/gql/graphql";
 import { AddToCartButton } from "@/ui/atoms/AddToCartButton";
 import { ProductCardPrice } from "@/ui/atoms/ProductCardPrice";

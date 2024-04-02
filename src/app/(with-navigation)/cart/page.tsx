@@ -77,7 +77,7 @@ export default async function CartPage() {
 			</table>
 			<Link
 				href={"/payment"}
-				className="hover:bg-brand-primary-dark w-fit rounded-md bg-brand-primary px-4 py-2 text-white shadow-sm"
+				className="w-fit rounded-md bg-brand-primary px-4 py-2 text-white shadow-sm hover:bg-brand-primary-dark"
 			>
 				Checkout
 			</Link>

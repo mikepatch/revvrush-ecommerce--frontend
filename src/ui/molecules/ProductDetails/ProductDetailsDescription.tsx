@@ -6,10 +6,12 @@ type ProductDetailsDescriptionProps = {
 };
 
 export const ProductDetailsDescription = ({ product }: ProductDetailsDescriptionProps) => {
+	const { data: productData } = product;
+	
 	return (
 		<article className="flex flex-col gap-2">
 			<Heading level={2}>Description</Heading>
-			<p>{product.description}</p>
+			<p>{productData.description}</p>
 		</article>
 	);
 };

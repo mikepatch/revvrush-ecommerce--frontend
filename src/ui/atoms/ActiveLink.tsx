@@ -12,6 +12,7 @@ type ActiveLinkProps = {
 	activeClassName?: string;
 	target?: "_self" | "_blank";
 	ariaLabel?: string;
+	searchParams?: string | null;
 };
 
 export const ActiveLink = ({
@@ -21,6 +22,7 @@ export const ActiveLink = ({
 	activeClassName = "",
 	target = "_self",
 	ariaLabel = "",
+	searchParams,
 }: ActiveLinkProps) => {
 	const pathname = usePathname();
 	const { categorySlug, pageNumber } = useParams();
@@ -32,7 +34,7 @@ export const ActiveLink = ({
 	return (
 		<Link
 			aria-current={isActive ? "page" : undefined}
-			href={href}
+			href={`${href}${searchParams || ""}` as Route}
 			className={clsx(className, isActive && activeClassName)}
 			target={target}
 			aria-label={ariaLabel}

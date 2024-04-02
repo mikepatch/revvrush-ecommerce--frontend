@@ -6,17 +6,17 @@ type HeadingProps = {
 	className?: string;
 };
 
-export const Heading = ({ level,  children, className = "" }: HeadingProps) => {
+export const Heading = ({ level, children, className = "" }: HeadingProps) => {
 	const Tag = `h${level}` as const;
 
 	return (
 		<Tag
-			className={clsx(className, {
-				"text-4xl": level === 1,
-				"text-3xl": level === 2,
-				"text-2xl": level === 3,
-				"text-xl": level === 4,
-				"text-lg": level === 5,
+			className={clsx("font-semibold", className, {
+				"text-3xl": level === 1,
+				"text-2xl": level === 2,
+				"text-xl": level === 3,
+				"text-lg": level === 4,
+				"text-md": level === 5,
 				"text-base": level === 6,
 			})}
 		>

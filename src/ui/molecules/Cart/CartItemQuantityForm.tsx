@@ -2,7 +2,7 @@
 
 import { useOptimistic } from "react";
 
-import { changeItemQuantity } from "@/actions";
+import { changeItemQuantity } from "@/app/actions";
 
 type CartItemQuantityProps = {
 	itemId: string;

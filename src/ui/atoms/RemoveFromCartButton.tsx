@@ -3,7 +3,7 @@
 import { Trash2 } from "lucide-react";
 import { useTransition } from "react";
 
-import { removeItemFromCart } from "@/actions";
+import { removeItemFromCart } from "@/app/actions";
 
 type RemoveFromCartButtonProps = {
 	productId: string;
