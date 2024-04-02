@@ -7,7 +7,7 @@ export const generateMetadata = async ({
 }: {
 	params: { productId: string };
 }): Promise<Metadata> => {
-	const product = await getProductById(params.productId);
+	const { data: product } = await getProductById(params.productId);
 
 	if (!product) {
 		return {
