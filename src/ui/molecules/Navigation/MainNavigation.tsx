@@ -5,15 +5,12 @@ import { getCart } from "@/api/cart";
 
 export const MainNavigation = async () => {
 	const cart = await getCart();
-	if (!cart) {
-		return 0;
-	}
 	const quantity =
-		cart.data.items.reduce((acc, item) => {
+		cart?.data.items.reduce((acc, item) => {
 			if (item) {
 				return acc + item.quantity;
 			}
-			return acc;
+			return 0;
 		}, 0) ?? 0;
 
 	return (
