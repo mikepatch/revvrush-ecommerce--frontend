@@ -3,20 +3,21 @@ import { notFound } from "next/navigation";
 import { getProductById, getRelatedProducts } from "@/api/products";
 import { ProductDetails } from "@/ui/organisms/ProductDetails";
 import { RelatedProductList } from "@/ui/molecules/List/RelatedProductList";
-import { ProductRating } from "@/ui/organisms/ProductRating";
+import { ProductReviews } from "@/ui/organisms/ProductReviews";
 
 type SingleProductPageProps = {
 	params: { productId: string };
 };
 
 export default async function SingleProductPage({ params }: SingleProductPageProps) {
-	const product = await getProductById(params.productId);
+	const { productId } = params;
+	const product = await getProductById(productId);
 
 	if (!product) {
 		throw notFound();
 	}
 
-	const relatedProducts = await getRelatedProducts(product);
+	const relatedProducts = await getRelatedProducts(product.data);
 
 	return (
 		<>
@@ -24,7 +25,7 @@ export default async function SingleProductPage({ params }: SingleProductPagePro
 			<hr className="border-brand-primary" />
 			<RelatedProductList products={relatedProducts} title="Related products" />
 			<hr className="border-brand-primary" />
-			<ProductRating />
+			<ProductReviews productId={productId} />
 		</>
 	);
 }
