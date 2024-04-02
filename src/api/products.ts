@@ -1,15 +1,14 @@
 import {
 	ProductCategoriesGetListDocument,
-	ProductGetByIdDocument,
-	type ProductsGetListByCategorySlugQueryVariables,
 	ProductsGetListDocument,
 	type ProductsGetListQueryVariables,
-	ProductsGetListByCategorySlugDocument,
 	ProductsGetByQueryDocument,
 	type ProductListItemFragment,
 	type ProductListFragment,
 	type ProductCategoriesListFragment,
 	type ProductWithDescriptionFragment,
+	ProductReviewGetListDocument,
+	ProductGetItemDocument,
 } from "./../gql/graphql";
 import { executeGraphQL } from "@/api/graphqlApi";
 
@@ -19,7 +18,7 @@ export const getAllProducts = async (
 	const { products } = await executeGraphQL({
 		query: ProductsGetListDocument,
 		variables: { ...variables },
-		next: { revalidate: 60 * 60 * 24 },
+		next: { revalidate: 60 * 60 * 24, tags: ["product"] },
 	});
 
 	return products;
@@ -40,7 +39,11 @@ export const getRelatedProducts = async (
 };
 
 export const getProductById = async (id: string): Promise<ProductWithDescriptionFragment> => {
-	const { product } = await executeGraphQL({ query: ProductGetByIdDocument, variables: { id } });
+	const { product } = await executeGraphQL({
+		query: ProductGetItemDocument,
+		variables: { where: { id } },
+		next: { revalidate: 60 * 60 * 24, tags: ["product"] },
+	});
 
 	return product;
 };
@@ -54,18 +57,6 @@ export const getProductsByQuery = async (query: string): Promise<ProductListFrag
 	return productsByQuery;
 };
 
-export const getProductsByCategorySlug = async (
-	variables: ProductsGetListByCategorySlugQueryVariables,
-): Promise<ProductListFragment> => {
-	const { productsByCategorySlug } = await executeGraphQL({
-		query: ProductsGetListByCategorySlugDocument,
-		variables: { ...variables },
-		next: { revalidate: 60 * 60 * 24 },
-	});
-
-	return productsByCategorySlug;
-};
-
 export const getAllCategories = async (): Promise<ProductCategoriesListFragment> => {
 	const { productCategories } = await executeGraphQL({
 		query: ProductCategoriesGetListDocument,
@@ -73,4 +64,14 @@ export const getAllCategories = async (): Promise<ProductCategoriesListFragment>
 	});
 
 	return productCategories;
+};
+
+export const getProductReviews = async (productId: string) => {
+	const { productReviews } = await executeGraphQL({
+		query: ProductReviewGetListDocument,
+		variables: { where: { productId: { equals: productId } }, orderBy: { createdAt: "desc" } },
+		next: { revalidate: 60 * 60 * 24, tags: ["product"] },
+	});
+
+	return productReviews;
 };
