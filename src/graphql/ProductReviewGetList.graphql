@@ -1,0 +1,14 @@
+query ProductReviewGetList(
+	$where: ProductReviewWhereInput
+	$orderBy: ProductReviewOrderByWithRelationInput
+) {
+	productReviews(where: $where, orderBy: $orderBy) {
+		data {
+			...ProductReviewItem
+		}
+		meta {
+			total
+			avgRating
+		}
+	}
+}

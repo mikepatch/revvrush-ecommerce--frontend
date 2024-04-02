@@ -1,4 +1,13 @@
-fragment ProductWithDescription on Product {
-	...ProductListItem
-	description
+fragment ProductWithDescription on ProductWithMeta {
+	data {
+		...ProductListItem
+		description
+		reviews {
+			...ProductReviewItem
+		}
+	}
+	meta {
+		totalReviews
+		avgRating
+	}
 }
