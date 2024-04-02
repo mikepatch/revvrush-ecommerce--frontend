@@ -16,20 +16,24 @@ export const getCart = async (): Promise<CartWithMetadataFragment | undefined> =
 		return;
 	}
 
-	const { cartById } = await executeGraphQL({
-		query: CartGetByIdDocument,
-		variables: { id: cartId },
-		next: {
-			tags: ["cart"],
-		},
-		cache: "no-store",
-	});
+	try {
+		const { cartById } = await executeGraphQL({
+			query: CartGetByIdDocument,
+			variables: { id: cartId },
+			next: {
+				tags: ["cart"],
+			},
+			cache: "no-store",
+		});
 
-	if (!cartById) {
-		return;
+		if (!cartById) {
+			throw new Error("Cart not found");
+		}
+
+		return cartById;
+	} catch (error) {
+		console.error(error);
 	}
-
-	return cartById;
 };
 
 export const getCartById = async (cartId: string): Promise<CartWithMetadataFragment> => {
