@@ -1,6 +1,10 @@
-import { type Route } from "next";
+"use client";
 
+import { type Route } from "next";
 import clsx from "clsx";
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 
 type PaginationItemProps = {
@@ -18,20 +22,28 @@ export const PaginationItem = ({
 	ariaLabel = "",
 	className = "",
 }: PaginationItemProps) => {
+	const searchParams = useSearchParams();
+	const sort_by = searchParams.get("sort_by");
+	const sort_order = searchParams.get("sort_order");
+	const getParams = sort_by && sort_order && `?sort_by=${sort_by}&sort_order=${sort_order}`;
+
 	return (
 		<li
 			className={`flex items-center border-t-2 border-slate-300 hover:border-brand-primary ${className}`}
 		>
-			<ActiveLink
-				href={`/${categorySlug}/${pageNumber}` as Route}
-				className="flex px-2 pt-2 leading-none transition-all hover:text-brand-primary sm:px-4 sm:pt-4"
-				activeClassName={clsx(
-					className === "" && "-mt-[2px] border-t-2 border-brand-primary text-brand-primary",
-				)}
-				ariaLabel={ariaLabel}
-			>
-				{label}
-			</ActiveLink>
+			<Suspense>
+				<ActiveLink
+					href={`/${categorySlug}/${pageNumber}` as Route}
+					className="flex px-2 pt-2 leading-none transition-all hover:text-brand-primary sm:px-4 sm:pt-4"
+					activeClassName={clsx(
+						className === "" && "-mt-[2px] border-t-2 border-brand-primary text-brand-primary",
+					)}
+					ariaLabel={ariaLabel}
+					searchParams={getParams}
+				>
+					{label}
+				</ActiveLink>
+			</Suspense>
 		</li>
 	);
 };
