@@ -3,9 +3,9 @@ import { redirect } from "next/navigation";
 
 import { getCart } from "@/api/cart";
 import { Overlay } from "@/ui/atoms/Overlay";
-import { formatPrice } from "@/utils";
 import { Heading } from "@/ui/atoms/Heading";
 import { RemoveFromCartButton } from "@/ui/atoms/RemoveFromCartButton";
+import { CartModalFooter } from "@/ui/molecules/Cart/CartModalFooter";
 
 export default async function ModalCart() {
 	const cart = await getCart();
@@ -48,18 +48,7 @@ export default async function ModalCart() {
 							</tbody>
 						</table>
 					</div>
-					<footer className="flex flex-wrap justify-end gap-4">
-						<a href={"/cart"} className="underline">
-							Cart Details
-						</a>
-						<p className="text-lg font-semibold">Total: {formatPrice(cart.meta.totalPrice)}</p>
-						<a
-							href={"/payment"}
-							className="hover:bg-brand-primary-dark w-fit rounded-md bg-brand-primary px-4 py-2 text-white shadow-sm"
-						>
-							Checkout
-						</a>
-					</footer>
+					<CartModalFooter totalPrice={cart.meta.totalPrice} />
 				</div>
 			</div>
 		</>
