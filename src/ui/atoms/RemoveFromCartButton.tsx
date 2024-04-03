@@ -6,10 +6,10 @@ import { useTransition } from "react";
 import { removeItemFromCart } from "@/app/actions";
 
 type RemoveFromCartButtonProps = {
-	productId: string;
+	itemId: string;
 };
 
-export const RemoveFromCartButton = ({ productId }: RemoveFromCartButtonProps) => {
+export const RemoveFromCartButton = ({ itemId }: RemoveFromCartButtonProps) => {
 	const [isPending, startTransition] = useTransition();
 
 	return (
@@ -19,7 +19,7 @@ export const RemoveFromCartButton = ({ productId }: RemoveFromCartButtonProps) =
 			aria-label="Remove from cart"
 			onClick={() =>
 				startTransition(async () => {
-					await removeItemFromCart(productId);
+					await removeItemFromCart(itemId);
 				})
 			}
 		>
