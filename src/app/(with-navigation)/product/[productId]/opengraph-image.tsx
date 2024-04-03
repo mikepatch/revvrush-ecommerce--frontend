@@ -28,7 +28,7 @@ export default async function og({ params }: { params: { productId: string } }) 
 				}}
 			>
 				<img
-					src={`http://localhost:3000/${product.images[0]}`}
+					src={`${process.env.NEXT_PUBLIC_BASE_URL}/${product.images[0]}`}
 					alt={product.name}
 					width={200}
 					height={200}
