@@ -23,7 +23,6 @@ export const getCart = async (): Promise<CartWithMetadataFragment | undefined> =
 			next: {
 				tags: ["cart"],
 			},
-			cache: "no-store",
 		});
 
 		if (!cartById) {
@@ -43,7 +42,6 @@ export const getCartById = async (cartId: string): Promise<CartWithMetadataFragm
 		next: {
 			tags: ["cart"],
 		},
-		cache: "no-store",
 	});
 
 	return cartById;
