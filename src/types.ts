@@ -6,3 +6,19 @@ export type NavItemType = {
 	label: string;
 	icon?: React.ReactNode;
 };
+
+export type CartItemType = {
+	productId: string;
+	cartItemId: string;
+	name: string;
+	image: string;
+	quantity: number;
+	price: number;
+	total: number;
+};
+
+export type CartTableDataType = {
+	headers: string[];
+	rows: CartItemType[];
+	footer: { totalPrice: number };
+};
