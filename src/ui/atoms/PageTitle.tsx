@@ -1,7 +1,13 @@
+import { Heading } from "@/ui/atoms/Heading";
+
 type PageTitleProps = {
-	title: string;
+	children: React.ReactNode;
 };
 
-export const PageTitle = ({ title }: PageTitleProps) => {
-	return <h1 className="text-4xl font-semibold text-font-dark">{title}</h1>;
+export const PageTitle = ({ children }: PageTitleProps) => {
+	return (
+		<Heading level={1} className="text-4xl font-semibold text-font-dark">
+			{children}
+		</Heading>
+	);
 };
