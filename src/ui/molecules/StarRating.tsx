@@ -32,7 +32,7 @@ export const StarRating = ({
 					</li>
 				))}
 			</ul>
-			{label && <small data-testid="product-rating">{label}</small>}
+			{label && <small>{label}</small>}
 		</div>
 	);
 };

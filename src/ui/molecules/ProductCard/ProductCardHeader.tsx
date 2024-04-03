@@ -3,7 +3,7 @@ import { type ProductListItemFragment } from "@/gql/graphql";
 
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { ProductCardTitle } from "@/ui/atoms/ProductCardTitle";
-import { StarRating } from "@/ui/molecules/StarRating";
+// import { StarRating } from "@/ui/molecules/StarRating";
 
 type ProductCardHeaderProps = {
 	product: ProductListItemFragment;
@@ -29,10 +29,11 @@ export const ProductCardHeader = ({ product }: ProductCardHeaderProps) => {
 				</div>
 				<div className="flex flex-col px-4">
 					<ProductCardTitle title={product.name} />
-					<StarRating
+					<p data-testid="product-rating">{product.avgRating || 0}</p>
+					{/* <StarRating
 						rating={Math.floor(product.avgRating || 0)}
 						label={`${product.avgRating || ""} (${product.reviews?.length})`}
-					/>
+					/> */}
 				</div>
 			</Link>
 		</header>
