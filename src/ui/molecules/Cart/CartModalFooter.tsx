@@ -1,3 +1,4 @@
+import { CheckoutButton } from "@/ui/atoms/CheckoutButton";
 import { formatPrice } from "@/utils";
 
 type CartModalFooterProps = {
@@ -11,12 +12,7 @@ export const CartModalFooter = ({ totalPrice }: CartModalFooterProps) => {
 				Cart Details
 			</a>
 			<p className="text-lg font-semibold">Total: {formatPrice(totalPrice)}</p>
-			<a
-				href={"/payment"}
-				className="w-fit rounded-md bg-brand-primary px-4 py-2 text-white shadow-sm hover:bg-brand-primary-dark"
-			>
-				Checkout
-			</a>
+			<CheckoutButton type="modal" />
 		</footer>
 	);
 };
