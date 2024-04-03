@@ -1,3 +1,6 @@
+import { type CartWithMetadataFragment } from "@/gql/graphql";
+import { type CartTableDataType } from "@/types";
+
 export const formatPrice = (amount: number): string => {
 	return new Intl.NumberFormat("en-US", {
 		style: "currency",
@@ -15,4 +18,26 @@ export const convertSlugToTitle = (slug: string): string => {
 
 export const calculateAverageRating = (reviews: { rating: number }[]): number => {
 	return Math.round(reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length);
+};
+
+export const formatCartDataToTableData = (
+	cartData: CartWithMetadataFragment,
+): CartTableDataType => {
+	return {
+		headers: ["Product", "Quantity", "Price", "Total"],
+		rows: cartData.data.items.map(({ id, quantity, product }) => {
+			return {
+				productId: product.id,
+				cartItemId: id,
+				name: product.name,
+				image: (product.images[0] as string) || "",
+				quantity: quantity,
+				price: product.price,
+				total: quantity * product.price,
+			};
+		}),
+		footer: {
+			totalPrice: cartData.meta.totalPrice,
+		},
+	};
 };
