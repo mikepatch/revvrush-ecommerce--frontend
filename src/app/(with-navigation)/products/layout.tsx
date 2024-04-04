@@ -3,5 +3,5 @@ type ProductsLayoutProps = {
 };
 
 export default function ProductsLayout({ children }: ProductsLayoutProps) {
-	return <div className="flex flex-grow flex-col gap-4 px-8">{children}</div>;
+	return <section className="flex flex-grow flex-col gap-4 px-8">{children}</section>;
 }
