@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Link from "next/link";
 
 type CheckoutButtonProps = {
@@ -6,18 +7,18 @@ type CheckoutButtonProps = {
 
 export const CheckoutButton = ({ type = "standard" }: CheckoutButtonProps) => {
 	const className =
-		"w-fit self-end rounded-md bg-brand-primary px-4 py-2 text-white shadow-sm hover:bg-brand-primary-dark" as React.ComponentProps<"a">["className"];
+		"rounded-sm bg-brand-primary transition-colors px-4 py-2 text-white shadow-sm hover:bg-brand-primary-dark" as React.ComponentProps<"a">["className"];
 
 	if (type === "modal") {
 		return (
-			<a href={"/payment"} className={className}>
+			<a href={"/payment"} className={clsx(className, "flex justify-center")}>
 				Checkout
 			</a>
 		);
 	}
 
 	return (
-		<Link href={"/payment"} className={className}>
+		<Link href={"/payment"} className={clsx(className, "w-fit")}>
 			Checkout
 		</Link>
 	);
