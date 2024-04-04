@@ -11,6 +11,7 @@ const config: Config = {
 		extend: {
 			colors: {
 				"font-dark": "#1a1a1a",
+				"font-gray": "#6b7280",
 				"font-light": "#f5f5f5",
 				"brand-background": "#ebebeb",
 				"brand-background-lighter": "#fff",
