@@ -41,7 +41,7 @@ export const ProductDetailsHeader = ({ product }: ProductsDetailsHeaderProps) =>
 								label={`(${totalReviews} reviews)`}
 							/>{" "}
 						</div>
-						<small className="text-gray-500" aria-disabled>
+						<small className="text-font-gray" aria-disabled>
 							ID: {productData.id}
 						</small>
 					</div>
