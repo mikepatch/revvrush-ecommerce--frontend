@@ -1,8 +1,9 @@
 import { type Metadata } from "next";
+import NextImage from "next/image";
 
 import { getCollectionBySlug } from "@/api/collections";
-import { PageTitle } from "@/ui/atoms/PageTitle";
 import { CollectionProductList } from "@/ui/molecules/List/CollectionProductList";
+import { Heading } from "@/ui/atoms/Heading";
 
 type ParamsType = {
 	collectionSlug: string;
@@ -26,12 +27,26 @@ export default async function SingleCollectionPage({ params }: SingleCollectionP
 
 	return (
 		<>
-			<header className="flex flex-col gap-2 pb-4">
-				<PageTitle title={name} />
-				<p>{description}</p>
+			<header className="flex flex-col gap-2 bg-brand-background-lighter pb-4">
+				<figure className="relative">
+					<NextImage
+						width={1440}
+						height={400}
+						src={`/images/collections/${collectionSlug}.png`}
+						alt={name}
+					/>
+
+					<Heading
+						level={1}
+						className="absolute inset-0 flex items-center justify-center bg-brand-background-dark bg-opacity-90 p-4 text-6xl text-font-light"
+					>
+						{name}
+					</Heading>
+				</figure>
+				<p className="p-4">{description}</p>
 			</header>
-			<hr className="border-brand-primary" />
-			<section className="p-4">
+			{/* <hr className="border-brand-primary" /> */}
+			<section>
 				<CollectionProductList products={products} />
 			</section>
 		</>
