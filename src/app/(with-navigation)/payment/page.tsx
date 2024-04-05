@@ -42,7 +42,7 @@ export default async function PaymentPage() {
 
 	return (
 		<div>
-			<PageTitle title="Payment" />
+			<PageTitle>Payment</PageTitle>
 			<section className="flex justify-between gap-6 p-4">
 				<div className="flex flex-col gap-2">
 					<Heading level={2}>Order summary:</Heading>

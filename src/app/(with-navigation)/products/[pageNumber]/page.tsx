@@ -5,7 +5,7 @@ import { PRODUCTS_ON_PAGE } from "@/constants";
 import { Pagination } from "@/ui/molecules/Pagination/Pagination";
 import { ProductList } from "@/ui/molecules/List/ProductList";
 import { SortButton } from "@/ui/atoms/SortButton";
-import { Heading } from "@/ui/atoms/Heading";
+import { PageTitle } from "@/ui/atoms/PageTitle";
 
 type ProductsPageNumberProps = {
 	params: {
@@ -41,9 +41,9 @@ export default async function ProductsPageNumber({
 	return (
 		<>
 			<header>
-				<Heading level={1}>
+				<PageTitle>
 					Products <small>({totalProducts})</small>
-				</Heading>
+				</PageTitle>
 			</header>
 			<section className="flex flex-col items-end gap-2">
 				<SortButton />

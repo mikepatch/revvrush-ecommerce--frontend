@@ -77,7 +77,9 @@ export default async function CategoryPageNumberPage({
 	return (
 		<>
 			<header>
-				<PageTitle title={convertSlugToTitle(categorySlug)} />
+				<PageTitle>
+					{convertSlugToTitle(categorySlug)} <small>({totalProducts})</small>
+				</PageTitle>
 			</header>
 			<section className="flex flex-col items-end gap-2">
 				<SortButton />

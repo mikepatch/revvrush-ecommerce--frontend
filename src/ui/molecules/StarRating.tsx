@@ -32,7 +32,7 @@ export const StarRating = ({
 					</li>
 				))}
 			</ul>
-			{label && <small>{label}</small>}
+			{label && <small className="text-font-gray">{label}</small>}
 		</div>
 	);
 };

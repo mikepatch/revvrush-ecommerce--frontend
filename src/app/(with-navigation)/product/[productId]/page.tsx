@@ -2,8 +2,8 @@ import { notFound } from "next/navigation";
 
 import { getProductById, getRelatedProducts } from "@/api/products";
 import { ProductDetails } from "@/ui/organisms/ProductDetails";
-import { RelatedProductList } from "@/ui/molecules/List/RelatedProductList";
-import { ProductReviews } from "@/ui/organisms/ProductReviews";
+import { ProductReviews } from "@/ui/molecules/ProductDetails/ProductReviews";
+import { CarouselProductList } from "@/ui/molecules/List/CarouselProductList";
 
 type SingleProductPageProps = {
 	params: { productId: string };
@@ -23,7 +23,7 @@ export default async function SingleProductPage({ params }: SingleProductPagePro
 		<>
 			<ProductDetails product={product} />
 			<hr className="border-brand-primary" />
-			<RelatedProductList products={relatedProducts} title="Related products" />
+			<CarouselProductList items={relatedProducts} title="Related products" />
 			<hr className="border-brand-primary" />
 			<ProductReviews productId={productId} />
 		</>

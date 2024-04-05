@@ -17,18 +17,16 @@ export const ProductDetailsImage = ({
 	resizeOnHover = false,
 }: ProductDetailsImageProps) => {
 	return (
-		<figure className={`grow-0 overflow-hidden p-4`}>
-			<NextImage
-				width={width}
-				height={height}
-				src={src}
-				alt={alt}
-				className={clsx(
-					`aspect-square h-[${height}px] w-[${width}px] object-cover object-center transition-all`,
-					resizeOnHover && "group-hover:scale-105",
-				)}
-				loading="eager"
-			/>
-		</figure>
+		<NextImage
+			width={width}
+			height={height}
+			src={src}
+			alt={alt}
+			className={clsx(
+				`aspect-square  object-cover object-center transition-all`,
+				resizeOnHover && "group-hover:scale-105",
+			)}
+			loading="eager"
+		/>
 	);
 };

@@ -13,7 +13,7 @@ export default async function CollectionsPage() {
 	return (
 		<>
 			<header>
-				<PageTitle title="Collections" />
+				<PageTitle>Collections</PageTitle>
 			</header>
 			<section>
 				<CollectionList collections={collections} />

@@ -19,7 +19,7 @@ export default function CategoriesLayout({ children }: ProductsLayoutProps) {
 				<h2 className="mb-4 text-xl font-semibold">Recommended products</h2>
 				<ul></ul>
 			</aside> */}
-			<section className="flex flex-grow flex-col gap-4 px-8">{children}</section>
+			<section className="flex flex-grow flex-col gap-4">{children}</section>
 		</div>
 	);
 }

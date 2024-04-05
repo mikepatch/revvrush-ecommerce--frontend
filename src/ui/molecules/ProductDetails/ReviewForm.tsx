@@ -69,7 +69,7 @@ export const ReviewForm = ({ productId }: ReviewFormProps) => {
 					id="rating"
 					name="rating"
 					defaultValue="5"
-					className="rounded-sm p-1 text-star-rating"
+					className="cursor-pointer rounded-sm p-1 text-star-rating"
 				>
 					<option value="1">&#9733;&#9734;&#9734;&#9734;&#9734;</option>
 					<option value="2">&#9733;&#9733;&#9734;&#9734;&#9734;</option>

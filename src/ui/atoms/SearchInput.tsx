@@ -40,7 +40,7 @@ export const SearchInput = ({ variant = "desktop", className, ...props }: Search
 				placeholder="Search"
 				onChange={(e) => handleSearch(e.target.value)}
 				defaultValue={searchParams.get("query")?.toString()}
-				className={clsx("h-full w-full bg-transparent p-2", className)}
+				className={clsx("h-full w-full bg-transparent p-2 focus:outline-brand-primary", className)}
 				{...props}
 			/>
 		</div>

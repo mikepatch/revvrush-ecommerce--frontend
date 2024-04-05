@@ -6,7 +6,7 @@ type ProductCardTitleProps = {
 
 export const ProductCardTitle = ({ title }: ProductCardTitleProps) => {
 	return (
-		<Heading level={2} className="text-lg">
+		<Heading level={3} className="font-normal">
 			{title}
 		</Heading>
 	);

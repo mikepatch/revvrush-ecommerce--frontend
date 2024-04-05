@@ -3,6 +3,7 @@ import { type ProductListItemFragment } from "@/gql/graphql";
 
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { ProductCardTitle } from "@/ui/atoms/ProductCardTitle";
+import { StarRating } from "@/ui/molecules/StarRating";
 // import { StarRating } from "@/ui/molecules/StarRating";
 
 type ProductCardHeaderProps = {
@@ -11,7 +12,7 @@ type ProductCardHeaderProps = {
 
 export const ProductCardHeader = ({ product }: ProductCardHeaderProps) => {
 	return (
-		<header className="group flex grow flex-col border-b border-slate-300 pb-2">
+		<header className="group flex grow flex-col border-b pb-2">
 			<Link href={`/product/${product.id}`} className="flex flex-col">
 				<div className="relative">
 					{/* {product.stock === 0 && (
@@ -29,11 +30,10 @@ export const ProductCardHeader = ({ product }: ProductCardHeaderProps) => {
 				</div>
 				<div className="flex flex-col px-4">
 					<ProductCardTitle title={product.name} />
-					<p data-testid="product-rating">{product.avgRating || 0}</p>
-					{/* <StarRating
+					<StarRating
 						rating={Math.floor(product.avgRating || 0)}
-						label={`${product.avgRating || ""} (${product.reviews?.length})`}
-					/> */}
+						label={`(${product.reviews?.length})`}
+					/>
 				</div>
 			</Link>
 		</header>
