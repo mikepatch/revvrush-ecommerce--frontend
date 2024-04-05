@@ -22,3 +22,9 @@ export type CartTableDataType = {
 	rows: CartItemType[];
 	footer: { totalPrice: number };
 };
+
+export type BannerSliderItemType = {
+	img: string;
+	name: string;
+	href: Route;
+};
