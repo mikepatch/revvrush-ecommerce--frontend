@@ -2,6 +2,7 @@ import { getProductReviews } from "@/api/products";
 import { Heading } from "@/ui/atoms/Heading";
 import { ReviewForm } from "@/ui/molecules/ProductDetails/ReviewForm";
 import { StarRating } from "@/ui/molecules/StarRating";
+import { getTotalReviewsLabel } from "@/utils";
 
 type ProductRatingProps = {
 	productId: string;
@@ -26,21 +27,22 @@ export const ProductReviews = async ({ productId }: ProductRatingProps) => {
 					Reviews <small>({totalReviews})</small>
 				</Heading>
 			</header>
-			<div className="flex justify-between bg-brand-background-lighter">
+			<div className="flex flex-col-reverse justify-between bg-brand-background-lighter sm:flex-row">
 				<section className="flex w-full flex-col gap-6 rounded-sm border-r p-6">
 					<header className="flex flex-col items-center border-b pb-4">
 						<Heading level={3}>{avgRating}/5</Heading>
 						<StarRating
 							rating={Math.floor(avgRating)}
 							variant="big"
-							label={`(${totalReviews} reviews)`}
+							layout="col"
+							label={`(${getTotalReviewsLabel(totalReviews)})`}
 						/>
 					</header>
-					<ul className="flex flex-col gap-4">
+					<ul className="flex flex-col gap-4 divide-y">
 						{reviewsData.map(
 							(review) =>
 								review && (
-									<li key={review.id} className="border-b p-2">
+									<li key={review.id} className="p-2">
 										<article className="flex flex-col gap-2">
 											<header className="flex flex-col">
 												<StarRating rating={review.rating} variant="small" />
@@ -59,7 +61,7 @@ export const ProductReviews = async ({ productId }: ProductRatingProps) => {
 						)}
 					</ul>
 				</section>
-				<section className="sticky right-0 top-1/3 flex h-fit basis-1/3 flex-col gap-4 rounded-sm bg-brand-background-lighter p-6">
+				<section className="right-0 top-1/3 flex h-fit basis-1/3 flex-col gap-4 rounded-sm bg-brand-background-lighter p-6 sm:sticky">
 					<header>
 						<Heading level={4}>Rate product or write a review</Heading>
 					</header>
