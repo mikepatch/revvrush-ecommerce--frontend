@@ -14,7 +14,7 @@ export default async function og() {
 	return new ImageResponse(
 		(
 			<div
-				tw="w-full text-white h-full flex flex-col gap-4 items-center justify-center text-8xl"
+				tw="w-full text-white h-full flex flex-col items-center justify-center text-8xl"
 				style={{
 					background: `
                 linear-gradient(
