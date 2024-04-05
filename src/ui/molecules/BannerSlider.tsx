@@ -40,21 +40,21 @@ export const BannerSlider = ({ items }: BannerSliderProps) => {
 		}
 	};
 
-	const heightFix = () => {
-		if (itemsRef.current && itemsRef.current.parentElement) {
-			itemsRef.current.parentElement.style.height = `${itemsRef.current.clientHeight}px`;
-		}
-	};
+	// const heightFix = () => {
+	// 	if (itemsRef.current && itemsRef.current.parentElement) {
+	// 		itemsRef.current.parentElement.style.height = `${itemsRef.current.clientHeight}px`;
+	// 	}
+	// };
 
-	useEffect(() => {
-		heightFix();
-	}, []);
+	// useEffect(() => {
+	// 	heightFix();
+	// }, []);
 
 	return (
 		<div className={`mx-auto max-h-fit w-full max-w-7xl overflow-hidden rounded-sm text-center`}>
 			{/* Item image */}
 			<div className="h-fit transition-all delay-300 duration-150 ease-in-out">
-				<div className="relative flex h-fit flex-col" ref={itemsRef}>
+				<div className="relative flex h-[270px] flex-col" ref={itemsRef}>
 					{items.map((item, index) => (
 						<Transition
 							key={item.name}
@@ -65,11 +65,10 @@ export const BannerSlider = ({ items }: BannerSliderProps) => {
 							leave="transition ease-in-out duration-300 absolute"
 							leaveFrom="opacity-100 scale-100"
 							leaveTo="opacity-0 scale-95"
-							className="h-fit w-full"
 						>
 							<Link href={item.href}>
 								<NextImage
-									className="h-fit w-full object-cover"
+									className="h-[270px] w-full object-cover"
 									src={item.img}
 									width={1024}
 									height={576}
