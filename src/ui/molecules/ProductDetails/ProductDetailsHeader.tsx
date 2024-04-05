@@ -1,11 +1,10 @@
 import { type ProductWithDescriptionFragment } from "@/gql/graphql";
 
-import { formatPrice } from "@/utils";
-import { AddToCartButton } from "@/ui/atoms/AddToCartButton";
+import { formatPrice, getTotalReviewsLabel } from "@/utils";
 import { ProductDetailsImage } from "@/ui/atoms/ProductDetailsImage";
-import { addProductToCartAction } from "@/app/actions";
 import { Heading } from "@/ui/atoms/Heading";
 import { StarRating } from "@/ui/molecules/StarRating";
+import { AddToCartForm } from "@/ui/molecules/ProductDetails/AddToCartForm";
 
 type ProductsDetailsHeaderProps = {
 	product: ProductWithDescriptionFragment;
@@ -19,13 +18,13 @@ export const ProductDetailsHeader = ({ product }: ProductsDetailsHeaderProps) =>
 
 	return (
 		<header className="flex flex-col justify-between gap-6 sm:flex-row">
-			<div className="min-w-1/2 group bg-white">
+			<div className="group flex aspect-square basis-1/3 items-center justify-center overflow-hidden bg-white p-4">
 				{productData.images && productData.images[0] && (
 					<ProductDetailsImage
 						src={productData.images[0]}
 						alt={productData.name}
-						width={300}
-						height={300}
+						width={400}
+						height={400}
 						resizeOnHover
 					/>
 				)}
@@ -38,52 +37,17 @@ export const ProductDetailsHeader = ({ product }: ProductsDetailsHeaderProps) =>
 							<StarRating
 								rating={Math.floor(productData.avgRating || 0)}
 								variant="small"
-								label={`(${totalReviews} reviews)`}
-							/>{" "}
+								label={`(${getTotalReviewsLabel(totalReviews)})`}
+							/>
 						</div>
 						<small className="text-font-gray" aria-disabled>
 							ID: {productData.id}
 						</small>
 					</div>
 				</div>
-				{/* {product.stock > 0 ? (
-					<div className="flex gap-2">
-						<CheckCheck color="green" />
-						In stock
-					</div>
-				) : (
-					<div className="flex gap-2">
-						<X color="red" />
-						Out of stock
-					</div>
-				)} */}
-				<div className="flex flex-wrap items-center justify-between rounded-sm p-4">
+				<div className="flex flex-col items-end gap-4 rounded-sm p-4">
 					<p className=" text-2xl font-semibold">{formatPrice(productData.price)}</p>
-					<form action={addProductToCartAction} className="flex">
-						{/* <div className="flex items-center">
-							<button type="button" className="rounded-l bg-gray-200 px-2 py-1">
-								-
-							</button>
-							<input
-								type="number"
-								name="quantity"
-								defaultValue="1"
-								className="w-16 bg-gray-200 px-2 py-1 text-center"
-							/>
-							<button type="button" className="rounded-r bg-gray-200 px-2 py-1">
-								+
-							</button>
-						</div> */}
-						<input
-							type="number"
-							name="quantity"
-							defaultValue="1"
-							className="w-12 px-2 py-2"
-							aria-label="Set quantity"
-						/>
-						<input type="hidden" name="productId" value={productData.id} aria-hidden />
-						<AddToCartButton variant="both" data-testid="add-to-cart-button" />
-					</form>
+					<AddToCartForm productData={productData} />
 				</div>
 			</section>
 		</header>
