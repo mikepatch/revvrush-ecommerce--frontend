@@ -41,3 +41,7 @@ export const formatCartDataToTableData = (
 		},
 	};
 };
+
+export const getTotalReviewsLabel = (totalReviews: number): string => {
+	return totalReviews === 1 ? `${totalReviews} review` : `${totalReviews} reviews`;
+};
