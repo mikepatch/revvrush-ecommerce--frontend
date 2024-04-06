@@ -10,7 +10,7 @@ type RelatedProductListProps = {
 export const RelatedProductList = ({ products, title }: RelatedProductListProps) => {
 	return (
 		<section data-testid="related-products">
-			{title && <Heading level={2}>{title}</Heading>}
+			<header>{title && <Heading level={2}>{title}</Heading>}</header>
 			<section className="p-4">
 				<ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
 					{products.map((product) => (

@@ -62,12 +62,12 @@ export const CarouselProductList = ({ items, title }: CarouselProductListProps) 
 
 	return (
 		<section>
-			{title && <Heading level={2}>{title}</Heading>}
+			<header>{title && <Heading level={2}>{title}</Heading>}</header>
 			<div className="relative">
 				{canScroll.left && (
 					<button
 						onClick={() => scroll("left")}
-						className="absolute left-0 top-1/2 z-10 flex aspect-square w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm bg-brand-primary text-font-light transition-colors hover:bg-brand-primary-dark"
+						className="absolute left-0 top-1/2 z-10 flex aspect-square w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm bg-brand-primary text-font-light transition-colors hover:bg-brand-primary-dark"
 					>
 						<ArrowLeft />
 					</button>
@@ -85,7 +85,7 @@ export const CarouselProductList = ({ items, title }: CarouselProductListProps) 
 				{canScroll.right && (
 					<button
 						onClick={() => scroll("right")}
-						className="absolute right-0 top-1/2 z-10 flex aspect-square w-8 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-sm bg-brand-primary text-font-light transition-colors hover:bg-brand-primary-dark"
+						className="absolute right-0 top-1/2 z-10 flex aspect-square w-12 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-sm bg-brand-primary text-font-light transition-colors hover:bg-brand-primary-dark"
 					>
 						<ArrowRight />
 					</button>

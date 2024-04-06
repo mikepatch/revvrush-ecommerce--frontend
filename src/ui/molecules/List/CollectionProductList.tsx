@@ -10,7 +10,7 @@ type CollectionProductListProps = {
 export const CollectionProductList = ({ products, title }: CollectionProductListProps) => {
 	return (
 		<section>
-			{title && <Heading level={2}>{title}</Heading>}
+			<header>{title && <Heading level={2}>{title}</Heading>}</header>
 			<section className="p-4">
 				<ProductList products={products} />
 			</section>
