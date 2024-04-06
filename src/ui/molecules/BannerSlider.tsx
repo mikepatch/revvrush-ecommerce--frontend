@@ -51,7 +51,9 @@ export const BannerSlider = ({ items }: BannerSliderProps) => {
 	// }, []);
 
 	return (
-		<div className={`mx-auto max-h-fit w-full max-w-7xl overflow-hidden rounded-sm text-center`}>
+		<section
+			className={`mx-auto max-h-fit w-full max-w-7xl overflow-hidden rounded-sm text-center`}
+		>
 			{/* Item image */}
 			<div className="h-fit transition-all delay-300 duration-150 ease-in-out">
 				<div className="relative flex h-[270px] flex-col" ref={itemsRef}>
@@ -111,6 +113,6 @@ export const BannerSlider = ({ items }: BannerSliderProps) => {
 					</li>
 				))}
 			</ul>
-		</div>
+		</section>
 	);
 };
