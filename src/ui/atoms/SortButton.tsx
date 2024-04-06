@@ -1,21 +1,36 @@
 "use client";
 
 import { type Route } from "next";
-import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export const SortButton = () => {
 	const router = useRouter();
-	const pathname = usePathname();
+	const searchParams = useSearchParams();
 	const [selectedSortValue, setSelectedSortValue] = useState("");
+
+	useEffect(() => {
+		const sortBy = searchParams.get("sort_by");
+		const sortOrder = searchParams.get("sort_order");
+
+		if (sortBy && sortOrder) {
+			setSelectedSortValue(`${sortBy}-${sortOrder}`);
+		}
+	}, [searchParams]);
 
 	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const value = e.target.value;
 		setSelectedSortValue(value);
-		const sortBy = value.includes("price") ? "price" : "rating";
-		const sortOrder = value.includes("asc") ? "asc" : "desc";
 
-		router.push(`${pathname}?sort_by=${sortBy}&sort_order=${sortOrder}` as Route);
+		const [sortBy, sortOrder] = value.split("-");
+		if (!sortBy || !sortOrder) return;
+
+		const newSearchParams = new URLSearchParams(searchParams);
+		newSearchParams.set("sort_by", sortBy);
+		newSearchParams.set("sort_order", sortOrder);
+
+		const newUrl = `?${newSearchParams.toString()}`;
+		router.push(newUrl as Route);
 	};
 
 	return (
@@ -25,7 +40,7 @@ export const SortButton = () => {
 				name="selectedSort"
 				value={selectedSortValue}
 				onChange={handleChange}
-				className="rounded-sm px-2 py-1"
+				className="rounded-sm bg-brand-background-lighter px-2 py-1"
 			>
 				<option value="" disabled>
 					-
@@ -34,10 +49,10 @@ export const SortButton = () => {
 					Price: Low to High
 				</option>
 				<option value="price-desc">Price: High to Low</option>
-				<option value="avg_rating-asc" data-testid="sort-by-rating">
+				<option value="rating-asc" data-testid="sort-by-rating">
 					Rating: Low to High
 				</option>
-				<option value="avg_rating-desc">Rating: High to Low</option>
+				<option value="rating-desc">Rating: High to Low</option>
 			</select>
 		</label>
 	);
