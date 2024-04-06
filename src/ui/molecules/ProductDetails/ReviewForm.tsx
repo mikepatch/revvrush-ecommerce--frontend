@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { addProductReviewAction } from "@/app/actions";
+import { AddReviewButton } from "@/ui/atoms/AddReviewButton";
 
 type ReviewFormProps = {
 	productId: string;
@@ -96,12 +97,7 @@ export const ReviewForm = ({ productId }: ReviewFormProps) => {
 				</label>
 				<textarea id="content" name="content" className="rounded-sm border" />
 			</div>
-			<button
-				type="submit"
-				className="rounded-sm bg-brand-primary px-4 py-2 font-semibold text-white shadow-sm transition-all hover:shadow-md hover:brightness-105"
-			>
-				Submit
-			</button>
+			<AddReviewButton />
 		</form>
 	);
 };
