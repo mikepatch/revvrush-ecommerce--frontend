@@ -25,7 +25,7 @@ export const ProductImage = ({
 				alt={alt}
 				className={clsx(
 					"aspect-square h-full w-full object-cover object-center transition-all",
-					resizeOnHover && "group-hover:scale-105",
+					resizeOnHover && "md:group-hover:scale-105",
 				)}
 				loading="lazy"
 			/>
