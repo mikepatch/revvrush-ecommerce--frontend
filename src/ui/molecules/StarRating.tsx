@@ -23,6 +23,7 @@ export const StarRating = ({
 					<li
 						key={index + rating}
 						className={clsx("text-star-rating", variant === "big" ? "text-2xl" : "text-sm")}
+						aria-hidden
 					>
 						{index >= rating ? (
 							<span className="">&#9734;</span>

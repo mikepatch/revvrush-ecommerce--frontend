@@ -18,13 +18,13 @@ export const CategoriesList = ({ categories, title }: CategoriesListProps) => {
 					<li key={category.id}>
 						<Link
 							href={`/categories/${category.slug}`}
-							className="group block rounded-sm bg-brand-background-lighter p-2 shadow-sm transition-all hover:shadow-md"
+							className="group block rounded-sm border bg-brand-background-lighter p-2 shadow-sm transition-all hover:shadow-md"
 						>
 							<NextImage
 								width={300}
 								height={300}
 								src={`/images/categories/${category.slug}.png`}
-								alt={category.name}
+								alt={`${category.name} category icon`}
 								className="object-cover transition-transform group-hover:scale-105"
 							/>
 							<span className="flex w-full justify-center text-sm  sm:text-lg">
