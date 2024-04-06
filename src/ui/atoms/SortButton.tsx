@@ -40,7 +40,7 @@ export const SortButton = () => {
 				name="selectedSort"
 				value={selectedSortValue}
 				onChange={handleChange}
-				className="rounded-sm bg-brand-background-lighter px-2 py-1"
+				className="cursor-pointer rounded-sm bg-brand-background-lighter px-2 py-1"
 			>
 				<option value="" disabled>
 					-
