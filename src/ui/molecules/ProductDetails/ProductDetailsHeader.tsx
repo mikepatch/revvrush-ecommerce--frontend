@@ -18,7 +18,7 @@ export const ProductDetailsHeader = ({ product }: ProductsDetailsHeaderProps) =>
 
 	return (
 		<header className="flex flex-col justify-between gap-6 sm:flex-row">
-			<div className="group flex aspect-square basis-1/3 items-center justify-center overflow-hidden bg-white p-4">
+			<div className="group flex aspect-square basis-1/3 items-center justify-center overflow-hidden border bg-white p-4">
 				{productData.images && productData.images[0] && (
 					<ProductDetailsImage
 						src={productData.images[0]}

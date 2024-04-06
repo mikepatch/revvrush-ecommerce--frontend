@@ -35,7 +35,6 @@ export default async function SingleCollectionPage({ params }: SingleCollectionP
 						src={`/images/collections/${collectionSlug}.png`}
 						alt={name}
 					/>
-
 					<Heading
 						level={1}
 						className="absolute inset-0 flex items-center justify-center bg-brand-background-dark bg-opacity-90 p-4 text-6xl text-font-light"

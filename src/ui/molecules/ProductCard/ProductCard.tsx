@@ -8,7 +8,7 @@ type ProductCardProps = {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
 	return (
-		<article className="group flex h-full w-full flex-col gap-4 overflow-hidden rounded-sm bg-brand-background-lighter text-font-dark shadow-sm hover:shadow-md">
+		<article className="group flex h-full w-full flex-col gap-4 overflow-hidden rounded-sm border bg-brand-background-lighter text-font-dark shadow-sm hover:shadow-md">
 			<ProductCardHeader product={product} />
 			<ProductCardBody product={product} />
 		</article>

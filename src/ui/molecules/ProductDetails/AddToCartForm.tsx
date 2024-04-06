@@ -29,7 +29,7 @@ export const AddToCartForm = ({ productData }: AddToCartFormProps) => {
 					id="quantity"
 					name="quantity"
 					value={quantity}
-					className="w-12 border-brand-background-lighter px-2 py-1 text-center [appearance:textfield] focus:outline-brand-primary [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+					className="w-12 px-2 py-1 text-center [appearance:textfield] focus:outline-brand-primary [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
 					onChange={(e) => setQuantity(parseInt(e.target.value, 10))}
 				/>
 
