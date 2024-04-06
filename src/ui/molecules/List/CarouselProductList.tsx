@@ -63,7 +63,7 @@ export const CarouselProductList = ({ items, title }: CarouselProductListProps) 
 	return (
 		<section>
 			<header>{title && <Heading level={2}>{title}</Heading>}</header>
-			<div className="relative">
+			<section className="relative w-fit">
 				{canScroll.left && (
 					<button
 						onClick={() => scroll("left")}
@@ -90,7 +90,7 @@ export const CarouselProductList = ({ items, title }: CarouselProductListProps) 
 						<ArrowRight />
 					</button>
 				)}
-			</div>
+			</section>
 		</section>
 	);
 };
