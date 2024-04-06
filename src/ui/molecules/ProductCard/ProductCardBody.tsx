@@ -15,7 +15,7 @@ export const ProductCardBody = ({ product }: ProductCardBodyProps) => {
 			<ProductCardPrice price={product.price} />
 			<form
 				action={addProductToCartAction}
-				className="opacity-0 transition-opacity group-hover:opacity-100"
+				className="transition-opacity md:opacity-0 md:group-hover:opacity-100"
 			>
 				<input type="hidden" name="quantity" value="1" />
 				<input type="hidden" name="productId" value={product.id} />
