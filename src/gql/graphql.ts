@@ -1262,11 +1262,11 @@ export type CollectionGetItemQueryVariables = Exact<{
 }>;
 
 
-export type CollectionGetItemQuery = { collection: { name: string, description?: string | null, products: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, avgRating?: number | null, category?: { name: string, slug?: string | null } | null, reviews?: Array<{ rating: number } | null> | null }> } };
+export type CollectionGetItemQuery = { collection: { name: string, slug: string, description?: string | null, products: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, avgRating?: number | null, category?: { name: string, slug?: string | null } | null, reviews?: Array<{ rating: number } | null> | null }> } };
 
 export type CollectionListFragment = { id: string, name: string, slug: string, coverImage: string };
 
-export type CollectionWithProductsFragment = { name: string, description?: string | null, products: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, avgRating?: number | null, category?: { name: string, slug?: string | null } | null, reviews?: Array<{ rating: number } | null> | null }> };
+export type CollectionWithProductsFragment = { name: string, slug: string, description?: string | null, products: Array<{ id: string, name: string, price: number, categoryId: string, images: Array<string | null>, avgRating?: number | null, category?: { name: string, slug?: string | null } | null, reviews?: Array<{ rating: number } | null> | null }> };
 
 export type CollectionsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1405,6 +1405,7 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
 export const CollectionWithProductsFragmentDoc = new TypedDocumentString(`
     fragment CollectionWithProducts on Collection {
   name
+  slug
   description
   products {
     ...ProductListItem
@@ -1577,6 +1578,7 @@ export const CollectionGetItemDocument = new TypedDocumentString(`
 }
     fragment CollectionWithProducts on Collection {
   name
+  slug
   description
   products {
     ...ProductListItem
