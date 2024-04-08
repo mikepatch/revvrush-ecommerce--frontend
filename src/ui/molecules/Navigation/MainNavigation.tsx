@@ -1,26 +1,19 @@
 import { ShoppingCart, User } from "lucide-react";
 
 import { MainNavItem } from "@/ui/atoms/MainNavItem";
-import { getCart } from "@/api/cart";
+import { getCartItemsQty } from "@/api/cart";
 
 export const MainNavigation = async () => {
-	const cart = await getCart();
-	const quantity =
-		cart?.data.items.reduce((acc, item) => {
-			if (item) {
-				return acc + item.quantity;
-			}
-			return 0;
-		}, 0) ?? 0;
+	const quantity = await getCartItemsQty();
 
 	return (
 		<div className="h-full">
 			<ul className="flex h-full items-center">
-				<MainNavItem href="/account" ariaLabel="Your account">
+				<MainNavItem href="/account" ariaLabel="Your account" disabled>
 					<User />
 					<span className="text-xs">Account</span>
 				</MainNavItem>
-				<MainNavItem href="/cart" ariaLabel="Cart">
+				<MainNavItem href="/cart" ariaLabel="Cart" disabled={quantity === 0}>
 					<ShoppingCart />
 					<span className="text-xs">Cart</span>
 					{quantity > 0 && (
