@@ -9,6 +9,7 @@ type ActiveLinkProps = {
 	children: React.ReactNode;
 	href: Route;
 	className?: string;
+	disabled?: boolean;
 	activeClassName?: string;
 	target?: "_self" | "_blank";
 	ariaLabel?: string;
@@ -19,6 +20,7 @@ export const ActiveLink = ({
 	children,
 	href,
 	className = "",
+	disabled = false,
 	activeClassName = "",
 	target = "_self",
 	ariaLabel = "",
@@ -38,6 +40,7 @@ export const ActiveLink = ({
 			className={clsx(className, isActive && activeClassName)}
 			target={target}
 			aria-label={ariaLabel}
+			aria-disabled={disabled}
 		>
 			{children}
 		</Link>
