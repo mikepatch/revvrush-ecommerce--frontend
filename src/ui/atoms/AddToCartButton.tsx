@@ -18,11 +18,11 @@ export const AddToCartButton = ({ variant = "both", ...props }: AddToCartButtonP
 			type="submit"
 			disabled={status.pending}
 			className={clsx(
-				"group flex items-center rounded-sm bg-brand-primary font-semibold shadow-sm disabled:cursor-wait disabled:opacity-50",
+				"group flex items-center rounded-sm bg-brand-primary font-semibold shadow-sm transition-all disabled:cursor-wait disabled:opacity-50",
 				variant === "both" &&
-					"gap-2 bg-brand-primary px-4 py-2 text-white transition-colors hover:bg-brand-primary-dark",
+					"gap-2 px-4 py-2 text-white hover:bg-brand-primary-dark hover:shadow-md",
 				variant === "icon" &&
-					"gap-1 border border-brand-primary bg-transparent px-1 !text-brand-primary transition-colors hover:bg-brand-primary hover:!text-white",
+					"gap-1 border border-brand-primary bg-transparent px-1 !text-brand-primary hover:bg-brand-primary hover:!text-white",
 			)}
 		>
 			<ShoppingCart size={variant === "icon" ? 16 : 24} />
