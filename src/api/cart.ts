@@ -119,3 +119,13 @@ export const addProductToCart = async (
 
 	await addItemToCart(cartId, productId, quantity);
 };
+
+export const getCartItemsQty = async (): Promise<number> => {
+	const cart = await getCart();
+
+	if (!cart) {
+		return 0;
+	}
+
+	return cart.data.items.reduce((acc, item) => acc + item.quantity, 0);
+};
