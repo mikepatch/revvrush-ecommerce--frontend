@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center" id="title">RevvRush – e-commerce</h1>
 
-## Getting Started
+<p id="description">RevvRush is an e-commerce website project I created to develop my web development skills. This repo is the front-end side of the project. The NestJS back-end with GraphQL you can find <a href=https://github.com/mikepatch/server-ecommerce-project>here</a>.</p>
 
-First, run the development server:
+<p align="center"><img src="https://img.shields.io/badge/Next-black?style=for-the-badge&amp;logo=next.js&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&amp;logo=typescript&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&amp;logo=react&amp;logoColor=%2361DAFB" alt="shields"><img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&amp;logo=html5&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&amp;logo=tailwind-css&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/-GraphQL-E10098?style=for-the-badge&amp;logo=graphql&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&amp;logo=eslint&amp;logoColor=white" alt="shields"><img src="https://camo.githubusercontent.com/5a48e200136e84356d6eb377acd41fabcbc4571de83a93fcd84046f0c4a56ee7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f70726574746965722d3141324333343f7374796c653d666f722d7468652d6261646765266c6f676f3d7072657474696572266c6f676f436f6c6f723d463742413345" alt="shields"></p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<h2>🚀 Live Demo</h2>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[https://revvrush.vercel.app/](https://revvrush.vercel.app/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<h2>🧐 Features</h2>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Here're some of the project's best features:
 
-## Learn More
+- search bar – you can search queries in product names and descriptions,
+- add product to cart (only cartId string is stored in cookies),
+- add product rating and review,
+- sorting products by price and average rating,
+- pagination with highlighted active page.
 
-To learn more about Next.js, take a look at the following resources:
+<h2>💻 Built with</h2>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Technologies used in the project:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Next.js,
+- React,
+- TypeScript,
+- TailwindCSS,
+- GraphQL,
+- GraphQL-Codegen (The Guild).
 
-## Deploy on Vercel
+<h2>Project Screenshots:</h2>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<img src="https://lh3.googleusercontent.com/pw/AP1GczNmsX6aLIFsCOB3qTpT8YMylKI6jiBfKmOZvpBg40ZKItI5g-6GuynPCtPiuv-9gJJukHj5NhUnSwGK8ZWTEmoROjYaFwsgpZh1VpYeJWKrcislzfE548hTagJJgIrmSzJnlIKHEH875msRFEotto0=w2214-h1330-s-no-gm?authuser=0" alt="project-screenshot" >
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<img src="https://lh3.googleusercontent.com/pw/AP1GczNpJ9xMPSR0G9bIekNrwQAp8OAImHX9J_1K8c9IAjz8POgsym8H9O21I_cyQ45_iKaHqo1tMwb_RsxbKQJM1v7vCX8lh3G-e3xJ24GtT5F8uQUskJ-AFRxTLs_Bb9KKnN62e6wtUjDtHfrgRxLNmHc=w2232-h1308-s-no-gm?authuser=0" alt="project-screenshot" >
+
+<img src="https://lh3.googleusercontent.com/pw/AP1GczOLVlowu2gXJ8BnAcJXwvCBMqKoYwT5961x54r1eV04s_pxjTGC-RaMp4FqNVptNHd6HZxAxoUKwaUV0o-IcBaMDPaejefybyN8uxYbnE5VMoCg5VeSwjTyBVlD36itNjqwd_C1kYR5MiiMofhrzvc=w1594-h970-s-no-gm?authuser=0" alt="project-screenshot" >
+
+<img src="https://lh3.googleusercontent.com/pw/AP1GczPagkNm_mwrhSyddyPsFyKjnpeytn1awedlFSwPMJJuARr4VzWbjCCjwnPBf14aMQIi_m8miZpvlHA-2--fwidKs6-gr3wZplmZiYAlMT1M1twje8ilObbMwKjQ8eqDkk7plv1AWcjFLS6kPXI8Bis=w2216-h1351-s-no-gm?authuser=0" alt="project-screenshot" >
+
+<img src="https://lh3.googleusercontent.com/pw/AP1GczNDkwFCg0gD4a6dlpJchdikJUVLIvo1RDakr6lmtsFG8q_PbpmY3eFM7hU3GnNTxgzoJPfKECXVBLJtrUGd5K89PsTdUTHGtaILpZi4X68PJg0bwjFy5AEQ_GTwFUa0ktxNKah9mUCOlUYCLp5-h7o=w2216-h1351-s-no-gm?authuser=0" alt="project-screenshot" >
+
+<h2>📝 TODO</h2>
+
+I want to
+
+add new features:
+
+- user account with dashboard,
+- payment feedback view,
+- filtering products,
+- AI recommendations,
+- product variants,
+- product specification + bullet list on listings,
+- admin panel (CMS),
+- rating system for reviews,
+- subcategories,
+
+improve:
+
+- mobile styles,
+- performance,
+- codebase (refactor),
+
+fix:
+
+- the issue with the "not found" in the background after removing a cart item in modal view,
+- mobile view homepage banner slider and navigation.
