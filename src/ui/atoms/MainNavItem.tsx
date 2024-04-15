@@ -17,11 +17,10 @@ export const MainNavItem = ({ href, ariaLabel, children, disabled }: MainNavItem
 				href={href}
 				className={clsx(
 					"relative flex h-full flex-col items-center justify-center gap-px border-b-4 border-transparent px-2 py-1 transition-all hover:border-brand-primary",
-					disabled && "cursor-not-allowed opacity-50",
+					disabled && "pointer-events-none opacity-50",
 				)}
 				activeClassName="!border-brand-primary"
 				ariaLabel={ariaLabel}
-				disabled={disabled}
 			>
 				{children}
 			</ActiveLink>
