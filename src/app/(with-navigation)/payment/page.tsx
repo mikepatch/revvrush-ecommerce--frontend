@@ -26,7 +26,7 @@ export default async function PaymentPage() {
 	const totalAmount = cart.meta.totalPrice;
 
 	const paymentIntent = await stripe.paymentIntents.create({
-		amount: totalAmount,
+		amount: totalAmount * 100,
 		currency: "usd",
 		automatic_payment_methods: {
 			enabled: true,
