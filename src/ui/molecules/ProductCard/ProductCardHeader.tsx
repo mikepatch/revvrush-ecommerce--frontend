@@ -4,7 +4,6 @@ import { type ProductListItemFragment } from "@/gql/graphql";
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { ProductCardTitle } from "@/ui/atoms/ProductCardTitle";
 import { StarRating } from "@/ui/molecules/StarRating";
-// import { StarRating } from "@/ui/molecules/StarRating";
 
 type ProductCardHeaderProps = {
 	product: ProductListItemFragment;
