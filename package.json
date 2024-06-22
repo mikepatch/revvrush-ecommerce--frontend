@@ -11,6 +11,7 @@
 		"codegen": "graphql-codegen --config .graphqlrc.ts"
 	},
 	"dependencies": {
+		"@clerk/nextjs": "^5.1.6",
 		"@headlessui/react": "^1.7.18",
 		"@mdx-js/loader": "^3.0.1",
 		"@mdx-js/react": "^3.0.1",
