@@ -1,20 +1,11 @@
-import { type NextRequest, NextResponse } from "next/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+
+const isProtectedRoute = createRouteMatcher(["/categories/wheels/(.*)"]);
+
+export default clerkMiddleware((auth, req) => {
+	if (isProtectedRoute(req)) auth().protect();
+});
 
 export const config = {
-	matcher: "/api/:function*",
+	matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
 };
-
-const isAuthenticated = (_request: NextRequest) => {
-	return true;
-};
-
-export function middleware(request: NextRequest) {
-	if (!isAuthenticated(request)) {
-		return new NextResponse(JSON.stringify({ success: false, message: "Authentication failed" }), {
-			status: 401,
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
-	}
-}
