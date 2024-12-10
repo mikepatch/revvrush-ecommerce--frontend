@@ -1,10 +1,11 @@
 import Stripe from "stripe";
 
-export default async function PaymentSuccess({
-	searchParams,
-}: {
-	searchParams: { payment_intent: string };
-}) {
+type PaymentSuccessProps = {
+	searchParams: Promise<{ payment_intent: string }>;
+};
+
+export default async function PaymentSuccess({ searchParams }: PaymentSuccessProps) {
+	const resolvedSearchParams = await searchParams;
 	if (!process.env.STRIPE_SECRET_KEY) {
 		return null;
 	}
@@ -15,7 +16,7 @@ export default async function PaymentSuccess({
 	});
 
 	const stripeCheckoutSession = await stripe.checkout.sessions.retrieve(
-		searchParams.payment_intent,
+		resolvedSearchParams.payment_intent,
 	);
 
 	return <div>{stripeCheckoutSession.payment_status}</div>;

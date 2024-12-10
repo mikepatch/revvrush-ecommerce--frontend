@@ -6,7 +6,7 @@ import { ProductReviews } from "@/ui/molecules/ProductDetails/ProductReviews";
 import { CarouselProductList } from "@/ui/molecules/List/CarouselProductList";
 
 type SingleProductPageProps = {
-	params: { productId: string };
+	params: Promise<{ productId: string }>;
 };
 
 export default async function SingleProductPage({ params }: SingleProductPageProps) {

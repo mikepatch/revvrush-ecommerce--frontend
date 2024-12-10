@@ -5,7 +5,7 @@ import { getProductById } from "@/api/products";
 export const generateMetadata = async ({
 	params,
 }: {
-	params: { productId: string };
+	params: Promise<{ productId: string }>;
 }): Promise<Metadata> => {
 	const resolvedParams = await params;
 	const { data: product } = await getProductById(resolvedParams.productId);

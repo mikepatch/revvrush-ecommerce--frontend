@@ -1,17 +1,22 @@
+import { type Metadata } from "next";
 import { getAllProducts } from "@/api/products";
 import { convertSlugToTitle } from "@/utils";
 import { PRODUCTS_ON_PAGE } from "@/constants";
 import { ProductListing } from "@/ui/organisms/ProductListing";
 
+type CategoryParams = {
+	pageNumber: string;
+	categorySlug: string;
+};
+
+type SearchParams = {
+	sort_by?: "price" | "rating";
+	sort_order?: "asc" | "desc";
+};
+
 type PageNumberPageProps = {
-	params: {
-		pageNumber: string;
-		categorySlug: string;
-	};
-	searchParams: {
-		sort_by?: "price" | "rating";
-		sort_order?: "asc" | "desc";
-	};
+	params: Promise<CategoryParams>;
+	searchParams: Promise<SearchParams>;
 };
 
 export const generateStaticParams = async () => {
@@ -24,15 +29,12 @@ export const generateStaticParams = async () => {
 	return Array.from({ length: totalPages }, (_, i) => ({ pageNumber: (i + 1).toString() }));
 };
 
-export const generateMetadata = async ({ params }: PageNumberPageProps) => {
+export async function generateMetadata({ params }: PageNumberPageProps): Promise<Metadata> {
 	const resolvedParams = await params;
-
-	const { categorySlug } = resolvedParams;
-
 	return {
-		title: convertSlugToTitle(categorySlug),
+		title: convertSlugToTitle(resolvedParams.categorySlug),
 	};
-};
+}
 
 export default async function CategoryPageNumberPage({
 	params,
@@ -40,6 +42,5 @@ export default async function CategoryPageNumberPage({
 }: PageNumberPageProps) {
 	const resolvedParams = await params;
 	const resolvedSearchParams = await searchParams;
-
 	return <ProductListing params={resolvedParams} searchParams={resolvedSearchParams} />;
 }

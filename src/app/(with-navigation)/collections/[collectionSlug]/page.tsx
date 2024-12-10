@@ -8,7 +8,11 @@ type ParamsType = {
 	collectionSlug: string;
 };
 
-export const generateMetadata = async ({ params }: { params: ParamsType }): Promise<Metadata> => {
+export const generateMetadata = async ({
+	params,
+}: {
+	params: Promise<ParamsType>;
+}): Promise<Metadata> => {
 	const resolvedParams = await params;
 	const { name } = await getCollectionBySlug(resolvedParams.collectionSlug);
 
@@ -18,7 +22,7 @@ export const generateMetadata = async ({ params }: { params: ParamsType }): Prom
 };
 
 type SingleCollectionPageProps = {
-	params: ParamsType;
+	params: Promise<ParamsType>;
 };
 
 export default async function SingleCollectionPage({ params }: SingleCollectionPageProps) {
