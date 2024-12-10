@@ -8,7 +8,7 @@ export default function LayoutWithNavigation({ children }: LayoutWithNavigationP
 	return (
 		<>
 			<Header />
-			<main className="mx-auto max-w-6xl px-8 py-6">{children}</main>
+			<main className="mx-auto min-h-screen max-w-6xl px-8 py-6">{children}</main>
 		</>
 	);
 }

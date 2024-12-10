@@ -59,7 +59,7 @@ export const ProductListing = async ({ params, searchParams }: ProductListingPro
 					{convertSlugToTitle(params.categorySlug || "products")} <small>({totalProducts})</small>
 				</PageTitle>
 			</header>
-			<section>
+			<section className="flex flex-col gap-4">
 				<SortButton />
 				<Suspense fallback={<ProductListSkeleton itemsCount={PRODUCTS_ON_PAGE} />}>
 					<ProductList products={products} />

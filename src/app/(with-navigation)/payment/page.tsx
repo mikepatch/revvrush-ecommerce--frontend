@@ -43,7 +43,7 @@ export default async function PaymentPage() {
 	return (
 		<div>
 			<PageTitle>Payment</PageTitle>
-			<section className="flex justify-between gap-6 p-4">
+			<section className="flex flex-col justify-between gap-6 p-4">
 				<div className="flex flex-col gap-2">
 					<Heading level={2}>Order summary:</Heading>
 					<table className="table-auto">
@@ -59,7 +59,7 @@ export default async function PaymentPage() {
 								(item) =>
 									item && (
 										<tr key={item.product.id}>
-											<td className="flex items-center gap-2">
+											<td className="flex items-center gap-2 pr-8">
 												<NextImage
 													src={item.product.images[0] as string}
 													alt={item.product.name}
@@ -68,19 +68,21 @@ export default async function PaymentPage() {
 												/>
 												{item.product.name}
 											</td>
-											<td className="text-right">{item.quantity}</td>
-											<td>${item.product.price}</td>
+											<td className="pr-8 text-right">{item.quantity}</td>
+											<td className="text-right">${item.product.price}</td>
 										</tr>
 									),
 							)}
 						</tbody>
 					</table>
-					<p>Total: {formatPrice(totalAmount)}</p>
+					<p className="text-right">Total: {formatPrice(totalAmount)}</p>
 				</div>
-				<StripeForm
-					clientSecret={paymentIntent.client_secret}
-					totalAmount={formatPrice(totalAmount)}
-				/>
+				<div className="self-center">
+					<StripeForm
+						clientSecret={paymentIntent.client_secret}
+						totalAmount={formatPrice(totalAmount)}
+					/>
+				</div>
 			</section>
 		</div>
 	);
