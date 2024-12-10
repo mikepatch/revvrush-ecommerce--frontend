@@ -68,6 +68,7 @@ export const CarouselProductList = ({ items, title }: CarouselProductListProps) 
 					<button
 						onClick={() => scroll("left")}
 						className="absolute left-0 top-1/2 z-10 flex aspect-square w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm bg-brand-primary text-font-light transition-colors hover:bg-brand-primary-dark"
+						aria-label="Previous products"
 					>
 						<ArrowLeft />
 					</button>
@@ -76,8 +77,13 @@ export const CarouselProductList = ({ items, title }: CarouselProductListProps) 
 					ref={carouselRef}
 					className="flex w-full snap-x justify-between gap-4 overflow-x-auto py-6"
 				>
-					{items.map((item) => (
-						<li key={item.id} className="w-full max-w-[260px] flex-none snap-center">
+					{items.map((item, index) => (
+						<li
+							key={item.id}
+							className="w-full max-w-[260px] flex-none snap-center"
+							aria-setsize={items.length}
+							aria-posinset={index + 1}
+						>
 							<ProductCard product={item} />
 						</li>
 					))}
@@ -86,6 +92,7 @@ export const CarouselProductList = ({ items, title }: CarouselProductListProps) 
 					<button
 						onClick={() => scroll("right")}
 						className="absolute right-0 top-1/2 z-10 flex aspect-square w-12 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-sm bg-brand-primary text-font-light transition-colors hover:bg-brand-primary-dark"
+						aria-label="Next products"
 					>
 						<ArrowRight />
 					</button>

@@ -6,7 +6,7 @@ type CategoriesNavToggleButtonProps = {
 
 export const CategoriesNavToggleButton = ({ onToggle }: CategoriesNavToggleButtonProps) => {
 	return (
-		<button onClick={onToggle} className="p-1 text-font-dark">
+		<button onClick={onToggle} className="p-1 text-font-dark" aria-label="Categories navigation">
 			<LucideMenu className="p-1 text-font-dark" />
 		</button>
 	);

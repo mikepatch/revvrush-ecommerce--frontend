@@ -93,6 +93,8 @@ export const BannerSlider = ({ items }: BannerSliderProps) => {
 								setActive(index);
 								setProgress(0);
 							}}
+							aria-label={`Switch to banner: ${item.name}`}
+							aria-pressed={active === index}
 						>
 							<span
 								className={`relative flex flex-col items-center text-center transition-colors ${active !== index && "hover:text-brand-primary"}`}
@@ -101,7 +103,10 @@ export const BannerSlider = ({ items }: BannerSliderProps) => {
 								<span
 									className="absolute inset-0 block w-full "
 									role="progressbar"
+									aria-label={`Auto-switching to next banner in ${Math.round(((100 - progress) / 100) * 5)} seconds`}
 									aria-valuenow={active === index ? progress : 0}
+									aria-valuemin={0}
+									aria-valuemax={100}
 								>
 									<span
 										className="absolute inset-0 rounded-[inherit] bg-brand-primary bg-opacity-50"
