@@ -38,5 +38,8 @@ export default async function CategoryPageNumberPage({
 	params,
 	searchParams,
 }: PageNumberPageProps) {
-	return <ProductListing params={params} searchParams={searchParams} />;
+	const resolvedParams = await params;
+	const resolvedSearchParams = await searchParams;
+
+	return <ProductListing params={resolvedParams} searchParams={resolvedSearchParams} />;
 }
