@@ -7,7 +7,8 @@ export const generateMetadata = async ({
 }: {
 	params: { productId: string };
 }): Promise<Metadata> => {
-	const { data: product } = await getProductById(params.productId);
+	const resolvedParams = await params;
+	const { data: product } = await getProductById(resolvedParams.productId);
 
 	if (!product) {
 		return {
@@ -26,7 +27,5 @@ type SingleProductLayoutProps = {
 };
 
 export default function SingleProductLayout({ children }: SingleProductLayoutProps) {
-	return (
-		<section className="mx-auto flex flex-col gap-6 text-font-dark">{children}</section>
-	);
+	return <section className="mx-auto flex flex-col gap-6 text-font-dark">{children}</section>;
 }

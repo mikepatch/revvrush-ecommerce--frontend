@@ -2,8 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--header-height: 100px; /* lub inna wartość odpowiadająca Twojemu header-height */
+}
+
 body {
 	@apply text-font-light;
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+		-webkit-overflow-scrolling: touch;
+	}
 }
 
 @layer utilities {

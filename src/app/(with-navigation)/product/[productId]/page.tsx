@@ -10,7 +10,8 @@ type SingleProductPageProps = {
 };
 
 export default async function SingleProductPage({ params }: SingleProductPageProps) {
-	const { productId } = params;
+	const resolvedParams = await params;
+	const { productId } = resolvedParams;
 	const product = await getProductById(productId);
 
 	if (!product) {

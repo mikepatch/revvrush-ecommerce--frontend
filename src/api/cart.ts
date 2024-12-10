@@ -10,7 +10,8 @@ import {
 } from "@/gql/graphql";
 
 export const getCart = async (): Promise<CartWithMetadataFragment | undefined> => {
-	const cartId = cookies().get("cartId")?.value;
+	const cookieStore = await cookies();
+	const cartId = cookieStore.get("cartId")?.value;
 
 	if (!cartId) {
 		return;
@@ -76,7 +77,8 @@ export const addItemToCart = async (cartId: string, productId: string, quantity:
 };
 
 export const getCartFromCookies = async (): Promise<CartWithMetadataFragment | undefined> => {
-	const cartId = cookies().get("cartId")?.value;
+	const cookieStore = await cookies();
+	const cartId = cookieStore.get("cartId")?.value;
 
 	if (cartId) {
 		const cart = await getCartById(cartId);
@@ -87,6 +89,7 @@ export const getCartFromCookies = async (): Promise<CartWithMetadataFragment | u
 };
 
 export const getOrCreateCart = async (): Promise<CartWithMetadataFragment> => {
+	const cookieStore = await cookies();
 	const existingCart = await getCartFromCookies();
 	if (existingCart) {
 		return existingCart;
@@ -97,7 +100,7 @@ export const getOrCreateCart = async (): Promise<CartWithMetadataFragment> => {
 		throw new Error("Failed to create cart");
 	}
 
-	cookies().set("cartId", newCart.id, {
+	cookieStore.set("cartId", newCart.id, {
 		httpOnly: true,
 		sameSite: "lax",
 	});

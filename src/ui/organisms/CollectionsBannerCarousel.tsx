@@ -55,6 +55,7 @@ export const CollectionsBanner = ({ collections, interval = 5000 }: CollectionsB
 								alt={`Banner ${name}`}
 								width={1024}
 								height={250}
+								priority
 								className="h-full w-full object-cover object-center"
 							/>
 						</div>

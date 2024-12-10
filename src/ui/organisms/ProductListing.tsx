@@ -22,12 +22,14 @@ type ProductListingProps = {
 };
 
 export const ProductListing = async ({ params, searchParams }: ProductListingProps) => {
-	const pageNumber = Number(params.pageNumber);
+	const resolvedParams = await params;
+	const resolvedSearchParams = await searchParams;
+	const pageNumber = Number(resolvedParams.pageNumber);
 	const orderBy: ProductOrderByWithRelationInput = {
-		price: searchParams?.sort_by === "price" ? searchParams.sort_order : undefined,
+		price: resolvedSearchParams?.sort_by === "price" ? resolvedSearchParams.sort_order : undefined,
 		avgRating:
-			searchParams?.sort_by === "rating"
-				? { sort: searchParams.sort_order || "asc", nulls: "last" }
+			resolvedSearchParams?.sort_by === "rating"
+				? { sort: resolvedSearchParams.sort_order || "asc", nulls: "last" }
 				: undefined,
 	};
 	const {
@@ -40,7 +42,7 @@ export const ProductListing = async ({ params, searchParams }: ProductListingPro
 			category: {
 				is: {
 					slug: {
-						equals: params.categorySlug,
+						equals: resolvedParams.categorySlug,
 					},
 				},
 			},
@@ -56,7 +58,8 @@ export const ProductListing = async ({ params, searchParams }: ProductListingPro
 		<>
 			<header>
 				<PageTitle>
-					{convertSlugToTitle(params.categorySlug || "products")} <small>({totalProducts})</small>
+					{convertSlugToTitle(resolvedParams.categorySlug || "products")}{" "}
+					<small>({totalProducts})</small>
 				</PageTitle>
 			</header>
 			<section className="flex flex-col gap-4">
@@ -70,7 +73,9 @@ export const ProductListing = async ({ params, searchParams }: ProductListingPro
 					pageNumber={pageNumber}
 					totalItems={totalProducts}
 					limit={PRODUCTS_ON_PAGE}
-					categorySlug={params.categorySlug ? `categories/${params.categorySlug}` : "products"}
+					categorySlug={
+						resolvedParams.categorySlug ? `categories/${resolvedParams.categorySlug}` : "products"
+					}
 				/>
 			</footer>
 		</>

@@ -6,6 +6,7 @@ const nextConfig = {
 	experimental: {
 		typedRoutes: true,
 		mdxRs: true,
+		optimizeCss: true,
 	},
 	redirects: async () => {
 		return [

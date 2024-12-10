@@ -15,6 +15,7 @@ export const CollectionPageHeader = ({ collection }: CollectionPageHeaderProps) 
 					height={400}
 					src={`/images/collections/${collection.slug}.png`}
 					alt={collection.name}
+					priority
 				/>
 				<Heading
 					level={1}

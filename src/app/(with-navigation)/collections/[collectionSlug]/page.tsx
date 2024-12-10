@@ -9,7 +9,8 @@ type ParamsType = {
 };
 
 export const generateMetadata = async ({ params }: { params: ParamsType }): Promise<Metadata> => {
-	const { name } = await getCollectionBySlug(params.collectionSlug);
+	const resolvedParams = await params;
+	const { name } = await getCollectionBySlug(resolvedParams.collectionSlug);
 
 	return {
 		title: name,
@@ -21,7 +22,8 @@ type SingleCollectionPageProps = {
 };
 
 export default async function SingleCollectionPage({ params }: SingleCollectionPageProps) {
-	const { collectionSlug } = params;
+	const resolvedParams = await params;
+	const { collectionSlug } = resolvedParams;
 	const collection = await getCollectionBySlug(collectionSlug);
 
 	return (

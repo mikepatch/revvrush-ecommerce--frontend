@@ -25,7 +25,9 @@ export const generateStaticParams = async () => {
 };
 
 export const generateMetadata = async ({ params }: PageNumberPageProps) => {
-	const { categorySlug } = params;
+	const resolvedParams = await params;
+
+	const { categorySlug } = resolvedParams;
 
 	return {
 		title: convertSlugToTitle(categorySlug),

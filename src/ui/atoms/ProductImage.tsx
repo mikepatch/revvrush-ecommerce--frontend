@@ -23,11 +23,11 @@ export const ProductImage = ({
 				height={height}
 				src={src}
 				alt={alt}
+				priority
 				className={clsx(
 					"aspect-square h-full w-full object-cover object-center transition-all",
 					resizeOnHover && "md:group-hover:scale-105",
 				)}
-				loading="lazy"
 			/>
 		</figure>
 	);
