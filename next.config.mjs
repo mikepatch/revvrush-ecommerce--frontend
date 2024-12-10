@@ -26,10 +26,7 @@ const nextConfig = {
 	images: {
 		remotePatterns: [
 			{
-				hostname: "naszsklep-api.vercel.app",
-			},
-			{
-				hostname: "static-ourstore.hyperfunctor.com",
+				hostname: "revvrush.vercel.app",
 			},
 		],
 	},
