@@ -1,6 +1,5 @@
 // import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 // const isProtectedRoute = createRouteMatcher(["/account"]);
 
@@ -8,7 +7,7 @@ import type { NextRequest } from "next/server";
 // 	if (isProtectedRoute(req)) auth().protect();
 // });
 
-export function middleware(request: NextRequest) {
+export function middleware(_request: NextRequest) {
 	return NextResponse.next();
 }
 
